@@ -1,0 +1,67 @@
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const sanitizedRegisterInput = (req, res, next) => {
+    const { username, email, password } = req.body;
+
+    if (!username) {
+        return res.status(400).json({
+            message: "username is required"
+        });
+    }
+
+    if (!email) {
+        return res.status(400).json({
+            message: "Email is required"
+        });
+    }
+
+    if (!password) {
+        return res.status(400).json({
+            message: "Password is required"
+        });
+    }
+
+    if (username.length < 4) {
+        return res.status(400).json({
+            message: "username is too short"
+        });
+    }
+
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({
+            message: "Invalid email format"
+        });
+    }
+
+    if (password.length < 6) {
+        return res.status(400).json({
+            message: "Password must be at least 6 characters long"
+        });
+    }
+
+    next();
+};
+
+export const sanitizedLoginInput = (req, res, next) => {
+    const { email, password } = req.body;
+
+    if (!email) {
+        return res.status(400).json({
+            message: "Email is required"
+        });
+    }
+
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({
+            message: "Invalid email format"
+        });
+    }
+
+    if (!password) {
+        return res.status(400).json({
+            message: "Password is required"
+        });
+    }
+
+    next();
+};
