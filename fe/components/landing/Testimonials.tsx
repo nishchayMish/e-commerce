@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, CheckCircle, ArrowLeft, ArrowRight, Quote } from "lucide-react";
-import { testimonials } from "@/app/lib/data";
-import AnimatedSection from "./ui/AnimatedSection";
+import { testimonials } from "@/lib/data";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function Testimonials() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -57,7 +57,7 @@ export default function Testimonials() {
     <section className="py-24 sm:py-32 bg-white overflow-hidden border-b border-gray-100">
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* Header Left */}
           <div className="lg:col-span-5 flex flex-col items-start">
             <AnimatedSection direction="up">
@@ -106,7 +106,7 @@ export default function Testimonials() {
 
             <AnimatedSection direction="up" delay={0.15} className="w-full">
               <div className="relative min-h-[380px] sm:min-h-[320px] bg-gray-50 border border-gray-100 rounded-3xl p-8 sm:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_12px_36px_rgba(0,0,0,0.04)] flex flex-col justify-between">
-                
+
                 {/* Quote Icon */}
                 <div className="absolute top-6 right-6 text-gray-200/80 pointer-events-none">
                   <Quote size={52} className="rotate-180" />

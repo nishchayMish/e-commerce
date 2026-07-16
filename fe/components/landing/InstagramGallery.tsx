@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
-import { instagramPosts } from "@/app/lib/data";
-import AnimatedSection from "./ui/AnimatedSection";
+import { instagramPosts } from "@/lib/data";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const InstagramIcon = ({ className }: { className?: string }) => (
   <svg className={`w-5.5 h-5.5 fill-current ${className}`} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -16,7 +16,7 @@ export default function InstagramGallery() {
   return (
     <section className="py-24 sm:py-32 bg-white">
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
-        
+
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
           <AnimatedSection direction="up">

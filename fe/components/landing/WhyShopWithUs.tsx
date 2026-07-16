@@ -1,7 +1,7 @@
 "use client";
 
 import { Truck, ShieldCheck, RefreshCw, Headphones, Award, Zap } from "lucide-react";
-import AnimatedSection from "./ui/AnimatedSection";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const features = [
   {
@@ -81,7 +81,7 @@ export default function WhyShopWithUs() {
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 leading-tight mb-2.5">
                     {feature.title}
                   </h3>
-                  
+
                   <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
                     {feature.description}
                   </p>

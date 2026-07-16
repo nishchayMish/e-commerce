@@ -38,12 +38,17 @@ export default function CountdownTimer({ targetHours = 11 }: CountdownTimerProps
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    setTimeLeft(calculateTimeLeft(target));
+    const timeout = setTimeout(() => {
+      setMounted(true);
+      setTimeLeft(calculateTimeLeft(target));
+    }, 0);
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft(target));
     }, 1000);
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
   }, [target]);
 
   const units = [

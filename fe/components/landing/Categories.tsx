@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { categories } from "@/app/lib/data";
-import AnimatedSection from "./ui/AnimatedSection";
+import { categories } from "@/lib/data";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function Categories() {
   // Let's create an asymmetrical or premium layout

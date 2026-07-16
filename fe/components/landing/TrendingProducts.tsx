@@ -4,17 +4,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { products } from "@/app/lib/data";
-import ProductCard from "./ui/ProductCard";
-import AnimatedSection from "./ui/AnimatedSection";
+import { products } from "@/lib/data";
+import ProductCard from "@/components/ui/ProductCard";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const filterTabs = ["All", "Fashion", "Electronics", "Beauty", "Sports & Fitness"];
 
 export default function TrendingProducts() {
   const [activeTab, setActiveTab] = useState("All");
 
-  const filteredProducts = activeTab === "All" 
-    ? products 
+  const filteredProducts = activeTab === "All"
+    ? products
     : products.filter(p => p.category === activeTab);
 
   return (
@@ -66,7 +66,7 @@ export default function TrendingProducts() {
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <AnimatePresence mode="popLayout">
-            {filteredProducts.map((product, index) => (
+            {filteredProducts.map((product) => (
               <motion.div
                 key={product.id}
                 layout

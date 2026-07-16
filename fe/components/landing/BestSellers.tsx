@@ -3,9 +3,9 @@
 import { useRef } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { bestSellers } from "@/app/lib/data";
-import ProductCard from "./ui/ProductCard";
-import AnimatedSection from "./ui/AnimatedSection";
+import { bestSellers } from "@/lib/data";
+import ProductCard from "@/components/ui/ProductCard";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function BestSellers() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -43,7 +43,7 @@ export default function BestSellers() {
               Explore Collection
               <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
-            
+
             {/* Carousel Buttons */}
             <div className="flex gap-2">
               <button

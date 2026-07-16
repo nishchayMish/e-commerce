@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
-import { flashSaleProduct } from "@/app/lib/data";
-import CountdownTimer from "./ui/CountdownTimer";
-import AnimatedSection from "./ui/AnimatedSection";
+import { flashSaleProduct } from "@/lib/data";
+import CountdownTimer from "@/components/ui/CountdownTimer";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function FlashSale() {
   return (
@@ -13,7 +13,7 @@ export default function FlashSale() {
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         <AnimatedSection direction="up">
           <div className="relative rounded-[2rem] overflow-hidden bg-gradient-to-br from-indigo-950 via-gray-900 to-black px-6 py-16 sm:px-12 sm:py-20 lg:p-24 shadow-[0_24px_80px_rgba(0,0,0,0.2)]">
-            
+
             {/* Background design elements */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
               <div className="absolute -top-32 -left-32 w-96 h-96 bg-indigo-500 rounded-full blur-[90px]" />
@@ -32,7 +32,7 @@ export default function FlashSale() {
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight mb-4">
                   Exclusive Obsidian Edition
                 </h2>
-                
+
                 <p className="text-sm sm:text-base text-gray-300 mb-8 max-w-md leading-relaxed">
                   Experience true precision. Handcrafted in Geneva, the Chrono Prestige Obsidian Edition features our bespoke black ceramic construct. Save 44% for a limited time.
                 </p>
@@ -58,7 +58,7 @@ export default function FlashSale() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}

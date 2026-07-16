@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, ShoppingBag, Star, Eye } from "lucide-react";
-import type { Product } from "@/app/lib/types";
+import type { Product } from "@/lib/types";
 
 const badgeStyles: Record<string, string> = {
   New: "bg-indigo-600 text-white",
@@ -73,11 +73,10 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setWishlisted((w) => !w)}
-            className={`w-9 h-9 rounded-xl flex items-center justify-center shadow-lg backdrop-blur-sm border transition-colors ${
-              wishlisted
+            className={`w-9 h-9 rounded-xl flex items-center justify-center shadow-lg backdrop-blur-sm border transition-colors ${wishlisted
                 ? "bg-rose-500 text-white border-rose-500"
                 : "bg-white/90 text-gray-600 border-white/60 hover:text-rose-500"
-            }`}
+              }`}
             aria-label="Add to wishlist"
           >
             <Heart size={15} fill={wishlisted ? "currentColor" : "none"} />
@@ -143,11 +142,10 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={handleAddToCart}
-          className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-250 ${
-            added
+          className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-250 ${added
               ? "bg-emerald-500 text-white"
               : "bg-gray-900 text-white hover:bg-indigo-600 active:scale-[0.98]"
-          }`}
+            }`}
         >
           <ShoppingBag size={14} />
           {added ? "Added ✓" : "Add to Cart"}

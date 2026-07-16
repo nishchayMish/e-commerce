@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, CheckCircle2, ArrowRight } from "lucide-react";
-import AnimatedSection from "./ui/AnimatedSection";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ export default function Newsletter() {
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         <AnimatedSection direction="up">
           <div className="relative rounded-[2rem] bg-white border border-gray-100 p-8 sm:p-12 lg:p-20 shadow-[0_1px_3px_rgba(0,0,0,0.01),0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden text-center max-w-4xl mx-auto">
-            
+
             {/* Background design elements */}
             <div className="absolute inset-0 pointer-events-none opacity-20">
               <div className="absolute -top-32 -left-32 w-80 h-80 bg-indigo-200 rounded-full blur-[80px]" />
@@ -29,7 +29,7 @@ export default function Newsletter() {
             </div>
 
             <div className="relative max-w-xl mx-auto flex flex-col items-center">
-              
+
               {/* Mail Icon */}
               <div className="w-12 h-12 rounded-2xl bg-indigo-55/10 border border-indigo-100/50 flex items-center justify-center text-indigo-600 mb-6 shadow-sm">
                 <Mail size={20} strokeWidth={1.5} />
@@ -38,7 +38,7 @@ export default function Newsletter() {
               <h2 className="text-3xl sm:text-[42px] font-bold text-gray-900 leading-[1.1] tracking-tight mb-4">
                 Subscribe to Our Newsletter
               </h2>
-              
+
               <p className="text-sm sm:text-base text-gray-500 leading-relaxed mb-10">
                 Join our premium community to receive early access to new arrivals, curated editorials, and exclusive events.
               </p>

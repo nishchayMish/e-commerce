@@ -1,7 +1,7 @@
 "use client";
 
-import { brands } from "@/app/lib/data";
-import AnimatedSection from "./ui/AnimatedSection";
+import { brands } from "@/lib/data";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function Brands() {
   // Let's create a dual marquee layout for premium continuous motion
@@ -27,7 +27,7 @@ export default function Brands() {
             </span>
           ))}
         </div>
-        
+
         {/* Mirror copy to make loop continuous */}
         <div className="flex gap-20 sm:gap-28 py-2 animate-marquee whitespace-nowrap min-w-full items-center" aria-hidden="true">
           {brands.map((brand) => (

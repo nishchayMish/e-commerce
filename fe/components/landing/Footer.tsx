@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import AnimatedSection from "./ui/AnimatedSection";
 
 // Custom premium SVG brand icons
 const InstagramIcon = () => (
@@ -62,10 +60,10 @@ export default function Footer() {
   return (
     <footer className="bg-gray-950 text-gray-400 border-t border-gray-900 pt-20 pb-12 sm:pt-28">
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
-        
+
         {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8 pb-16 sm:pb-20 border-b border-gray-900">
-          
+
           {/* Logo & Bio Left */}
           <div className="lg:col-span-2 flex flex-col items-start">
             <Link href="/" className="mb-6">
@@ -76,7 +74,7 @@ export default function Footer() {
             <p className="text-sm text-gray-500 leading-relaxed mb-8 max-w-sm">
               We curate premium design and exceptional utility. Thoughtfully crafted for the modern citizen.
             </p>
-            
+
             {/* Socials */}
             <div className="flex gap-4">
               {socialIcons.map(({ icon: Icon, href, label }) => (
