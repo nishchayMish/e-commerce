@@ -4,10 +4,11 @@ export const fetchProductController = async(req, res) => {
     try {
         const page = Number(req.query.page) || 1;
         const limit = (req.query.limit) || 10;
-        const data = await fetchProductService(page, limit);
+        const { rows, pagination } = await fetchProductService(page, limit);
         return res.status(200).json({
             message: "products fetched successfully",
-            data
+            products: rows,
+            pagination
         });
     } catch (err) {
         res.status(err.statusCode || 500).json({

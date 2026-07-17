@@ -6,13 +6,6 @@ import { motion } from "framer-motion";
 import { Heart, ShoppingBag, Star, Eye } from "lucide-react";
 import type { Product } from "@/lib/types";
 
-const badgeStyles: Record<string, string> = {
-  New: "bg-indigo-600 text-white",
-  Hot: "bg-orange-500 text-white",
-  Sale: "bg-rose-500 text-white",
-  Limited: "bg-gray-900 text-white",
-};
-
 interface ProductCardProps {
   product: Product;
   compact?: boolean;
@@ -52,22 +45,6 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-        {/* Badge */}
-        {product.badge && (
-          <div
-            className={`absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[11px] font-bold tracking-wide uppercase ${badgeStyles[product.badge]}`}
-          >
-            {product.badge}
-          </div>
-        )}
-
-        {/* Discount tag */}
-        {product.discount && (
-          <div className="absolute top-3 right-3 bg-white text-rose-600 border border-rose-100 text-xs font-bold px-2 py-0.5 rounded-lg shadow-sm">
-            -{product.discount}%
-          </div>
-        )}
-
         {/* Action buttons */}
         <div className="absolute bottom-3 right-3 flex flex-col gap-2 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out">
           <motion.button
@@ -101,8 +78,6 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
           {product.name}
         </h3>
 
-        <p className="text-xs text-gray-400 mb-3">{product.brand}</p>
-
         {/* Rating */}
         <div className="flex items-center gap-1.5 mb-3">
           <div className="flex gap-0.5">
@@ -121,9 +96,6 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
           <span className="text-xs font-semibold text-gray-700">
             {product.rating}
           </span>
-          <span className="text-xs text-gray-400">
-            ({product.reviewCount.toLocaleString()})
-          </span>
         </div>
 
         {/* Price row */}
@@ -131,11 +103,6 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
           <span className="text-base sm:text-lg font-bold text-gray-900">
             ${product.price.toLocaleString()}
           </span>
-          {product.originalPrice && (
-            <span className="text-sm text-gray-400 line-through">
-              ${product.originalPrice.toLocaleString()}
-            </span>
-          )}
         </div>
 
         {/* Add to Cart */}

@@ -1,16 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { products } from "@/lib/data";
 import ProductCard from "@/components/ui/ProductCard";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import toast from "react-hot-toast";
+import http from "@/lib/http";
+import { endpoints } from "@/lib/endpoints";
+import type { Product } from "@/lib/types";
 
 const filterTabs = ["All", "Fashion", "Electronics", "Beauty", "Sports & Fitness"];
 
 export default function TrendingProducts() {
+  const [products, setProducts] = useState<Product[]>([])
+  useEffect(()=>{
+    const fetchProducts = async() => {
+      try {
+        const res = await http.get(endpoints.product.allProducts)
+        const slicedProducts = (res.data.products as Product[]).slice(0,8)
+        setProducts(slicedProducts)
+      } catch (error) {
+        toast.error("error fetching products")
+      }
+    }
+    fetchProducts();
+  },[])
   const [activeTab, setActiveTab] = useState("All");
 
   const filteredProducts = activeTab === "All"

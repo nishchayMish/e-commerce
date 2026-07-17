@@ -5,106 +5,74 @@ export const products: Product[] = [
   {
     id: "1",
     name: "Acoustic Pro Wireless",
-    brand: "Soleil Audio",
     category: "Electronics",
     price: 349,
-    originalPrice: 449,
-    discount: 22,
     rating: 4.8,
-    reviewCount: 2847,
     image:
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80",
-    badge: "Hot",
   },
   {
     id: "2",
     name: "Chrono Prestige",
-    brand: "Atelier Temps",
     category: "Fashion",
     price: 1299,
-    originalPrice: 1599,
-    discount: 19,
     rating: 4.9,
-    reviewCount: 1204,
     image:
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80",
-    badge: "Limited",
   },
   {
     id: "3",
     name: "Forma Leather Tote",
-    brand: "Forma Studio",
     category: "Fashion",
     price: 285,
     rating: 4.7,
-    reviewCount: 891,
     image:
       "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&q=80",
-    badge: "New",
   },
   {
     id: "4",
     name: "Velour Sunglasses",
-    brand: "Maison Optique",
     category: "Fashion",
     price: 195,
-    originalPrice: 245,
-    discount: 20,
     rating: 4.6,
-    reviewCount: 563,
     image:
       "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&q=80",
   },
   {
     id: "5",
     name: "Pure Santal Eau de Parfum",
-    brand: "Luxe Parfum",
     category: "Beauty",
     price: 185,
     rating: 4.9,
-    reviewCount: 3201,
     image:
       "https://images.unsplash.com/photo-1541643600914-78b084683702?w=500&q=80",
-    badge: "Hot",
   },
   {
     id: "6",
     name: "Reflex Runner Pro",
-    brand: "Kinetic Sport",
     category: "Sports & Fitness",
     price: 165,
-    originalPrice: 210,
-    discount: 21,
     rating: 4.7,
-    reviewCount: 4129,
     image:
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80",
-    badge: "Sale",
   },
   {
     id: "7",
     name: "Mirrorless Pro X",
-    brand: "Apex Imaging",
     category: "Electronics",
     price: 2499,
-    originalPrice: 2799,
-    discount: 11,
     rating: 4.8,
-    reviewCount: 734,
     image:
       "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&q=80",
   },
   {
     id: "8",
     name: "Cloud Stride Elite",
-    brand: "Kinetic Sport",
     category: "Sports & Fitness",
     price: 220,
     rating: 4.6,
-    reviewCount: 2156,
     image:
       "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&q=80",
-    badge: "New",
   },
 ];
 
@@ -114,55 +82,38 @@ export const bestSellers: Product[] = [
   {
     id: "9",
     name: "Noir Ceramic Mug Set",
-    brand: "Forma Studio",
     category: "Home & Kitchen",
     price: 95,
-    originalPrice: 120,
-    discount: 21,
     rating: 4.8,
-    reviewCount: 1672,
     image:
       "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&q=80",
-    isBestSeller: true,
   },
   {
     id: "10",
     name: "Velvet Cashmere Scarf",
-    brand: "Nordic Thread",
     category: "Fashion",
     price: 145,
     rating: 4.9,
-    reviewCount: 892,
     image:
       "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=500&q=80",
-    isBestSeller: true,
   },
   {
     id: "11",
     name: "Obsidian Desk Lamp",
-    brand: "Forma Studio",
     category: "Home & Kitchen",
     price: 240,
     rating: 4.7,
-    reviewCount: 445,
     image:
       "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80",
-    badge: "New",
-    isBestSeller: true,
   },
   {
     id: "12",
     name: "Quartz Face Roller",
-    brand: "Luxe Parfum",
     category: "Beauty",
     price: 68,
-    originalPrice: 85,
-    discount: 20,
     rating: 4.6,
-    reviewCount: 3410,
     image:
       "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80",
-    isBestSeller: true,
   },
 ];
 
@@ -219,16 +170,11 @@ export const categories: Category[] = [
 export const flashSaleProduct: Product = {
   id: "fs1",
   name: "Chrono Prestige Obsidian Edition",
-  brand: "Atelier Temps",
   category: "Fashion",
   price: 899,
-  originalPrice: 1599,
-  discount: 44,
   rating: 4.9,
-  reviewCount: 891,
   image:
     "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&q=80",
-  badge: "Limited",
 };
 
 /* ─── Testimonials ──────────────────────────────────────── */

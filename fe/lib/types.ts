@@ -1,16 +1,16 @@
+
 export interface Product {
   id: string;
   name: string;
-  brand: string;
-  category: string;
   price: number;
-  originalPrice?: number;
-  discount?: number;
-  rating: number;
-  reviewCount: number;
   image: string;
-  badge?: "New" | "Sale" | "Hot" | "Limited";
-  isBestSeller?: boolean;
+  category: string;
+  description?: string;
+  rating: number;
+  quantity?: number;
+  in_stock?: boolean;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Category {

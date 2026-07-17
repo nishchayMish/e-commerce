@@ -53,9 +53,6 @@ export default function FlashSale() {
                       <span className="text-3xl sm:text-4xl font-extrabold tracking-tight">
                         ${flashSaleProduct.price}
                       </span>
-                      <span className="text-base sm:text-lg text-gray-400 line-through">
-                        ${flashSaleProduct.originalPrice}
-                      </span>
                     </div>
                   </div>
 
@@ -97,10 +94,6 @@ export default function FlashSale() {
                     />
                   </motion.div>
 
-                  {/* Absolute Badge */}
-                  <div className="absolute top-4 left-4 bg-indigo-600 text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-lg">
-                    Only {flashSaleProduct.discount}% Off
-                  </div>
                 </div>
               </div>
             </div>
