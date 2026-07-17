@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/hooks/useAuth";
 import { endpoints } from "@/lib/endpoints";
 import http from "@/lib/http";
 import Image from "next/image";
@@ -13,7 +14,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,11 +25,15 @@ const Login = () => {
     }));
   };
 
+  const { setUser } = useAuth();
+
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const res = await http.post(endpoints.auth.login, formData)
+    setUser(res.data.user)
     if(res.status===200){
+      router.push("/")
       toast.success("Login successful");
     }
 

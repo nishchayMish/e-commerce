@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Heart, ShoppingBag, User, Menu, X } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -29,6 +30,9 @@ export default function Navbar() {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
+
+  const { user, loading } = useAuth();
+  const firstName = user?.username[0];
 
   return (
     <>
@@ -98,12 +102,20 @@ export default function Navbar() {
               </button>
 
               {/* Profile (desktop only) */}
+              {user ? 
               <button
+                className="hidden uppercase lg:flex w-6 h-6 p-3.5 rounded-full items-center justify-center text-blue-900 bg-gray-300"
+                aria-label="Account"
+              >
+                {firstName}
+              </button>
+              : <button
                 className="hidden lg:flex w-10 h-10 rounded-xl items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
                 aria-label="Account"
               >
                 <User size={17} />
               </button>
+              }
 
               {/* Mobile hamburger */}
               <button

@@ -11,3 +11,8 @@ export const registerUser = async(username, email, password) => {
     )
     return result.rows[0];
 }
+
+export const fetchMe = async(userId) => {
+    const res = await pool.query("SELECT * FROM users WHERE id = $1", [userId]);
+    return res.rows[0];
+}

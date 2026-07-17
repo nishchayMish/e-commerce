@@ -1,4 +1,4 @@
-import { findUser, registerUser } from "./auth.repository.js"
+import { fetchMe, findUser, registerUser } from "./auth.repository.js"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -52,6 +52,7 @@ export const loginService = async(email, password) => {
 
     const userPayload = {
         id: user.id,
+        username: user.username,
         email: user.email
     }
 
@@ -60,4 +61,20 @@ export const loginService = async(email, password) => {
         userPayload
     }
 
+}
+
+export const fetchMeService = async(userId) => {
+    if(!userId){
+        throw{
+            statusCode: 401,
+            message: "unauthorized"
+        }
+    }
+    const res = await fetchMe(userId);
+    const userPayload = {
+        id: res.id,
+        username: res.username,
+        email: res.username
+    }
+    return userPayload;
 }

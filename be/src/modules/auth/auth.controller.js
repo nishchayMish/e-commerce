@@ -1,4 +1,4 @@
-import { loginService, registerService } from "./auth.service.js";
+import { fetchMeService, loginService, registerService } from "./auth.service.js";
 
 export const loginController = async(req, res) => {
     try {   
@@ -8,9 +8,9 @@ export const loginController = async(req, res) => {
         res.cookie("access_token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "none",
-            maxAge: 15 * 60 * 1000
-        })
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            maxAge: 15 * 60 * 1000,
+        });
 
         return res.status(200).json({
             success: true,
@@ -30,6 +30,21 @@ export const RegisterController = async(req, res) => {
         const result = await registerService(username, email, password)
         res.status(200).json({
             message: "user logined successfully",
+            result
+        })
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Internal server error"
+        })
+    }
+}
+
+export const fetchMeController = async(req, res) => {
+    try {
+        const userId = req.user.id;
+        const result = await fetchMeService(userId);
+        res.status(200).json({
+            message: "user fetched successfully",
             result
         })
     } catch (err) {

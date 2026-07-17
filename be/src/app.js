@@ -2,6 +2,7 @@ import express from "express";
 import authRoutes from "./modules/auth/auth.routes.js";
 import productRoutes from "./modules/products/products.routes.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 export const app = express();
 
@@ -10,7 +11,8 @@ app.use(cors({
     credentials: true
 }))
 
-app.use(express.json())
+app.use(express.json());
+app.use(cookieParser());
 
 app.use("/auth", authRoutes);
 app.use("/", productRoutes);
