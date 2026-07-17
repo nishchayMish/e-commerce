@@ -2,7 +2,9 @@ import { fetchProductService, fetchSingleProductService } from "./products.servi
 
 export const fetchProductController = async(req, res) => {
     try {
-        const data = await fetchProductService();
+        const page = Number(req.query.page) || 1;
+        const limit = (req.query.limit) || 10;
+        const data = await fetchProductService(page, limit);
         return res.status(200).json({
             message: "products fetched successfully",
             data
