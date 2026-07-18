@@ -1,29 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { bestSellers } from "@/lib/data";
 import ProductCard from "@/components/ui/ProductCard";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import { getHomeProducts } from "@/services/home";
-import toast from "react-hot-toast";
-import { Product } from "@/lib/types";
+import { useHomeProducts } from "@/context/HomeProductsContext";
 
 export default function BestSellers() {
-  const [bestsellerProducts, setBestsellerProducts] = useState<Record<string, Product[]>>({});
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await getHomeProducts();
-        setBestsellerProducts(data.bestsellerProducts)
-        console.log(bestSellers)
-      } catch {
-        toast.error("error fetching products");
-      }
-    };
-    fetchProducts();
-  }, []);
+  const { data } = useHomeProducts();
+  const bestsellerProducts = data?.bestsellerProducts ?? [];
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {

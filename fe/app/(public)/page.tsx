@@ -8,6 +8,7 @@ import Brands from "@/components/landing/Brands";
 import Testimonials from "@/components/landing/Testimonials";
 import Newsletter from "@/components/landing/Newsletter";
 import InstagramGallery from "@/components/landing/InstagramGallery";
+import HomeProductsProvider from "@/context/HomeProductsContext";
 
 export default function Home() {
   return (
@@ -15,9 +16,11 @@ export default function Home() {
       <Hero />
       <Brands />
       <Categories />
-      <TrendingProducts />
-      <FlashSale />
-      <BestSellers />
+      <HomeProductsProvider>
+        <TrendingProducts />
+        <FlashSale />
+        <BestSellers />
+      </HomeProductsProvider>
       <WhyShopWithUs />
       <Testimonials />
       <InstagramGallery />

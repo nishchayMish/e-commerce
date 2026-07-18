@@ -9,6 +9,10 @@ export interface Product {
   rating: number;
   quantity?: number;
   in_stock?: boolean;
+  old_price?: number | string | null;
+  trending?: boolean;
+  bestSeller?: boolean;
+  bestseller?: boolean;
   created_at?: string;
   updated_at?: string;
 }
@@ -16,7 +20,7 @@ export interface Product {
 export interface HomeProductsResponse {
   categories: string[];
   trendingProducts: Record<string, Product[]>;
-  bestsellerProducts: Record<string, Product[]>;
+  bestsellerProducts: Product[];
 }
 
 export interface Category {

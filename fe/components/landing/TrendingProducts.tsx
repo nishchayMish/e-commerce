@@ -1,36 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ProductCard from "@/components/ui/ProductCard";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import toast from "react-hot-toast";
-import { getHomeProducts } from "@/services/home";
-import type { Product } from "@/lib/types";
+import { useHomeProducts } from "@/context/HomeProductsContext";
 
 export default function TrendingProducts() {
-  const [activeTab, setActiveTab] = useState("");
-  const [filterTabs, setFilterTabs] = useState<string[]>([]);
-  const [trendingProducts, setTrendingProducts] = useState<Record<string, Product[]>>({});
+  const { data } = useHomeProducts();
+  const [selectedTab, setSelectedTab] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await getHomeProducts();
-        setFilterTabs(data.categories);
-        setTrendingProducts(data.trendingProducts);
-        if (data.categories.length > 0) {
-          setActiveTab(data.categories[0]);
-        }
-      } catch {
-        toast.error("error fetching products");
-      }
-    };
-    fetchProducts();
-  }, []);
-
+  const filterTabs = data?.categories ?? [];
+  const activeTab = selectedTab ?? filterTabs[0] ?? "";
+  const trendingProducts = data?.trendingProducts ?? {};
   const filteredProducts = trendingProducts[activeTab] ?? [];
 
   return (
@@ -63,7 +47,7 @@ export default function TrendingProducts() {
             {filterTabs.map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => setSelectedTab(tab)}
                 className="relative py-2 text-sm font-semibold text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
               >
                 {tab}

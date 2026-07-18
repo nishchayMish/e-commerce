@@ -15,6 +15,13 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
   const [wishlisted, setWishlisted] = useState(false);
   const [added, setAdded] = useState(false);
 
+  const price = Number(product.price);
+  const oldPrice =
+    product.old_price != null ? Number(product.old_price) : null;
+  const showOldPrice = oldPrice != null && oldPrice > price;
+  const isBestSeller = Boolean(product.bestSeller ?? product.bestseller);
+  const badgeLabel = isBestSeller ? "Best Seller" : product.trending ? "Trending" : null;
+
   const handleAddToCart = () => {
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
@@ -44,6 +51,12 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
 
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+        {badgeLabel && (
+          <span className="absolute top-3 left-3 z-10 rounded-full bg-white/85 backdrop-blur-md px-2.5 py-1 text-[11px] font-medium tracking-wide text-gray-800 shadow-[0_1px_2px_rgba(0,0,0,0.06)] ring-1 ring-black/5">
+            {badgeLabel}
+          </span>
+        )}
 
         {/* Action buttons */}
         <div className="absolute bottom-3 right-3 flex flex-col gap-2 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out">
@@ -86,7 +99,7 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
                 key={i}
                 size={11}
                 className={
-                  i < Math.floor(product.rating)
+                  i < Math.floor(Number(product.rating))
                     ? "text-amber-400 fill-amber-400"
                     : "text-gray-200 fill-gray-200"
                 }
@@ -101,8 +114,13 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
         {/* Price row */}
         <div className="flex items-baseline gap-2 mb-3 mt-auto">
           <span className="text-base sm:text-lg font-bold text-gray-900">
-            ${product.price.toLocaleString()}
+            ₹{price.toLocaleString("en-IN")}
           </span>
+          {showOldPrice && (
+            <span className="text-sm text-gray-400 line-through">
+              ₹{oldPrice.toLocaleString("en-IN")}
+            </span>
+          )}
         </div>
 
         {/* Add to Cart */}
