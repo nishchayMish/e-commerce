@@ -1,4 +1,4 @@
-import { fetchProducts, fetchSingleProduct } from "./products.repository.js";
+import { fetchHomeProducts, fetchProducts, fetchSingleProduct } from "./products.repository.js";
 
 export const fetchProductService = async(page, limit) => {
     if(page <= 0){
@@ -25,4 +25,21 @@ export const fetchSingleProductService = async(productId) => {
         }
     }
     return await fetchSingleProduct(productId);
+}
+
+export const fetchHomeProductsService = async() => {
+    const allProducts = await fetchHomeProducts();
+    const groupedProducts = {};
+
+    for (const product of allProducts) {
+        if (!groupedProducts[product.category]) {
+            groupedProducts[product.category] = [];
+        }
+
+        groupedProducts[product.category].push(product);
+    }
+
+    const categories = ["All", ...Object.keys(groupedProducts)]
+
+    return {categories, groupedProducts};
 }

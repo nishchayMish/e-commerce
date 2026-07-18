@@ -1,4 +1,4 @@
-import { fetchProductService, fetchSingleProductService } from "./products.service.js";
+import { fetchHomeProductsService, fetchProductService, fetchSingleProductService } from "./products.service.js";
 
 export const fetchProductController = async(req, res) => {
     try {
@@ -24,6 +24,17 @@ export const fetchSingleProductController = async(req, res) => {
         return res.status(200).json({
             data
         });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Internal server error"
+        })
+    }
+}
+
+export const fetchHomeProductsController = async(req, res) => {
+    try {
+        const data = await fetchHomeProductsService();
+        return res.status(200).send(data)
     } catch (err) {
         res.status(err.statusCode || 500).json({
             message: err.message || "Internal server error"

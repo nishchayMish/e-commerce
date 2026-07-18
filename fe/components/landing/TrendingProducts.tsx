@@ -11,23 +11,24 @@ import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 import type { Product } from "@/lib/types";
 
-const filterTabs = ["All", "Fashion", "Electronics", "Beauty", "Sports & Fitness"];
 
 export default function TrendingProducts() {
+  const [activeTab, setActiveTab] = useState("All");
+  const [filterTabs, setFilterTabs] = useState()
   const [products, setProducts] = useState<Product[]>([])
   useEffect(()=>{
     const fetchProducts = async() => {
       try {
-        const res = await http.get(endpoints.product.allProducts)
-        const slicedProducts = (res.data.products as Product[]).slice(0,8)
-        setProducts(slicedProducts)
+        const res = await http.get(endpoints.homePage.trending)  
+        setFilterTabs(res.data.categories);
+        setProducts(res.data.groupedProducts)
       } catch (error) {
         toast.error("error fetching products")
       }
     }
     fetchProducts();
-  },[])
-  const [activeTab, setActiveTab] = useState("All");
+  },[activeTab])
+  
 
   const filteredProducts = activeTab === "All"
     ? products
