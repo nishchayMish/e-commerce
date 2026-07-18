@@ -11,7 +11,9 @@
         description TEXT NOT NULL CHECK(TRIM(description) <> ''),
         rating DECIMAL(2,1) NOT NULL DEFAULT 0 CHECK(rating >= 0 AND rating <= 5),
         quantity INT NOT NULL DEFAULT 0 CHECK(quantity >= 0),
-        in_stock BOOLEAN DEFAULT TRUE,
+        old_price DECIMAL(10,2),
+        trending BOOLEAN DEFAULT FALSE,
+        bestSeller BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW()
     );

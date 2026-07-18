@@ -5,8 +5,7 @@ export const endpoints = {
         register: "/auth/register"
     },
     homePage: {
-        trending: "/home",
-        bestSellers: "/home"
+        products: "/home",
     },
     product:{
         allProducts: "/products",

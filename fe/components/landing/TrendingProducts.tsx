@@ -7,32 +7,31 @@ import { ArrowUpRight } from "lucide-react";
 import ProductCard from "@/components/ui/ProductCard";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import toast from "react-hot-toast";
-import http from "@/lib/http";
-import { endpoints } from "@/lib/endpoints";
+import { getHomeProducts } from "@/services/home";
 import type { Product } from "@/lib/types";
 
-
 export default function TrendingProducts() {
-  const [activeTab, setActiveTab] = useState("All");
-  const [filterTabs, setFilterTabs] = useState()
-  const [products, setProducts] = useState<Product[]>([])
-  useEffect(()=>{
-    const fetchProducts = async() => {
-      try {
-        const res = await http.get(endpoints.homePage.trending)  
-        setFilterTabs(res.data.categories);
-        setProducts(res.data.groupedProducts)
-      } catch (error) {
-        toast.error("error fetching products")
-      }
-    }
-    fetchProducts();
-  },[activeTab])
-  
+  const [activeTab, setActiveTab] = useState("");
+  const [filterTabs, setFilterTabs] = useState<string[]>([]);
+  const [groupedProducts, setGroupedProducts] = useState<Record<string, Product[]>>({});
 
-  const filteredProducts = activeTab === "All"
-    ? products
-    : products.filter(p => p.category === activeTab);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getHomeProducts();
+        setFilterTabs(data.categories);
+        setGroupedProducts(data.groupedProducts);
+        if (data.categories.length > 0) {
+          setActiveTab(data.categories[0]);
+        }
+      } catch {
+        toast.error("error fetching products");
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const filteredProducts = groupedProducts[activeTab] ?? [];
 
   return (
     <section id="trending" className="py-24 sm:py-32 bg-white">

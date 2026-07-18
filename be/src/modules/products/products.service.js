@@ -39,7 +39,7 @@ export const fetchHomeProductsService = async() => {
         groupedProducts[product.category].push(product);
     }
 
-    const categories = ["All", ...Object.keys(groupedProducts)]
+   const categories = Object.keys(groupedProducts)
 
     return {categories, groupedProducts};
 }

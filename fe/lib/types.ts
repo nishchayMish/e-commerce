@@ -13,6 +13,11 @@ export interface Product {
   updated_at?: string;
 }
 
+export interface HomeProductsResponse {
+  categories: string[];
+  groupedProducts: Record<string, Product[]>;
+}
+
 export interface Category {
   id: string;
   name: string;
