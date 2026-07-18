@@ -27,9 +27,9 @@ export const fetchHomeProducts = async() => {
             SELECT *, ROW_NUMBER() OVER(
                 PARTITION BY category
                 ORDER BY created_at DESC
-            ) FROM products 
+            ) AS rn FROM products WHERE trending = TRUE
         ) p 
-        WHERE ROW_NUMBER <= 6
+        WHERE rn <= 6
     `)
     return res.rows
 }
