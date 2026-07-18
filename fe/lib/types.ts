@@ -15,7 +15,7 @@ export interface Product {
 
 export interface HomeProductsResponse {
   categories: string[];
-  groupedProducts: Record<string, Product[]>;
+  trendingProducts: Record<string, Product[]>;
 }
 
 export interface Category {

@@ -13,14 +13,14 @@ import type { Product } from "@/lib/types";
 export default function TrendingProducts() {
   const [activeTab, setActiveTab] = useState("");
   const [filterTabs, setFilterTabs] = useState<string[]>([]);
-  const [groupedProducts, setGroupedProducts] = useState<Record<string, Product[]>>({});
+  const [trendingProducts, setTrendingProducts] = useState<Record<string, Product[]>>({});
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const data = await getHomeProducts();
         setFilterTabs(data.categories);
-        setGroupedProducts(data.groupedProducts);
+        setTrendingProducts(data.trendingProducts);
         if (data.categories.length > 0) {
           setActiveTab(data.categories[0]);
         }
@@ -31,7 +31,7 @@ export default function TrendingProducts() {
     fetchProducts();
   }, []);
 
-  const filteredProducts = groupedProducts[activeTab] ?? [];
+  const filteredProducts = trendingProducts[activeTab] ?? [];
 
   return (
     <section id="trending" className="py-24 sm:py-32 bg-white">

@@ -29,17 +29,17 @@ export const fetchSingleProductService = async(productId) => {
 
 export const fetchHomeProductsService = async() => {
     const allProducts = await fetchHomeProducts();
-    const groupedProducts = {};
+    const trendingProducts = {};
 
     for (const product of allProducts) {
-        if (!groupedProducts[product.category]) {
-            groupedProducts[product.category] = [];
+        if (!trendingProducts[product.category]) {
+            trendingProducts[product.category] = [];
         }
 
-        groupedProducts[product.category].push(product);
+        trendingProducts[product.category].push(product);
     }
 
-   const categories = Object.keys(groupedProducts)
+   const categories = Object.keys(trendingProducts)
 
-    return {categories, groupedProducts};
+    return {categories, trendingProducts};
 }
