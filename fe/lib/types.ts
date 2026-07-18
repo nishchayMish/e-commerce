@@ -16,6 +16,7 @@ export interface Product {
 export interface HomeProductsResponse {
   categories: string[];
   trendingProducts: Record<string, Product[]>;
+  bestsellerProducts: Record<string, Product[]>;
 }
 
 export interface Category {

@@ -33,3 +33,16 @@ export const fetchHomeProducts = async() => {
     `)
     return res.rows
 }
+
+export const bestSellerProducts = async() => {
+    const res = await pool.query(`
+        SELECT * FROM (
+            SELECT *, ROW_NUMBER() OVER(
+                PARTITION BY category
+                ORDER BY created_at DESC
+            ) AS rn FROM products WHERE bestseller = TRUE
+        ) p 
+        WHERE rn <= 2
+    `)
+    return res.rows
+}

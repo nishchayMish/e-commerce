@@ -1,13 +1,29 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { bestSellers } from "@/lib/data";
 import ProductCard from "@/components/ui/ProductCard";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import { getHomeProducts } from "@/services/home";
+import toast from "react-hot-toast";
+import { Product } from "@/lib/types";
 
 export default function BestSellers() {
+  const [bestsellerProducts, setBestsellerProducts] = useState<Record<string, Product[]>>({});
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getHomeProducts();
+        setBestsellerProducts(data.bestsellerProducts)
+        console.log(bestSellers)
+      } catch {
+        toast.error("error fetching products");
+      }
+    };
+    fetchProducts();
+  }, []);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -71,7 +87,7 @@ export default function BestSellers() {
             className="flex gap-6 sm:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-none scroll-smooth py-4 px-1"
             style={{ scrollbarWidth: "none" }}
           >
-            {bestSellers.map((product) => (
+            {bestsellerProducts.map((product) => (
               <div
                 key={product.id}
                 className="w-[280px] sm:w-[320px] shrink-0 snap-start"

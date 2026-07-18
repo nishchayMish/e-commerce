@@ -1,4 +1,4 @@
-import { fetchHomeProducts, fetchProducts, fetchSingleProduct } from "./products.repository.js";
+import { bestSellerProducts, fetchHomeProducts, fetchProducts, fetchSingleProduct } from "./products.repository.js";
 
 export const fetchProductService = async(page, limit) => {
     if(page <= 0){
@@ -29,6 +29,7 @@ export const fetchSingleProductService = async(productId) => {
 
 export const fetchHomeProductsService = async() => {
     const allProducts = await fetchHomeProducts();
+    const bestsellerProducts = await bestSellerProducts();
     const trendingProducts = {};
 
     for (const product of allProducts) {
@@ -41,5 +42,5 @@ export const fetchHomeProductsService = async() => {
 
    const categories = Object.keys(trendingProducts)
 
-    return {categories, trendingProducts};
+    return {categories, trendingProducts, bestsellerProducts};
 }
