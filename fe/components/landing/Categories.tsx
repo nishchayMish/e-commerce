@@ -53,7 +53,7 @@ export default function Categories() {
                 className={`${colSpan}`}
               >
                 <Link
-                  href={`/categories/${category.slug}`}
+                  href={`/category/${category.slug}`}
                   className="group relative block w-full h-full rounded-2xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.02),0_4px_16px_rgba(0,0,0,0.05)] border border-gray-100 bg-white"
                 >
                   {/* Image Container */}
