@@ -11,8 +11,11 @@ import ShopPagination from "@/components/shop/ShopPagination";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 import type { Product } from "@/lib/types";
+import { useSearchParams } from "next/navigation";
 
 export default function ShopPage() {
+  const searchParams = useSearchParams();
+  const searchedCategory = searchParams.get("category");
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<Product[]>([]);
@@ -49,7 +52,9 @@ export default function ShopPage() {
         <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10 lg:gap-14">
             <div className="hidden lg:block">
-              <ShopFilters />
+              <ShopFilters 
+                searchedCategory={searchedCategory}
+              />
             </div>
 
             <div>

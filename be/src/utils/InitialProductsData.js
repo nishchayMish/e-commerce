@@ -4,7 +4,7 @@ export const products = [
     price: 99999,
     old_price: 127799,
     image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "Experience the future of smartphones with the Apple iPhone 17. Powered by Apple's next-generation A19 Bionic chip, it delivers blazing-fast performance for gaming, photography, and multitasking. The stunning 6.1-inch Super Retina XDR OLED display offers True Tone, ProMotion 120Hz refresh rate, and peak brightness of 2000 nits for crystal-clear visibility even under direct sunlight. The advanced triple-camera system features a 48MP main sensor with sensor-shift optical image stabilization, a 12MP ultrawide lens, and a 12MP telephoto for 3x optical zoom — all backed by Apple's computational photography engine. With all-day battery life, USB-C with USB 3 speeds, Crash Detection, Emergency SOS via satellite, and iOS 18 out of the box, the iPhone 17 is the most complete iPhone Apple has ever made.",
     rating: 4.8,
@@ -17,7 +17,7 @@ export const products = [
     price: 74999,
     old_price: 86599,
     image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "Meet the Samsung Galaxy S25 — Samsung's most intelligent flagship yet. Driven by the Snapdragon 8 Elite processor built exclusively for Galaxy, it handles AI tasks, gaming, and productivity with effortless power. The stunning 6.2-inch Dynamic AMOLED 2X display offers 2600 nits peak brightness, Vision Booster, and a silky-smooth 120Hz adaptive refresh rate. The ProVisual Engine powers its triple-camera system, including a 200MP main sensor, 12MP ultrawide, and 10MP telephoto with 3x optical zoom — delivering professional-grade photos and 8K video. Galaxy AI features like Circle to Search, Live Translate, and Generative Edit are baked right in. With a titanium frame, IP68 water resistance, 4500mAh battery with 45W fast charging, and seven years of OS updates, the Galaxy S25 is built for the long run.",
     rating: 4.7,
@@ -30,7 +30,7 @@ export const products = [
     price: 64999,
     old_price: 78299,
     image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The OnePlus 12 is a powerhouse flagship that refuses to compromise. Built around the Snapdragon 8 Gen 3 processor — the fastest chip Qualcomm has ever made — it rips through every task with ease. The gorgeous 6.82-inch LTPO AMOLED display goes from 1Hz to 120Hz automatically, saving battery while ensuring buttery-smooth scrolling. Co-developed with legendary camera maker Hasselblad, the triple-camera system includes a 50MP Sony LYT-T808 main sensor, 48MP ultrawide, and 64MP telephoto with 3x optical zoom. SUPERVOOC 100W wired charging and 50W wireless charging top up the 5400mAh battery incredibly fast. OxygenOS 14 runs clean and fast with zero bloatware, making this one of the best pure Android experiences available today.",
     rating: 4.6,
@@ -43,7 +43,7 @@ export const products = [
     price: 114999,
     old_price: 137399,
     image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Apple MacBook Air M3 redefines what a thin-and-light laptop can be. Powered by Apple's M3 chip built on the 3nm process, it delivers up to 60% faster CPU performance and 40% faster GPU compared to its M1 predecessor — all without any fan noise, because it's completely fanless. The 13.6-inch Liquid Retina display with 500 nits of brightness, 1 billion colors, and True Tone makes photos, documents, and videos look stunning. With up to 18 hours of battery life on a single charge, it's the perfect all-day companion for students and professionals alike. It supports dual external displays, features the upgraded MagSafe charging port, a 1080p FaceTime camera, and up to 24GB of unified memory with 2TB of SSD storage. Available in Midnight, Starlight, Space Gray, and a new Sky Blue finish.",
     rating: 4.9,
@@ -56,7 +56,7 @@ export const products = [
     price: 99999,
     old_price: 129699,
     image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Dell XPS 13 is the gold standard of premium Windows ultrabooks. Machined from a single block of CNC-milled aluminum, every detail of this laptop exudes craftsmanship. Powered by the latest Intel Core Ultra Series 2 processor with Neural Processing Unit (NPU) for AI-accelerated tasks, it blazes through workloads in virtually any scenario. The 13.4-inch OLED InfinityEdge touchscreen display delivers 3.5K resolution with 120Hz refresh rate, DCI-P3 100% color gamut coverage, and stunning HDR visuals — practically edge-to-edge with just a 4mm bezel. Dell's signature keyboard, Thunderbolt 4 ports, 54Whr battery with Rapid Charge technology, Wi-Fi 7, and Bluetooth 5.4 make it one of the most feature-complete compact laptops ever made.",
     rating: 4.7,
@@ -69,7 +69,7 @@ export const products = [
     price: 29999,
     old_price: 38599,
     image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Sony WH-1000XM5 sets the global benchmark for wireless noise-cancelling headphones. Featuring Sony's proprietary QN2e chip paired with four integrated microphones, it delivers the strongest noise cancellation of any consumer headphone — completely erasing ambient noise so you can focus fully on your music or calls. The 30mm carbon fiber composite driver units produce exceptionally detailed, wide-frequency sound across all genres. With up to 30 hours of wireless playback and a quick charge feature that gives you 3 hours of listening from just 3 minutes of charging, you will never be caught without power. Multipoint Bluetooth lets you seamlessly switch between two devices simultaneously. The redesigned architecture with folding ear cups, ultra-soft memory foam ear cushions, and adaptive sound control makes these the world's most refined headphones.",
     rating: 4.9,
@@ -82,7 +82,7 @@ export const products = [
     price: 45999,
     old_price: 61099,
     image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Apple Watch Series 10 is Apple's thinnest, lightest, and most capable smartwatch ever. The larger Always-On Retina display is up to 30% brighter than previous generations, making it easy to read at a glance even outdoors. New health sensors include Blood Oxygen monitoring, ECG, skin temperature tracking, cycle tracking, and the all-new Sleep Apnea detection — a first for consumer wearables. The advanced workout app tracks over 80 types of exercise with precision metrics, while crash detection, fall detection, and Emergency SOS via satellite provide an unmatched safety net. With watchOS 11, Smart Stack widgets surface the right information at the right time. Backed by an 18-hour battery life, 50m water resistance, and Wi-Fi 6 + UWB connectivity, this is the most complete Apple Watch ever built.",
     rating: 4.8,
@@ -95,7 +95,7 @@ export const products = [
     price: 10999,
     old_price: 12799,
     image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The JBL Flip 6 is the ultimate portable party speaker that packs serious audio punch into a compact, rugged body. Featuring a powerful two-way speaker system with a separate tweeter, it delivers crisp highs, clear mids, and deep punchy bass that fills any room. The IP67 rating means it's both waterproof and dustproof — take it to the beach, pool, or on outdoor adventures without a second thought. Up to 12 hours of battery life keeps the music playing throughout the day. PartyBoost technology lets you connect multiple JBL PartyBoost-compatible speakers simultaneously for amplified stereo sound. The racetrack-shaped design with fabric mesh casing makes it durable and stylish, while JBL's signature sound profile ensures an immersive listening experience whether you're indoors or outdoors.",
     rating: 4.5,
@@ -108,7 +108,7 @@ export const products = [
     price: 8999,
     old_price: 11099,
     image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Logitech MX Master 3S is the pinnacle of ergonomic productivity mice, engineered for creators and power users who spend long hours at their desks. The ultra-fast MagSpeed electromagnetic scroll wheel flips between precise ratchet scrolling and near-frictionless free-spinning mode automatically, letting you fly through 1000 lines in just one second. The 8000 DPI high-precision optical sensor tracks flawlessly on any surface, including glass. Ultra-quiet clicks reduce noise by 90% compared to standard mice without sacrificing tactile feedback. Logi Options+ software allows customizable button assignments, flow-based multi-device switching, and app-specific profiles. Wireless via USB-C receiver or Bluetooth with up to 70 days per charge, the MX Master 3S is the definitive workstation mouse.",
     rating: 4.8,
@@ -121,7 +121,7 @@ export const products = [
     price: 28999,
     old_price: 33499,
     image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Samsung 27-inch 4K Smart Monitor M7 is the world's first multi-functional smart monitor that works as both a display and a standalone smart TV. The stunning 4K UHD IPS panel with HDR10+ delivers 10 million pixels of rich, vibrant color — four times the detail of Full HD. Built-in Tizen OS gives you access to Netflix, Prime Video, Disney+, and more without a PC or streaming device. The USB-C DeX port lets you connect compatible Samsung smartphones for a full desktop experience. With built-in 2.0 stereo speakers, Picture-in-Picture support, Wi-Fi 6, and Bluetooth 5.2, this monitor eliminates cable clutter while providing an all-in-one entertainment and productivity hub. The adjustable stand and ultra-thin bezels complete the premium look.",
     rating: 4.6,
@@ -134,7 +134,7 @@ export const products = [
     price: 11999,
     old_price: 14299,
     image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Nike Air Max 270 is a lifestyle icon that seamlessly blends street-ready style with all-day comfort. Drawing inspiration from two legendary Air Max silhouettes — the Air Max 93 and Air Max 180 — the 270 features Nike's largest heel Air unit ever, standing at 32mm tall for an unparalleled cushioning experience. The breathable mesh upper is lightweight and flexible, contouring naturally to the shape of your foot for a sock-like fit. The foam midsole provides additional underfoot comfort, while the durable rubber outsole ensures long-lasting traction on any surface. Available in dozens of colorways ranging from clean monochromes to bold gradient pops, the Air Max 270 is a versatile sneaker that pairs effortlessly with joggers, jeans, or streetwear fits.",
     rating: 4.8,
@@ -147,7 +147,7 @@ export const products = [
     price: 14999,
     old_price: 18799,
     image: "https://images.unsplash.com/photo-1608231387042-66d1773d3028?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Adidas Ultraboost Light is the next evolution of one of the world's most popular running shoes. It's the lightest Ultraboost ever made, thanks to the revolutionary Light BOOST foam formulation that delivers 10% more energy return than standard BOOST while weighing significantly less. The knitted Primeknit+ upper wraps your foot in a second-skin sensation that adapts to your natural foot movements with zero friction. The Continental Rubber outsole — the same rubber trusted by drivers in Formula 1 — provides exceptional wet and dry traction mile after mile. Whether you're training for your first 5K, pushing through a marathon, or just running daily errands, the Ultraboost Light delivers supreme responsiveness, breathability, and style in every stride.",
     rating: 4.7,
@@ -160,7 +160,7 @@ export const products = [
     price: 3499,
     old_price: 3999,
     image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Levi's 511 Slim Fit Jeans are the gold standard of modern denim — a wardrobe essential that never goes out of style. Crafted from premium stretch denim, the 511 hugs your body through the seat and thighs before tapering to a slim leg opening, giving you that coveted tailored silhouette without feeling restrictive. Flex technology woven into the fabric allows full freedom of movement, making them as comfortable during long commutes as they are during a night out. The signature five-pocket construction, reinforced bar tack stitching, and iconic Levi's leather patch guarantee durability season after season. Available in a wide range of washes from raw indigo to distressed stone wash, these jeans pair effortlessly with everything from crisp white shirts to graphic tees and hoodies.",
     rating: 4.6,
@@ -173,7 +173,7 @@ export const products = [
     price: 2999,
     old_price: 3599,
     image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Puma Essential Hoodie is your ultimate everyday companion — the kind of garment you reach for every single morning. Constructed from a premium cotton-fleece blend that's been individually brushed on the inside for that irresistibly soft, cloud-like feel, it becomes even cozier with every wash. The adjustable drawstring hood and ribbed cuffs and hem provide a customizable, snug fit that seals out the cold. The spacious kangaroo pocket doubles as a handwarmer and a convenient carry pouch. Puma's iconic Cat logo is subtly embroidered on the chest, giving it that understated premium aesthetic. Available in an extensive color palette from classic black and navy to bold seasonal shades, this hoodie transitions seamlessly from gym sessions to casual hangouts to lazy weekends indoors.",
     rating: 4.5,
@@ -186,7 +186,7 @@ export const products = [
     price: 1999,
     old_price: 2599,
     image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "Allen Solly has long been synonymous with smart casual dressing in India, and this Men's Casual Shirt perfectly embodies that philosophy. Crafted from 100% breathable cotton with a subtle micro-check or solid weave, it strikes the ideal balance between formal structure and relaxed wearability. The modern slim fit through the chest and waist creates a clean, sharp silhouette that looks equally polished tucked in with chinos or left untucked over dark denim. Button-down collar, chest pocket, and carefully aligned patterns at seams reflect the meticulous attention to detail Allen Solly is known for. Anti-wrinkle finish ensures it looks presentable throughout the workday. Machine washable and easy-care fabric means zero hassle — simply wash, dry, and wear.",
     rating: 4.4,
@@ -199,7 +199,7 @@ export const products = [
     price: 1299,
     old_price: 1599,
     image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The U.S. Polo Assn. Classic T-Shirt is proof that simplicity done right is always in style. Constructed from 180GSM combed cotton that's been ring-spun for superior softness and durability, it's noticeably thicker and more premium than standard T-shirts in its price range. The crew-neck collar is reinforced with a rib knit band that holds its shape wash after wash, never stretching out or losing its structure. The classic regular fit provides a clean, universally flattering silhouette across all body types. The iconic U.S. Polo Assn. pony embroidery on the left chest adds just enough branding without overwhelming the design. Pre-shrunk fabric treatment ensures the fit stays consistent after multiple washes. Wear it solo, layer it under a jacket, or use it as a base — this T-shirt does it all.",
     rating: 4.5,
@@ -212,7 +212,7 @@ export const products = [
     price: 9999,
     old_price: 11899,
     image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Fossil Grant Chronograph is a timeless dress watch that effortlessly combines vintage American heritage with contemporary craftsmanship. The oversized 44mm stainless steel case houses a precise Japanese quartz chronograph movement with three sub-dials for elapsed hours, minutes, and seconds. The rich cognac genuine leather strap develops a beautiful patina over time, making each watch uniquely personal to its owner. Mineral crystal glass protects the intricate sunray dial with antique-style Roman numerals and applied indices. Three-hand date display adds everyday practicality to the classic design. Water-resistant up to 50 meters. The Fossil Grant pairs perfectly with both business formal and smart casual outfits, making it an incredibly versatile accessory for any wardrobe.",
     rating: 4.8,
@@ -225,7 +225,7 @@ export const products = [
     price: 8999,
     old_price: 11399,
     image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "Originally designed in 1937 for US military pilots, the Ray-Ban Aviator Classic is one of the most iconic and universally flattering eyewear silhouettes in history. The teardrop-shaped polarized lenses offer 100% UVA and UVB protection while eliminating glare from reflective surfaces — making them perfect for driving, outdoor sports, or simply looking effortlessly cool. The thin metal frame is hand-crafted from durable monel alloy and finished with spring-loaded hinges for a comfortable, secure fit across all face shapes. The crystal lenses provide unparalleled optical clarity with no distortion. Adjustable nose pads ensure a personalised fit that stays comfortable all day. Whether you choose classic gold with green lenses, silver with blue gradient, or gunmetal with grey — there's a Ray-Ban Aviator combination for every style.",
     rating: 4.9,
@@ -238,7 +238,7 @@ export const products = [
     price: 2499,
     old_price: 3299,
     image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Tommy Hilfiger Leather Wallet is the definition of preppy American luxury — understated, beautifully crafted, and built to last years. Made from full-grain Pebble leather that becomes more supple and characterful with age, the bifold construction opens to reveal a well-organized interior with eight card slots, two full-length currency compartments, a clear ID window, and a zippered coin pocket. The slim profile means it sits flat and comfortable in your front or back pocket without creating an unsightly bulge. RFID-blocking technology protects your credit cards and contactless payment details from electronic skimming. The iconic Tommy Hilfiger flag logo is embossed cleanly on the exterior — a mark of quality recognised worldwide. An exceptional gift for professionals and fashion enthusiasts alike.",
     rating: 4.6,
@@ -251,7 +251,7 @@ export const products = [
     price: 2299,
     old_price: 2599,
     image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Wildcraft Voyager Backpack is engineered for the modern urban explorer who needs a bag that effortlessly transitions between the daily commute, weekend trekking, and travel. The main compartment features a padded 15.6-inch laptop sleeve with a secure zipper, protected by a water-resistant 600D ripstop polyester shell that keeps your valuables safe in light rain. Dual side mesh pockets accommodate 1-litre water bottles, while the front utility pocket has a smart organiser with multiple slots for pens, cables, and accessories. The ergonomically sculpted shoulder straps are foam-padded and breathable, distributing weight evenly across your shoulders and back. A hidden anti-theft zip pocket on the back panel provides extra security for passports and valuables. Sternum strap and waist belt included for long-haul comfort.",
     rating: 4.7,
@@ -264,7 +264,7 @@ export const products = [
     price: 8999,
     old_price: 11799,
     image: "https://images.unsplash.com/photo-1648396783862-e432b02df87f?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "The Philips Air Fryer HD9200 revolutionises home cooking by making your favourite fried foods healthier without sacrificing any of the taste or crunch you love. Philips' patented TurboStar technology circulates superheated air in a unique starfish pattern, ensuring every inch of food is cooked evenly and crisped perfectly — using up to 90% less oil than a conventional deep fryer. The 4-litre capacity is large enough to cook a whole chicken, prepare fries for four people, or bake a small cake. Seven pre-set cooking programs handle everything from frozen snacks to grilled fish to homemade cakes with just a single touch. The non-stick drawer and basket are dishwasher-safe for effortless cleanup. Digital touch display with adjustable temperature up to 200 degrees Celsius and timer up to 60 minutes makes cooking foolproof.",
     rating: 4.8,
@@ -277,7 +277,7 @@ export const products = [
     price: 3499,
     old_price: 4499,
     image: "https://images.unsplash.com/photo-1585515656973-c0f01087a5ca?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "The Prestige Iris 750-Watt Mixer Grinder is a kitchen workhorse trusted by millions of Indian households for its unbeatable combination of power, versatility, and durability. The high-torque 750W induction motor handles the toughest grinding tasks effortlessly — from dry-grinding spices and coffee beans to wet-grinding idli batter and coconut chutney. The set includes three multi-purpose stainless steel jars: a 1.5L liquidising jar with a fruit filter for smoothies and juices, a 1L multipurpose jar for medium grinding tasks, and a 400ml chutney jar for fine pastes and masalas. Stainless steel blades are precision-engineered and removable for easy cleaning. The 3-speed control with pulse function gives you precise control over consistency. Comes with an anti-slip base and overload protection for safe, long-lasting operation.",
     rating: 4.6,
@@ -290,7 +290,7 @@ export const products = [
     price: 899,
     old_price: 1099,
     image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "The Milton Thermosteel 1L Water Bottle is India's most trusted insulated bottle. Built with premium 18/8 food-grade stainless steel on both inner and outer layers, the double-wall vacuum insulation creates an air-tight thermal barrier that keeps beverages hot for up to 24 hours and ice-cold for up to 48 hours. The wide mouth design easily accommodates ice cubes and is simple to clean by hand or with a bottle brush. A leak-proof screw cap with silicone sealing ring prevents any spills, making it safe to throw in a bag without worry. The smooth, polished exterior is BPA-free and rust-resistant, while the ergonomic grip makes it comfortable to carry on long hikes, gym sessions, or office commutes. No plastic liners, no funky odors — just pure, fresh-tasting hydration all day long.",
     rating: 4.5,
@@ -303,7 +303,7 @@ export const products = [
     price: 4999,
     old_price: 5899,
     image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "Elevate your culinary game with the Cello Non-Stick Cookware Set — a comprehensive collection that equips your kitchen for virtually any cooking task imaginable. The set includes a 24cm fry pan, a 24cm shallow casserole with lid, a 26cm deep kadhai with lid, and a 20cm sauce pan. Each piece features three layers of German Weilburger non-stick coating that's PFOA-free, scratch-resistant, and ensures effortless food release with minimal oil. The hard-anodised body is twice as hard as stainless steel, providing superior heat distribution that eliminates hot spots for perfectly even cooking. Induction-compatible magnetic stainless steel base means it works on all cooktops. Bakelite handles stay cool to the touch and are oven-safe up to 180 degrees Celsius.",
     rating: 4.4,
@@ -316,7 +316,7 @@ export const products = [
     price: 2999,
     old_price: 3999,
     image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "The IKEA LACK Coffee Table is a design classic that has graced millions of living rooms worldwide. Its clean, minimalist Scandinavian silhouette with clean lines and flat top surface integrates seamlessly with virtually any interior style, from modern Japandi aesthetics to bohemian maximalist setups. The hollow leg construction keeps the table remarkably lightweight at just 8kg, making it easy to rearrange your living room layout whenever inspiration strikes. Despite its light weight, it's engineered to support up to 25kg on the top surface. The melamine foil surface is scratch-resistant and wipe-clean, making maintenance effortless. Self-assembly takes under 20 minutes. Available in a variety of finishes including white, black-brown, birch effect, and oak.",
     rating: 4.7,
@@ -329,7 +329,7 @@ export const products = [
     price: 15999,
     old_price: 19499,
     image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "Wake up feeling genuinely refreshed every morning with the Sleepyhead Orthopedic Mattress. Built with seven distinct layers working in harmony, this mattress provides a medium-firm feel that's universally recommended by orthopaedic specialists for proper spinal alignment. The comfort layer uses high-resilience memory foam that contours precisely to your body's curves, eliminating pressure points at shoulders, hips, and knees. The support core is constructed from high-density rebonded foam that maintains its firmness and shape for 10+ years without sagging. An advanced breathable knit fabric cover with activated charcoal infusion naturally controls body temperature and absorbs odors for a hygienic sleep environment. Arrives vacuum-compressed and rolled for easy maneuvering — expands to full size within 72 hours. 10-year warranty included.",
     rating: 4.8,
@@ -342,7 +342,7 @@ export const products = [
     price: 699,
     old_price: 799,
     image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "Illuminate your home intelligently with the Syska 12W LED Ceiling Light — one of India's most trusted lighting brands delivering premium performance at an unbeatable price. At just 12 watts, it produces an impressive 960 lumens of bright, flicker-free light — equivalent to a traditional 100W incandescent bulb while consuming 88% less electricity. The Ra80+ Color Rendering Index ensures colours appear vivid and true to life, making it perfect for kitchens, living rooms, and study areas where accurate lighting matters. The polycarbonate lens diffuses light uniformly without harsh glare, creating a comfortable, well-lit ambience throughout the room. With a rated lifespan of 25,000 hours — over 22 years of daily 3-hour use — the savings on both electricity bills and replacement costs are substantial. Available in cool white (6500K) and warm white (3000K).",
     rating: 4.5,
@@ -355,7 +355,7 @@ export const products = [
     price: 18999,
     old_price: 22199,
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "The Kent Grand Plus is India's No.1 selling water purifier, and this flagship model exemplifies why. Its patented Mineral RO technology uses a multi-stage purification process — Sediment Filter, Pre-Carbon Block Filter, RO membrane, UV chamber, and UF membrane — to eliminate 99.9% of bacteria, viruses, cysts, dissolved salts, heavy metals like lead and arsenic, and chemical impurities. Unlike conventional RO purifiers that strip water of essential minerals, the Kent Grand Plus features a TDS controller that retains naturally occurring beneficial minerals like calcium and magnesium for healthier drinking water. The intelligent computer-controlled operation continuously monitors water quality and alerts you when the filter needs servicing. 8-litre purification tank with a 20-litre-per-hour output rate ensures your family never waits for clean water. Comes with a one-year comprehensive warranty and free installation.",
     rating: 4.7,
@@ -368,7 +368,7 @@ export const products = [
     price: 3299,
     old_price: 4399,
     image: "https://images.unsplash.com/photo-1567722066597-2aaf8e4eff91?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "Beat the Indian summer with the Usha Maxx Air 400mm Pedestal Fan — engineered specifically for maximum airflow in large rooms and open spaces. The aerodynamically optimised 400mm blade assembly powered by a high-efficiency 55W copper-wound motor delivers 2400 RPM of continuous operation, circulating 60 cubic meters of air per minute to cool rooms up to 400 square feet effectively. Height is fully adjustable from 3.5 to 4.5 feet to direct airflow exactly where needed. The 90-degree oscillation mechanism sweeps the entire room horizontally for even temperature distribution. Three speed settings via rotary switch let you balance cooling performance with noise preference. The rust-free powder-coated steel rod and ABS plastic body are built to withstand years of daily use in tropical Indian conditions. Anti-rust guard ring and thermal overload protection ensure safe, reliable operation.",
     rating: 4.4,
@@ -381,7 +381,7 @@ export const products = [
     price: 1499,
     old_price: 1899,
     image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "Transform your bedroom into a sanctuary of comfort with the Amazon Basics Double Microfiber Bedsheet Set. Made from 1800 thread count equivalent ultra-fine microfiber, this bedsheet is noticeably softer, lighter, and more breathable than standard cotton bedsheets at the same price point. The tightly woven fabric is wrinkle-resistant and pill-resistant, maintaining its smooth, crisp look wash after wash without ironing. Deep pockets of 36cm with all-around elastic securely grip mattresses up to 30cm thick, preventing any frustrating middle-of-the-night slippage. The set includes one king/double flat sheet, one fitted sheet, and two pillow covers — all in perfectly coordinated colour. Machine-washable at 30 degrees Celsius, the microfiber dries in less than half the time of cotton, saving you energy and time. Available in 30+ colour options to match any bedroom palette.",
     rating: 4.6,
@@ -394,7 +394,7 @@ export const products = [
     price: 299,
     old_price: 399,
     image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "The Lakme Absolute Perfect Radiance Face Wash is your first step toward luminous, glass-like skin. Formulated with micro-crystals and vitamin B3 (niacinamide), this gel-based cleanser deeply penetrates pores to lift away impurities, excess sebum, sunscreen residue, and environmental pollutants without stripping the skin's natural moisture barrier. The foaming action creates a luxurious lather that feels refreshing and thorough, while the brightening actives work to gradually fade dark spots, even out skin tone, and visibly reduce the appearance of pores with consistent use over 4 weeks. Dermatologically tested and free from parabens, sulphates, and artificial dyes, it's safe for all skin types including sensitive skin. The 100ml recyclable packaging is designed for mess-free dispensing. Best used morning and night as part of a complete skincare routine.",
     rating: 4.5,
@@ -407,7 +407,7 @@ export const products = [
     price: 699,
     old_price: 899,
     image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "The Mamaearth Vitamin C Face Serum is a potent skin-brightening treatment that harnesses the power of stabilised Ascorbic Acid at 15% concentration alongside Turmeric extract to deliver visible results in as little as 2 weeks. Vitamin C is clinically proven to neutralise free radicals that cause premature ageing, stimulate collagen synthesis, inhibit melanin production for spot reduction, and restore natural skin radiance. The lightweight water-based formula absorbs rapidly without leaving any greasy residue — making it suitable for layering under moisturiser and SPF in the morning. Hyaluronic Acid simultaneously delivers 72-hour hydration, plumping fine lines and giving skin that coveted bouncy texture. Mamaearth is certified as Asia's first Made Safe brand — every ingredient in this serum is toxin-free and environmentally responsible.",
     rating: 4.7,
@@ -420,7 +420,7 @@ export const products = [
     price: 649,
     old_price: 799,
     image: "https://images.unsplash.com/photo-1631730486784-74757d38e388?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "The Maybelline Fit Me Matte + Poreless Foundation has become a cult classic in the beauty community. Available in 40+ diverse shades specifically curated for South Asian skin tones, it provides buildable medium-to-full coverage that looks and feels like real skin rather than a mask. The oil-absorbing micro-powders in the formula lock out excess sebum, visibly blur enlarged pores, and maintain a perfectly matte, shine-free finish for up to 12 hours without mid-day touch-ups. The lightweight fluid texture blends effortlessly with fingers, sponge, or brush, and adapts to your skin's moisture levels throughout the day. Non-comedogenic and fragrance-free, it won't clog pores or cause breakouts — making it a trusted choice for acne-prone skin types. Buildable coverage lets you go from a light, natural everyday look to full glam with ease.",
     rating: 4.8,
@@ -433,7 +433,7 @@ export const products = [
     price: 399,
     old_price: 499,
     image: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "L'Oreal Paris Total Repair 5 Shampoo is a salon-grade hair care solution that addresses five of the most common hair problems simultaneously: damage, dryness, breakage, dullness, and split ends. Powered by Pro-Keratin + Ceramide — a unique combination inspired by salon treatments — the formula works from the very first wash to reinforce the hair's internal structure and smooth the cuticle layer. The result is hair that's 5 times stronger, visibly smoother, deeply nourished, and noticeably more lustrous with just one wash. The concentrated formula creates a rich, creamy lather that distributes evenly from root to tip, lifting product buildup and environmental residue without stripping essential moisture. Suitable for all types of chemically treated, colour-processed, heat-damaged, or naturally dry hair. Pairs perfectly with L'Oreal Total Repair 5 Conditioner for best results.",
     rating: 4.6,
@@ -446,7 +446,7 @@ export const products = [
     price: 349,
     old_price: 399,
     image: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "Dove Intense Repair Conditioner is formulated with Keratin Actives — nutritive proteins that penetrate deeply into the hair shaft to repair structural damage caused by chemical treatments, heat styling, colouring, and environmental stressors. Unlike surface-coating conditioners that only create the illusion of smoothness, Dove's actives work from within, rebuilding broken protein bonds and restoring the hair's natural elasticity and tensile strength to reduce breakage during combing and styling. The thick, creamy formula instantly detangles even severely knotted hair, making combing effortless and reducing mechanical damage. Regular use for 4 weeks results in hair that's 10 times smoother, visibly thicker, and measurably more resistant to breakage. Free from parabens and dyes. Apply from mid-lengths to ends after shampooing, leave for 2-3 minutes, then rinse thoroughly.",
     rating: 4.6,
@@ -459,7 +459,7 @@ export const products = [
     price: 249,
     old_price: 299,
     image: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab12?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "Nivea Soft Light Moisturizing Cream is a timeless skincare staple trusted by generations. Its signature Jojoba Oil and Vitamin E formula is specifically crafted to provide long-lasting, non-greasy moisturisation that feels refreshingly light on skin from the very first application. The unique Eucerit complex forms an invisible protective film on the skin surface that locks in moisture for up to 24 hours while still allowing skin to breathe naturally. The non-comedogenic, dermatologically tested formula absorbs in under 30 seconds without any white cast or sticky residue — making it suitable for use on face, hands, arms, and elbows. The universally beloved mild fragrance is calming and clean. Available in the iconic blue jar in multiple sizes from 50ml to 500ml — perfect for every lifestyle whether at home, at the office, or on the go.",
     rating: 4.7,
@@ -472,7 +472,7 @@ export const products = [
     price: 499,
     old_price: 699,
     image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "Minimalist SPF 50 PA++++ Sunscreen is India's most talked-about sun protection product — completely disrupting the skincare market with its unprecedented combination of efficacy, texture, and price. This broad-spectrum mineral-chemical hybrid formulation uses Zinc Oxide 10% alongside chemical UV filters Octinoxate and Avobenzone to provide complete UVA and UVB protection, shielding skin from tanning, sunburn, and UV-induced premature ageing. The patent-pending Aquasorb B5 technology in the base creates a uniquely watery, gel-like texture that melts into skin within seconds leaving zero white cast, greasiness, or pill — previously unheard of in SPF 50 formulations. Added Niacinamide provides secondary brightening and anti-sebum benefits. Suitable for acne-prone, sensitive, and combination skin types.",
     rating: 4.8,
@@ -485,7 +485,7 @@ export const products = [
     price: 1495,
     old_price: 1899,
     image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "Indulge your skin in a bouquet of luxury with The Body Shop British Rose Body Butter — one of the brand's best-selling products globally and a true sensory treat from head to toe. Formulated with Fresh Rose Petals Community Fair Trade sourced from English gardens, Community Fair Trade shea butter from Ghana, and Community Fair Trade marula oil from Namibia, this body butter is as ethically sourced as it is indulgent. The thick, velvety texture glides onto skin effortlessly, delivering an immediate surge of intense moisture that transforms even the driest skin into something silky, supple, and visibly glowing. The signature British Rose fragrance — a blend of pink peony, lily of the valley, and musky woods — lingers beautifully on the skin for hours. 100% vegetarian formula, never tested on animals. A nourishing bedtime ritual or an anytime skin pick-me-up.",
     rating: 4.8,
@@ -498,7 +498,7 @@ export const products = [
     price: 575,
     old_price: 799,
     image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "The Plum Green Tea Renewed Clarity Night Gel is a revolutionary overnight moisturizer that turns your sleep hours into your most productive skincare session. Powered by a potent blend of Green Tea extract — one of nature's richest sources of antioxidants — alongside Glycolic Acid and Salicylic Acid, this gel works overnight to deeply hydrate, gently exfoliate dead skin cells, and regulate sebum production simultaneously. The ultra-lightweight water-gel texture is completely non-occlusive and matte-finishing, making it a godsend for oily and combination skin types who've always struggled to find a night moisturizer that hydrates without causing breakouts or greasiness. Wake up to visibly clearer pores, a more even skin tone, and a natural lit-from-within glow. 100% vegan, cruelty-free, and free from parabens, phthalates, and mineral oils.",
     rating: 4.7,
@@ -511,7 +511,7 @@ export const products = [
     price: 899,
     old_price: 1099,
     image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "Bella Vita Luxury CEO Man Eau De Parfum is a sophisticated, confident fragrance crafted for the modern man who commands attention in every room he enters. The fragrance opens with a fresh burst of crisp bergamot and zesty citrus top notes that immediately make an impression, transitioning into a distinguished heart of aromatic lavender, cedarwood, and warm spices that define masculine elegance. The base notes of rich sandalwood, deep musk, and earthy vetiver anchor the fragrance with a long-lasting warmth that evolves uniquely on each person's skin chemistry. A premium alcohol base ensures the scent projects well and lasts 8-10 hours on skin and up to 24 hours on fabric. The sleek, architectural bottle with gold accents reflects the ambition and sophistication the fragrance embodies. An exceptional daily signature scent and a thoughtful gifting option.",
     rating: 4.5,
@@ -524,7 +524,7 @@ export const products = [
     price: 899,
     old_price: 1199,
     image: "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The Nivia Storm Football is the trusted choice of players across India's grassroots football ecosystem — from school playgrounds to district-level tournaments. Hand-stitched from 32-panel TPU synthetic leather using high-frequency welding technology, the Storm achieves perfectly spherical geometry that delivers consistent, predictable flight paths whether you're bending a free kick or lofting a diagonal pass. The butyl rubber bladder provides superior air retention, maintaining optimal pressure for extended periods even in extreme temperature conditions. The textured surface panel design enhances grip under wet conditions and gives midfielders enhanced control during tight technical play. Available in size 5 (standard adult) and size 4, with vibrant graphic designs that stay vivid wash after wash. Tested to FIFA Basic standards for durability and performance consistency across all surfaces.",
     rating: 4.6,
@@ -537,7 +537,7 @@ export const products = [
     price: 2499,
     old_price: 2899,
     image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The SG Kashmir Willow Cricket Bat is the quintessential training companion for serious cricketers working their way toward the professional game. Hand-crafted from premium Grade 1 Kashmir Willow by SG's master bat makers in Meerut — the cricket equipment capital of the world — this bat embodies decades of expertise in willow selection and shaping. The generous 4mm edges create a large sweet spot that extends from the toe to mid-blade, maximising power even on slightly mistimed shots. The balanced weight distribution typically between 1.1 and 1.2 kg ensures effortless pick-up and natural timing through the shot. The V-shaped handle with a dual-rubber grip provides shock absorption and torsional control during both aggressive hitting and defensive play. Pre-knocked with 3 coats of raw linseed oil, it's ready for leather ball use after minimal additional knocking-in.",
     rating: 4.7,
@@ -550,7 +550,7 @@ export const products = [
     price: 1199,
     old_price: 1399,
     image: "https://images.unsplash.com/photo-1546519638405-a9f9fcb81b63?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The Cosco Dribble Basketball is the go-to training ball for players at every level across India's rapidly growing basketball community. Constructed from premium rubber compound with a deep channel nubuck surface, it offers exceptional grip, consistent bounce, and reliable durability on both asphalt outdoor courts and polished indoor hardwood surfaces. The butyl rubber bladder ensures superior air retention, maintaining consistent inflation over months of intensive use without requiring frequent re-pumping. The ball meets official size 7 specifications (men's standard) with a 74-76cm circumference and weighs between 567-650g. High-visibility graphic designs improve visibility during fast-paced play and training drills. Perfect for pickup games, three-on-three tournaments, and structured coaching sessions.",
     rating: 4.5,
@@ -563,7 +563,7 @@ export const products = [
     price: 1599,
     old_price: 1899,
     image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The Yonex GR 303 is one of the most popular entry-level badminton rackets in India — and Yonex's reputation for quality and innovation ensures it punches well above its price point. The T-Anchor construction creates an exceptionally strong joint between the shaft and frame, eliminating the common racket-breakage point while maintaining a lightweight overall feel. The isometric square head design significantly increases the sweet spot compared to conventional oval frames, giving beginners and intermediate players more margin for error on off-centre hits. At just 90g, the GR 303 swings fast and effortlessly, enabling quick net exchanges and rapid overhead clears without fatiguing the arm. The built-in T-joint and high modulus graphite-aluminium frame combination strikes an ideal balance between power transmission and impact absorption. Pre-strung at 20-22 lbs tension with Yonex BG66 string.",
     rating: 4.7,
@@ -576,7 +576,7 @@ export const products = [
     price: 999,
     old_price: 1199,
     image: "https://images.unsplash.com/photo-1601925228516-f39b6ef8e1bc?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The Boldfit Premium Yoga Mat is a 6mm extra-thick training mat designed to support every dimension of your wellness journey — from morning yoga flows to evening Pilates sessions, HIIT workouts, foam rolling recovery, and meditation practice. The dual-layer NBR foam construction provides the ideal combination of cushioning and firmness — soft enough to protect knees, elbows, hips, and spine from hard floors, yet firm enough to maintain stability in standing balance poses and dynamic movements. The bi-textured surface with micro-suction on top provides superior grip for both bare skin and palms, even during hot yoga sessions when sweat is a factor. The bottom layer features high-density anti-slip texture that locks the mat firmly to any floor surface. Lightweight at just 750g and comes with a carry strap for easy transport to the studio or park.",
     rating: 4.8,
@@ -589,7 +589,7 @@ export const products = [
     price: 4499,
     old_price: 5399,
     image: "https://images.unsplash.com/photo-1590771998996-8589ec9b5ac6?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "Build your home gym intelligently with the Kore PVC Adjustable Dumbbell Set — the most space-efficient and cost-effective way to access a full range of training weights in a single compact package. The set includes two chrome-plated solid steel bars with secure locking collars, along with a graduated selection of PVC-coated weight plates ranging from 0.5kg to 5kg each — letting you configure dumbbells from a light 2kg warm-up weight right up to a challenging 10kg per dumbbell. The PVC coating is impact-resistant and won't scuff or scratch your floors when set down, while the smooth, balanced plates ensure even weight distribution for precise, controlled movements. The knurled handle grip provides secure purchase even with sweaty palms during intense supersets. Suitable for bicep curls, tricep extensions, shoulder presses, lateral raises, lunges, and hundreds of other exercises.",
     rating: 4.8,
@@ -602,7 +602,7 @@ export const products = [
     price: 799,
     old_price: 899,
     image: "https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The Strauss Resistance Bands Set is the most versatile, portable, and joint-friendly strength training tool you can own. The set includes five colour-coded latex loop bands in progressive resistance levels from 5lb yellow to 50lb black, allowing you to perfectly calibrate resistance for every exercise and every muscle group. Natural latex construction provides the ideal combination of elasticity, durability, and consistent resistance throughout the full range of motion — unlike cheap resistance bands that lose tension and snap unpredictably. These bands are used by physiotherapists for rehabilitation, by athletes for explosive power development, by yogis for flexibility training, and by fitness beginners for bodyweight augmentation. Resistance bands are scientifically proven to activate stabiliser muscles more effectively than free weights, building functional strength that translates directly to real-world movements.",
     rating: 4.6,
@@ -615,7 +615,7 @@ export const products = [
     price: 1299,
     old_price: 1599,
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "Protect your hands and maximise your grip with the Adidas Training Gym Gloves — engineered specifically for weightlifting, cross-training, pull-ups, rowing, and kettlebell work. The padded palm sections are constructed from high-density foam enclosed in durable synthetic leather, dramatically reducing callus formation and palm fatigue during high-rep sessions with barbells, dumbbells, or cable machines. The open-back mesh design allows full breathability, preventing the sweat buildup and heat accumulation that makes long gloves uncomfortable mid-workout. The neoprene wrist strap provides adjustable support and compression, stabilising the wrist joint during heavy presses and overhead movements. The non-slip silicone grip printed on the palm surface ensures the bar stays locked in your hands even when palms become sweaty. Velcro closure system allows quick on/off adjustments between sets.",
     rating: 4.5,
@@ -628,7 +628,7 @@ export const products = [
     price: 699,
     old_price: 899,
     image: "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "Hydration is the cornerstone of athletic performance, and the Puma Running Water Bottle makes it effortless to stay optimally fuelled throughout every workout, run, or outdoor activity. The 750ml BPA-free Tritan co-polyester body is shatter-resistant and transparent, letting you monitor your hydration level at a glance without pausing your training. The 100% leak-proof flip-top cap with a secure locking mechanism means you can throw it in your gym bag without worrying about spills ruining your gear or electronics. The ergonomic finger loop handle allows one-handed carrying while running, while the wide-mouth design accommodates ice cubes and makes filling and cleaning simple. The soft bite-valve drinking spout delivers a controlled, drip-free flow without removing the cap — ideal for drinking on the move. Dishwasher-safe on the top rack.",
     rating: 4.4,
@@ -641,7 +641,7 @@ export const products = [
     price: 14999,
     old_price: 18299,
     image: "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The Fitbit Charge 6 is Google's most advanced fitness band — combining the depth of clinical-grade health monitoring with the accessibility of an everyday wearable that you actually want to wear. The built-in ECG app can detect signs of atrial fibrillation, while continuous wrist-based heart rate monitoring provides zone-based training guidance for every workout type. GPS is built directly into the band, giving you accurate pace, distance, and route maps for outdoor runs, cycling, and hikes without needing to carry your phone. The revolutionary PurePulse 2.0 sensor tracks 24/7 SpO2 (blood oxygen), skin temperature variation, stress levels, and sleep stages with remarkable accuracy. Google Wallet integration lets you make contactless payments directly from your wrist. With 40+ exercise modes, Daily Readiness Score, Active Zone Minutes, and up to 7 days of battery life, the Charge 6 provides the most complete picture of your health of any fitness band available.",
     rating: 4.8,
@@ -654,7 +654,7 @@ export const products = [
     price: 42999,
     old_price: 52599,
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Apple iPad 11th Generation brings serious power to the most versatile tablet lineup on the market. Powered by the A16 Bionic chip, it effortlessly handles everything from web browsing and note-taking to photo editing and light gaming. The 10.9-inch Liquid Retina display delivers True Tone and wide colour support for vibrant, accurate visuals whether you're watching movies or sketching in Notes. A 12MP rear camera and a 12MP Ultra Wide front camera with Center Stage keep video calls framed perfectly. Compatible with the Apple Pencil (USB-C) and Magic Keyboard Folio, it transforms into a capable productivity machine in seconds. Up to 10 hours of battery life and USB-C connectivity round out this excellent everyday tablet.",
     rating: 4.7,
@@ -667,7 +667,7 @@ export const products = [
     price: 22999,
     old_price: 27399,
     image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Apple AirPods Pro 2 deliver up to twice the Active Noise Cancellation of the previous generation, powered by the new H2 chip for smarter noise control and richer sound. Adaptive Transparency lets outside sound in while reducing loud environmental noises in real time. Personalised Spatial Audio with dynamic head tracking places sound all around you for an immersive listening experience. Touch control on the stem lets you adjust volume with a simple swipe. Up to 6 hours of listening time on a single charge, and up to 30 hours total with the MagSafe charging case, which now also supports precision finding and has a built-in speaker for easy locating.",
     rating: 4.8,
@@ -680,7 +680,7 @@ export const products = [
     price: 134999,
     old_price: 162499,
     image: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The ASUS ROG Strix is a no-compromise gaming laptop built for players who demand serious frame rates without lugging around a desktop tower. Powered by a high-core-count processor paired with a dedicated discrete GPU, it tears through the latest AAA titles at high settings. The 165Hz QHD display with fast response times keeps fast-paced competitive games buttery smooth and blur-free. An advanced multi-fan cooling system with liquid metal thermal compound keeps temperatures in check even during marathon gaming sessions. RGB per-key backlit keyboard, Wi-Fi 6E, and a generous port selection including HDMI 2.1 and Thunderbolt make this a complete gaming and streaming rig.",
     rating: 4.6,
@@ -693,7 +693,7 @@ export const products = [
     price: 26999,
     old_price: 36099,
     image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Mi 43-inch 4K Smart TV brings cinema-quality visuals and smart features to your living room at an unbeatable price. The 4K Ultra HD display with HDR10+ support renders four times the detail of Full HD, while Vivid Picture Engine tuning delivers punchy colours and deep blacks. Powered by Google TV, you get instant access to thousands of apps including Netflix, Prime Video, YouTube, and Disney+ Hotstar, along with built-in Chromecast and Google Assistant voice control. The 20W dual speaker setup with Dolby Audio delivers immersive sound without needing a soundbar. Multiple HDMI and USB ports make it easy to connect gaming consoles, soundbars, and set-top boxes.",
     rating: 4.5,
@@ -706,7 +706,7 @@ export const products = [
     price: 2999,
     old_price: 3799,
     image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Logitech K380 Multi-Device Bluetooth Keyboard is designed for anyone who juggles multiple devices throughout the day. Easy-Switch technology lets you pair up to three devices simultaneously and toggle between them with a single button press — perfect for switching between your laptop, tablet, and phone. The compact, spill-resistant design with scooped, comfortable keys makes for a quiet and pleasant typing experience that won't disturb people around you. Up to 24 months of battery life on two AAA batteries means you'll rarely think about charging. Compatible with Windows, macOS, iOS, Android, and Chrome OS, it's a genuinely universal companion for any desk setup.",
     rating: 4.6,
@@ -719,7 +719,7 @@ export const products = [
     price: 1799,
     old_price: 2299,
     image: "https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Mi Power Bank 3i packs a massive 20000mAh capacity into a sleek, pocketable design, giving you multiple full charges for your phone, tablet, or earbuds on the go. Dual input ports (Micro-USB and USB-C) and dual USB-A outputs allow simultaneous charging of two devices at 18W fast-charge speeds. Smart temperature control and multiple layers of circuit protection guard against overheating, overcharging, and short circuits, ensuring safe charging every single time. Low-current mode makes it easy to charge Bluetooth earbuds and fitness bands without the power bank auto-shutting-off. A matte finish and durable outer shell keep it looking good even after months in a backpack.",
     rating: 4.5,
@@ -732,7 +732,7 @@ export const products = [
     price: 5999,
     old_price: 7099,
     image: "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=600&q=80",
-    category: "Electronics",
+    category: "electronics",
     description:
       "The Logitech C920 HD Pro Webcam has been the gold standard for creators, streamers, and remote professionals for years — and for good reason. It captures crisp Full HD 1080p video at 30fps with automatic light correction that keeps you looking sharp in dim rooms or bright windows. Dual stereo microphones with automatic noise reduction pick up clear audio for calls and recordings, eliminating the need for a separate microphone in most setups. The precision glass lens delivers accurate colour and detail that beats built-in laptop cameras by a wide margin. A universal clip mount fits laptops, monitors, and tripods, and plug-and-play USB connectivity means no driver installation hassle.",
     rating: 4.7,
@@ -745,7 +745,7 @@ export const products = [
     price: 4999,
     old_price: 6499,
     image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Puma Smashic Sneakers bring retro tennis-court styling into everyday streetwear rotation. The clean leather-look upper with perforated toe detailing gives a classic silhouette that pairs effortlessly with jeans, joggers, or shorts. A cushioned SoftFoam+ sockliner molds to your foot for immediate comfort right out of the box, while the durable rubber outsole provides reliable grip on both pavement and indoor floors. Reinforced heel counters keep the shoe locked in place during all-day wear, and the breathable lining prevents overheating even in warm weather. Available in a wide range of colourways from clean whites to bold two-tone combinations, these sneakers are a versatile addition to any wardrobe.",
     rating: 4.5,
@@ -758,7 +758,7 @@ export const products = [
     price: 4499,
     old_price: 5299,
     image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Zara Men's Bomber Jacket channels timeless military-inspired style into a modern, versatile outer layer. Cut from a durable water-resistant shell with a soft quilted lining, it offers genuine warmth without unnecessary bulk, making it perfect for transitional weather. Ribbed cuffs and hem seal in heat while the front zip closure with a stand collar gives a clean, streamlined silhouette. Two side welt pockets and an interior chest pocket provide practical storage for daily essentials. The relaxed, contemporary fit layers effortlessly over hoodies, sweaters, or plain tees, making this jacket equally at home on a casual weekend or a smart-casual night out.",
     rating: 4.4,
@@ -771,7 +771,7 @@ export const products = [
     price: 3999,
     old_price: 4899,
     image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "Woodland Leather Boots are built for those who need footwear that can handle rugged terrain without sacrificing everyday comfort. Constructed from genuine full-grain leather uppers, these boots are naturally water-resistant and only grow more characterful with age. The high-traction rubber outsole with deep multidirectional lugs provides confident grip on wet rocks, mud, and loose gravel alike. A padded collar and cushioned EVA midsole absorb shock on long treks, while the reinforced toe cap protects against impact from rocks and roots. Breathable mesh lining keeps feet comfortable even during extended wear. A trusted choice for hikers, bikers, and anyone who spends serious time outdoors.",
     rating: 4.6,
@@ -784,7 +784,7 @@ export const products = [
     price: 2499,
     old_price: 3399,
     image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Casio Vintage Digital Watch is a design icon that has barely changed since its debut decades ago — and that's exactly the point. The stainless steel case and bracelet give it a premium, retro-cool look that pairs equally well with streetwear and smart casual outfits. The classic LCD display shows time, date, and day at a glance, with backlight illumination for visibility in low light. A stopwatch function, daily alarm, and 10-year battery life make it as practical as it is stylish. Water resistance up to 30 metres means it can handle splashes and hand-washing without concern. This watch has earned its cult following for good reason — it simply never goes out of style.",
     rating: 4.7,
@@ -797,7 +797,7 @@ export const products = [
     price: 5499,
     old_price: 6999,
     image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Vans Old Skool is the original side-stripe skate shoe that launched a global streetwear movement. The sturdy canvas and suede upper is reinforced at high-wear areas for genuine skateboarding durability, while the padded collar adds comfort for all-day wear. The signature waffle rubber outsole provides excellent grip and board feel, a design that has remained essentially unchanged because it simply works. The low-profile silhouette pairs perfectly with cuffed jeans, joggers, or shorts, making it one of the most versatile sneakers ever created. Available in the classic black-and-white colourway as well as dozens of seasonal prints and collaborations.",
     rating: 4.7,
@@ -810,7 +810,7 @@ export const products = [
     price: 9499,
     old_price: 11999,
     image: "https://images.unsplash.com/photo-1508296695146-257a814070b4?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The Ray-Ban Wayfarer Classic has been an icon of cool since 1952, worn by musicians, movie stars, and style icons across generations. The bold, angular acetate frame is lightweight yet durable, holding its shape through years of daily wear. Ray-Ban's signature crystal lenses offer 100% UV protection with exceptional clarity and minimal distortion. The distinctive silhouette flatters a wide range of face shapes, from round to square, making it one of the most universally wearable sunglasses designs ever created. Spring hinges add durability and a more comfortable, adaptive fit. Whether dressed up or down, the Wayfarer instantly elevates any outfit with effortless retro cool.",
     rating: 4.8,
@@ -823,7 +823,7 @@ export const products = [
     price: 2299,
     old_price: 2999,
     image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80",
-    category: "Fashion",
+    category: "fashion",
     description:
       "The H&M Floral Summer Dress is a breezy, feminine staple perfect for warm-weather days and casual outings. Made from a lightweight, breathable viscose blend, it flows beautifully with movement while keeping you cool even on the hottest afternoons. The vibrant floral print adds a cheerful pop of colour, while the flattering A-line silhouette with a fitted waist works for a range of body types. Adjustable straps allow you to customise the fit, and the midi length strikes the perfect balance between casual and put-together. Pair it with sandals for a relaxed daytime look or dress it up with heels and accessories for an evening event.",
     rating: 4.5,
@@ -836,7 +836,7 @@ export const products = [
     price: 1499,
     old_price: 1999,
     image: "https://images.unsplash.com/photo-1585515320310-259814833e62?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "Start your mornings right with the Bajaj Pop-up Toaster, a compact and reliable kitchen essential built for everyday use. The wide bread slots accommodate thick-cut bread, bagels, and buns with ease, while the 7-level browning control lets you dial in your perfect level of crispiness every single time. The auto pop-up function shuts off the moment your toast is ready, while the removable crumb tray makes cleanup quick and mess-free. A cord-wrap base keeps your countertop tidy, and the compact footprint fits easily into even the smallest kitchens. Safety features including auto shut-off protect against overheating, making it a dependable daily-use appliance.",
     rating: 4.4,
@@ -849,7 +849,7 @@ export const products = [
     price: 8999,
     old_price: 11699,
     image: "https://images.unsplash.com/photo-1585237017125-24baf58d5c8b?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "The Instant Pot Duo 6L is a genuine multi-cooker that replaces seven separate kitchen appliances, saving both counter space and cooking time. It functions as a pressure cooker, slow cooker, rice cooker, steamer, sauté pan, yogurt maker, and warmer — all controlled through one simple interface. The advanced microprocessor continuously monitors pressure, temperature, and cooking time, adjusting heat and pressure automatically for perfectly cooked results every time. 14 customisable smart programs handle everything from soups and stews to rice and yogurt with the touch of a button. The stainless steel inner pot is dishwasher-safe and free from chemical coatings, while multiple safety mechanisms make pressure cooking completely worry-free.",
     rating: 4.7,
@@ -862,7 +862,7 @@ export const products = [
     price: 1199,
     old_price: 1399,
     image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "The Philips Study Table Lamp is engineered to reduce eye strain during long study or work sessions with flicker-free, glare-free LED illumination. Three adjustable colour temperature modes — warm, natural, and cool white — let you match the lighting to the task and time of day, while five brightness levels give you precise control. The flexible gooseneck design allows you to direct light exactly where it's needed, whether you're reading, writing, or working on a laptop. Touch-sensitive controls make adjusting settings effortless, and the memory function retains your last used setting. The sturdy, weighted base ensures stability on any desk, and the energy-efficient LED consumes minimal electricity while lasting for years.",
     rating: 4.5,
@@ -875,7 +875,7 @@ export const products = [
     price: 699,
     old_price: 799,
     image: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "The Ajanta Analog Wall Clock combines timeless design with dependable Indian craftsmanship, making it a fitting addition to any living room, bedroom, or office. The high-contrast dial with bold numerals and sweeping hands ensures effortless readability from across the room. A silent sweep movement eliminates the distracting ticking sound found in cheaper clocks, making it ideal for bedrooms and quiet workspaces. The scratch-resistant glass lens protects the dial while the sturdy plastic frame with a wood-finish or matte body complements a variety of interior styles. Powered by a single AA battery that lasts up to a year, this low-maintenance clock keeps accurate time reliably for years.",
     rating: 4.3,
@@ -888,7 +888,7 @@ export const products = [
     price: 3499,
     old_price: 4199,
     image: "https://images.unsplash.com/photo-1603199866802-8d0aae4ab8a2?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "The Corelle 18-Piece Dinner Set brings restaurant-quality durability and elegant design to your everyday table. Made using Corelle's signature Vitrelle glass technology — three layers of glass laminated together — these plates and bowls are remarkably chip-resistant and lightweight compared to traditional stoneware or ceramic. The set includes six dinner plates, six side plates, and six bowls, enough to comfortably serve a full family or small gathering. The elegant, understated pattern works with virtually any table setting, from casual weeknight dinners to special occasions. Microwave-safe, dishwasher-safe, and resistant to staining and odour absorption, this dinner set is designed to look great for years of daily use.",
     rating: 4.6,
@@ -901,7 +901,7 @@ export const products = [
     price: 1999,
     old_price: 2399,
     image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80",
-    category: "Home & Kitchen",
+    category: "home-kitchen",
     description:
       "Story@Home Blackout Curtains transform any room into a cosy, light-controlled retreat, perfect for bedrooms, home theatres, or anyone who works night shifts. The tightly woven triple-layer fabric blocks up to 99% of incoming sunlight, helping regulate room temperature and improve sleep quality. Beyond light-blocking, the thick fabric also provides meaningful noise reduction and added privacy from outside view. Rust-resistant eyelet rings glide smoothly along curtain rods for effortless opening and closing. The rich, solid colour options and elegant drape make these curtains a stylish upgrade over standard sheer curtains, instantly elevating the look of any room while delivering genuine functional benefits.",
     rating: 4.5,
@@ -910,13 +910,13 @@ export const products = [
     bestSeller: false,
   },
   {
-    name: "Fenty Beauty Perfume Mist",
+    name: "Fenty beauty Perfume Mist",
     price: 1899,
     old_price: 2299,
     image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
-      "The Fenty Beauty Fragrance Mist is a light, layerable scent designed for daily wear that refreshes without overwhelming. The fruity-floral composition opens with juicy top notes that immediately brighten the mood, settling into a soft, warm base that lingers subtly on skin and hair throughout the day. The lightweight, non-alcoholic mist formula makes it gentle enough to spritz directly onto hair without causing dryness or damage. Its versatile, universally appealing scent profile makes it an easy addition to any routine, whether worn alone or layered under a stronger evening fragrance. The sleek, minimalist bottle design looks great on any vanity.",
+      "The Fenty beauty Fragrance Mist is a light, layerable scent designed for daily wear that refreshes without overwhelming. The fruity-floral composition opens with juicy top notes that immediately brighten the mood, settling into a soft, warm base that lingers subtly on skin and hair throughout the day. The lightweight, non-alcoholic mist formula makes it gentle enough to spritz directly onto hair without causing dryness or damage. Its versatile, universally appealing scent profile makes it an easy addition to any routine, whether worn alone or layered under a stronger evening fragrance. The sleek, minimalist bottle design looks great on any vanity.",
     rating: 4.6,
     quantity: 30,
     trending: true,
@@ -927,7 +927,7 @@ export const products = [
     price: 1950,
     old_price: 2599,
     image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "MAC Ruby Woo is arguably the most iconic red lipstick shade in the world, beloved by makeup artists and everyday users alike for its universally flattering blue-based red tone. The retro matte finish delivers full, opaque colour in a single swipe without settling into fine lines, while the long-wearing formula resists fading through meals and long days. Despite its intensely matte finish, the formula is comfortable to wear and doesn't feel drying, thanks to carefully balanced waxes and emollients in the base. The precise bullet shape allows for both quick application and detailed lip lining. A true classic that belongs in every makeup collection, suited to virtually every skin tone.",
     rating: 4.8,
@@ -940,7 +940,7 @@ export const products = [
     price: 1299,
     old_price: 1699,
     image: "https://images.unsplash.com/photo-1522338140262-f46f5913618f?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "The Philips Hair Dryer HP8100 makes salon-quality blowouts achievable at home with a powerful yet lightweight design. The 1000-watt motor delivers fast drying times without the excessive weight that causes arm fatigue during longer styling sessions. ThermoProtect technology maintains an optimal drying temperature that helps prevent excessive heat damage, keeping hair looking healthier over time. Two heat and speed settings let you customise the airflow for fine or thick hair types, while the cool shot button locks in your style once you've achieved the desired look. The removable end cap makes cleaning lint and hair from the intake grill quick and simple, extending the appliance's lifespan.",
     rating: 4.4,
@@ -953,7 +953,7 @@ export const products = [
     price: 599,
     old_price: 699,
     image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "The Lakme 9 to 5 Nail Polish Set includes a curated selection of everyday shades designed to take your nails seamlessly from office to evening. The quick-drying, chip-resistant formula holds its glossy finish for up to a week with proper care, resisting the everyday wear and tear of typing, cooking, and other daily tasks. The smooth, streak-free application glides on evenly in just two coats for full opacity, even in lighter shades that are typically harder to apply evenly. Each shade in the set is carefully chosen to complement a range of skin tones, from soft nudes to classic reds. A must-have for anyone who wants salon-fresh nails without frequent salon visits.",
     rating: 4.5,
@@ -966,7 +966,7 @@ export const products = [
     price: 799,
     old_price: 999,
     image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "The Innisfree Green Tea Sheet Mask pack delivers an intensive dose of hydration and antioxidant protection in just 15-20 minutes. Formulated with real Jeju green tea extract, known for its high antioxidant content, the essence-soaked sheet calms irritation while replenishing moisture deep within the skin barrier. The ultra-thin, second-skin sheet material adheres closely to facial contours, ensuring maximum essence absorption rather than evaporation. Regular use helps balance oil production, making it particularly well-suited to oily and combination skin types prone to dullness. Each pack includes five individually sealed masks, perfect for a weekly self-care ritual or an occasional pick-me-up before a big event.",
     rating: 4.6,
@@ -979,7 +979,7 @@ export const products = [
     price: 1499,
     old_price: 1799,
     image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&q=80",
-    category: "Beauty",
+    category: "beauty",
     description:
       "The Real Techniques Makeup Brush Set gives you every essential tool needed for flawless application, from base to finishing touches. Each brush features Custom Cut, densely-packed synthetic taklon bristles that pick up and distribute product evenly without absorbing excess formula the way natural hair bristles often do. The unique ergonomic handle design, weighted for perfect balance, reduces hand fatigue during detailed application work like eyeliner or contouring. The set includes brushes for foundation, powder, blush, and eye detailing, covering the full range of everyday makeup needs. Brushes are cruelty-free and easy to clean, maintaining their shape and softness wash after wash for months of reliable use.",
     rating: 4.7,
@@ -992,7 +992,7 @@ export const products = [
     price: 34999,
     old_price: 46699,
     image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The Cockatoo Motorized Treadmill brings gym-quality cardio training into the comfort of your home. The powerful motor delivers smooth, consistent speed control across a wide range, suitable for everything from gentle walking recovery sessions to intense interval sprints. Multiple pre-set workout programs automatically vary speed and incline to keep training sessions engaging and effective, while the large LCD display tracks time, distance, speed, and calories burned in real time. The extra-wide, cushioned running belt reduces impact stress on knees and joints compared to running on pavement or hard flooring. Foldable design with transport wheels allows for easy storage in apartments or smaller homes when not in use.",
     rating: 4.5,
@@ -1005,7 +1005,7 @@ export const products = [
     price: 3999,
     old_price: 4999,
     image: "https://images.unsplash.com/photo-1595435742656-5272d0b3fa82?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The Yonex Nanoray Tennis Racket combines lightweight maneuverability with genuine power, making it an excellent choice for intermediate players looking to elevate their game. The Nanometric technology reinforces the frame at a molecular level, allowing for a thinner, more aerodynamic profile without sacrificing structural rigidity or repulsion power. The enlarged sweet spot forgives slightly off-centre hits, delivering consistent depth and pace even when contact isn't perfect. A comfortable cushioned grip absorbs shock during powerful groundstrokes and serves, reducing strain on the wrist and elbow over long matches. Pre-strung and ready to play straight out of the box, this racket suits players transitioning from beginner to competitive club-level tennis.",
     rating: 4.6,
@@ -1018,7 +1018,7 @@ export const products = [
     price: 449,
     old_price: 499,
     image: "https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The Strauss Skipping Rope with Counter turns a simple jump rope into a genuine training data tool, automatically tracking every jump so you can monitor progress over time. The smooth ball-bearing rotation system ensures the rope spins freely and consistently, minimising tangles and missed reps during fast-paced cardio sessions. The tangle-free steel wire core is coated in durable PVC, giving it the flexibility needed for speed skipping while resisting wear from repeated ground contact. Ergonomic foam handles provide a secure, comfortable grip even when hands get sweaty during intense sessions. Fully adjustable length accommodates users of any height, making it a versatile addition to any home cardio or HIIT routine.",
     rating: 4.4,
@@ -1031,7 +1031,7 @@ export const products = [
     price: 1799,
     old_price: 2199,
     image: "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "The American Tourister Gym Duffel Bag is built to handle the daily grind of gym sessions, weekend trips, and everything in between. A dedicated ventilated shoe compartment keeps sweaty sneakers separated from clean clothes and towels, while a separate wet pocket safely stores damp gym gear or swimwear. The spacious main compartment easily fits a full workout kit, and the durable water-resistant polyester fabric shrugs off gym floor grime and light rain alike. Reinforced stitching at stress points ensures the bag holds up to years of being tossed in lockers and car trunks. Adjustable, padded shoulder straps and sturdy top handles give you flexible carrying options for any commute.",
     rating: 4.5,
@@ -1044,7 +1044,7 @@ export const products = [
     price: 799,
     old_price: 999,
     image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&q=80",
-    category: "Sports & Fitness",
+    category: "sports-fitness",
     description:
       "Speedo Swimming Goggles are engineered for a comfortable, leak-free fit whether you're doing laps at the local pool or training for competition. The curved lens design offers a wide field of vision, letting swimmers see clearly to either side without lifting their head out of the water. Anti-fog coating on the inside of the lens resists clouding over long training sessions, while UV protection shields eyes during outdoor swimming. The soft silicone gasket seals gently around the eye socket, distributing pressure evenly to prevent the red marks and discomfort common with cheaper goggles. An adjustable strap and nose bridge ensure a secure, customisable fit across a range of face shapes.",
     rating: 4.5,

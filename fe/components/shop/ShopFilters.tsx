@@ -1,10 +1,10 @@
 const CATEGORY_OPTIONS = [
-  "All",
-  "Electronics",
-  "Fashion",
-  "Home & Kitchen",
-  "Beauty",
-  "Sports & Fitness",
+  { label: "All", slug: null },
+  { label: "Electronics", slug: "electronics" },
+  { label: "Fashion", slug: "fashion" },
+  { label: "Home & Kitchen", slug: "home-kitchen" },
+  { label: "Beauty", slug: "beauty" },
+  { label: "Sports & Fitness", slug: "sports-fitness" },
 ];
 
 const PRICE_OPTIONS = [
@@ -16,7 +16,14 @@ const PRICE_OPTIONS = [
 
 const RATING_OPTIONS = ["4.5 & up", "4.0 & up", "3.5 & up"];
 
-export default function ShopFilters() {
+interface ShopFiltersPropsTypes {
+  searchedCategory: null | string;
+}
+
+export default function ShopFilters({ searchedCategory }: ShopFiltersPropsTypes) {
+  const isSelected = (slug: string | null) =>
+    slug === searchedCategory || (slug === null && !searchedCategory);
+
   return (
     <aside className="space-y-8">
       {/* Categories */}
@@ -25,13 +32,13 @@ export default function ShopFilters() {
           Category
         </h3>
         <ul className="space-y-1">
-          {CATEGORY_OPTIONS.map((label, index) => (
+          {CATEGORY_OPTIONS.map(({ label, slug }) => (
             <li key={label}>
               <button
                 type="button"
                 className={`w-full text-left px-3 py-2.5 rounded-xl text-sm transition-colors ${
-                  index === 0
-                    ? "bg-gray-900 text-white font-medium"
+                  isSelected(slug)
+                    ? "bg-black text-white"
                     : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                 }`}
               >
