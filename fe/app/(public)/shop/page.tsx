@@ -11,11 +11,15 @@ import ShopPagination from "@/components/shop/ShopPagination";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 import type { Product } from "@/lib/types";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function ShopPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
-  const searchedCategory = searchParams.get("category");
+
+  // homepage se aaye to URL me category already hogi
+  const categoryFromUrl = searchParams.get("category");
+
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<Product[]>([]);
@@ -26,11 +30,24 @@ export default function ShopPage() {
     currentPage: 1,
   });
 
+  // category change hone pe URL update karo
+  const handleCategoryChange = (slug: string | null) => {
+    setPage(1); // naya filter = page 1 se start
+
+    if (slug) {
+      router.push(`/shop?category=${slug}`);
+    } else {
+      router.push("/shop"); // "All" → category hata do
+    }
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const res = await http.get(endpoints.product.allProducts(limit, page));
+        const res = await http.get(
+          endpoints.product.allProducts(limit, page, categoryFromUrl)
+        );
         setProducts(res.data.products);
         setPagination(res.data.pagination);
       } catch (error) {
@@ -42,7 +59,7 @@ export default function ShopPage() {
     };
 
     fetchProducts();
-  }, [page, limit]);
+  }, [page, limit, categoryFromUrl]);
 
   return (
     <div className="bg-white min-h-screen">
@@ -52,8 +69,9 @@ export default function ShopPage() {
         <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10 lg:gap-14">
             <div className="hidden lg:block">
-              <ShopFilters 
-                searchedCategory={searchedCategory}
+              <ShopFilters
+                selectedCategory={categoryFromUrl}
+                onCategoryChange={handleCategoryChange}
               />
             </div>
 

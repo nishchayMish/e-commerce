@@ -16,13 +16,23 @@ const PRICE_OPTIONS = [
 
 const RATING_OPTIONS = ["4.5 & up", "4.0 & up", "3.5 & up"];
 
-interface ShopFiltersPropsTypes {
-  searchedCategory: null | string;
+interface ShopFiltersProps {
+  selectedCategory: string | null;
+  onCategoryChange: (slug: string | null) => void;
 }
 
-export default function ShopFilters({ searchedCategory }: ShopFiltersPropsTypes) {
-  const isSelected = (slug: string | null) =>
-    slug === searchedCategory || (slug === null && !searchedCategory);
+export default function ShopFilters({
+  selectedCategory,
+  onCategoryChange,
+}: ShopFiltersProps) {
+  const isSelected = (slug: string | null) => {
+    // "All" tab: jab koi category selected na ho
+    if (slug === null) {
+      return !selectedCategory;
+    }
+
+    return slug === selectedCategory;
+  };
 
   return (
     <aside className="space-y-8">
@@ -36,6 +46,7 @@ export default function ShopFilters({ searchedCategory }: ShopFiltersPropsTypes)
             <li key={label}>
               <button
                 type="button"
+                onClick={() => onCategoryChange(slug)}
                 className={`w-full text-left px-3 py-2.5 rounded-xl text-sm transition-colors ${
                   isSelected(slug)
                     ? "bg-black text-white"
