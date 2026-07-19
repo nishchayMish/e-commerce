@@ -1,13 +1,38 @@
-import { bestSellers } from "@/lib/data";
+"use client"
 import ShopHeader from "@/components/shop/ShopHeader";
 import ShopFilters from "@/components/shop/ShopFilters";
 import ShopToolbar from "@/components/shop/ShopToolbar";
 import ProductGrid from "@/components/shop/ProductGrid";
 import ShopPagination from "@/components/shop/ShopPagination";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import http from "@/lib/http";
+import { endpoints } from "@/lib/endpoints";
 
 export default function ShopPage() {
-  const products = bestSellers;
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
 
+  const [products, setProducts] = useState([]);
+  const [pagination, setPagination] = useState({
+    limit: 10,
+    offset: 0,
+    currentPage: 1,
+  });
+
+  useEffect(() => {
+    const fetchProducts = async() => {
+      try {
+        const res = await http.get(endpoints.product.allProducts(limit, page));
+        setProducts(res.data.products)
+        setPagination(res.data.pagination)
+      } catch (error) {
+        toast.error("error fetching products")
+        console.log(error)
+      }
+    }
+    fetchProducts()
+  },[page, limit])
   return (
     <div className="bg-white min-h-screen">
       <ShopHeader />
@@ -22,9 +47,9 @@ export default function ShopPage() {
 
             {/* Products */}
             <div>
-              <ShopToolbar productCount={products.length} />
+              <ShopToolbar limit={limit} setLimit={setLimit} />
               <ProductGrid products={products} />
-              <ShopPagination />
+              <ShopPagination pagination={pagination} setPage={setPage}/>
             </div>
           </div>
         </div>

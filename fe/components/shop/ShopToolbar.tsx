@@ -9,17 +9,30 @@ const SORT_OPTIONS = [
 ];
 
 interface ShopToolbarProps {
-  productCount: number;
+  limit: number;
+  setLimit: (limit: number) => void;
 }
 
-export default function ShopToolbar({ productCount }: ShopToolbarProps) {
+export default function ShopToolbar({ limit, setLimit }: ShopToolbarProps) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-      <p className="text-sm text-gray-500">
-        Showing{" "}
-        <span className="font-semibold text-gray-900">{productCount}</span>{" "}
-        products
-      </p>
+      <div className="flex items-center gap-2 text-sm text-gray-600">
+        <span>Showing</span>
+
+        <select
+          value={limit}
+          onChange={(e) => setLimit(Number(e.target.value))}
+          className="rounded-md border border-gray-300 bg-white px-3 py-1 text-sm font-medium text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-black/10"
+        >
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={30}>30</option>
+          <option value={40}>40</option>
+          <option value={50}>50</option>
+        </select>
+
+        <span>products</span>
+      </div>
 
       <div className="flex items-center gap-3">
         {/* Mobile filter trigger — UI only */}

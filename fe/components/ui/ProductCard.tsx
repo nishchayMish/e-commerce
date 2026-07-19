@@ -71,13 +71,6 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
           >
             <Heart size={15} fill={wishlisted ? "currentColor" : "none"} />
           </motion.button>
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            className="w-9 h-9 rounded-xl flex items-center justify-center bg-white/90 text-gray-600 shadow-lg backdrop-blur-sm border border-white/60 hover:text-indigo-600 transition-colors"
-            aria-label="Quick view"
-          >
-            <Eye size={15} />
-          </motion.button>
         </div>
       </div>
 

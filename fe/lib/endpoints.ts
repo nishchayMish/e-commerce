@@ -8,7 +8,7 @@ export const endpoints = {
         products: "/home",
     },
     product:{
-        allProducts: "/products",
+        allProducts: (limit: number, page: number) =>  `/products?page=${page}&limit=${limit}`,
         singleProduct: (id:string) => `/product/${id}`
     }
    

@@ -9,9 +9,9 @@ export const fetchProducts = async(offset, limit, page) => {
         [limit, offset]
     );
     const pagination = {
-        page,
         limit: Number(limit),
-        offset
+        offset,
+        currentPage: page,
     }
     return { rows, pagination };
 }
