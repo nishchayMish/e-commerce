@@ -28,7 +28,7 @@ export default function ShopPagination({ pagination, setPage }: ShopPaginationPr
         type="button"
         className="flex items-center gap-1 cursor-pointer px-4 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:text-gray-900 transition-colors"
       >
-         Next
+        Next
         <ChevronRightIcon className="w-4 h-4"/>
       </button>
     </div>

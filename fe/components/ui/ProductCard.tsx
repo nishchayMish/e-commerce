@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, ShoppingBag, Star, Eye } from "lucide-react";
 import type { Product } from "@/lib/types";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   product: Product;
@@ -12,6 +13,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, compact = false }: ProductCardProps) {
+  const router = useRouter();
   const [wishlisted, setWishlisted] = useState(false);
   const [added, setAdded] = useState(false);
 
@@ -27,6 +29,10 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
     setTimeout(() => setAdded(false), 2000);
   };
 
+  const onClickHandler = () => {
+    router.push(`/shop/${product.id}`)
+  }
+
   return (
     <motion.div
       whileHover={{ y: -6 }}
@@ -36,6 +42,7 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
       {/* ─── Image ────────────────────────────────────────── */}
       <div className={`relative overflow-hidden bg-gray-50 ${compact ? "aspect-[4/3]" : "aspect-square"}`}>
         <motion.div
+          onClick={onClickHandler}
           className="w-full h-full"
           whileHover={{ scale: 1.07 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
@@ -80,7 +87,7 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
           {product.category}
         </span>
 
-        <h3 className="text-sm sm:text-base font-semibold text-gray-900 leading-snug line-clamp-2 group-hover:text-indigo-600 transition-colors duration-200 mb-0.5">
+        <h3 onClick={onClickHandler} className="text-sm sm:text-base font-semibold text-gray-900 leading-snug line-clamp-2 group-hover:text-indigo-600 transition-colors duration-200 mb-0.5">
           {product.name}
         </h3>
 
