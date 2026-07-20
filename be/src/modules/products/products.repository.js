@@ -1,6 +1,22 @@
 import { pool } from "../../config/db.js"
 
-export const fetchProducts = async(offset, limit, page) => {
+export const fetchProducts = async(offset, limit, page, category) => {
+    const pagination = {
+        limit: Number(limit),
+        offset,
+        currentPage: page,
+    }
+
+    if(category){
+        const { rows } = await pool.query(`
+            SELECT * FROM products
+            WHERE category = $1
+            ORDER BY created_at DESC
+            LIMIT $2 OFFSET $3
+        `, [category, limit, offset]);
+        return {rows, pagination};
+    }
+    
     const {rows} = await pool.query(`
         SELECT * FROM products 
         ORDER BY created_at DESC 
@@ -8,11 +24,6 @@ export const fetchProducts = async(offset, limit, page) => {
         `, 
         [limit, offset]
     );
-    const pagination = {
-        limit: Number(limit),
-        offset,
-        currentPage: page,
-    }
     return { rows, pagination };
 }
 

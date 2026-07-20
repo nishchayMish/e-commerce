@@ -1,6 +1,6 @@
 import { bestSellerProducts, fetchHomeProducts, fetchProducts, fetchSingleProduct } from "./products.repository.js";
 
-export const fetchProductService = async(page, limit) => {
+export const fetchProductService = async(page, limit, category) => {
     if(page <= 0){
         throw{
             status: 400,
@@ -14,7 +14,7 @@ export const fetchProductService = async(page, limit) => {
         }
     }
     const offset = (page - 1) * limit;
-    return await fetchProducts(offset, limit, page)
+    return await fetchProducts(offset, limit, page, category)
 }
 
 export const fetchSingleProductService = async(productId) => {
