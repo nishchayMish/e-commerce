@@ -39,6 +39,29 @@ export const fetchProducts = async(offset, limit, page, filters) => {
         }
     }
 
+    if(filters.rating){
+        switch(filters.rating){
+
+            case "3.5":
+                conditions.push(`rating > 3-5`)
+                break;
+
+            case "4.0":
+                conditions.push(`rating > 4`)
+                break;
+
+            case "4.5":
+                conditions.push(`rating > 4.5`)
+                break;
+
+            default:
+                throw{
+                    status: 400,
+                    message: "Invalid rating"
+                }    
+        }
+    }
+
     if(conditions.length > 0){
         const where = ` WHERE ${conditions.join(" AND ")}`
         query += where

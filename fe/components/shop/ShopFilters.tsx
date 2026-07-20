@@ -14,16 +14,22 @@ const PRICE_OPTIONS = [
   { label: "Above ₹2,500", value: "gt-2500" },
 ];
 
-const RATING_OPTIONS = ["4.5 & up", "4.0 & up", "3.5 & up"];
+const RATING_OPTIONS = [
+  { label: "4.5 & up", value: "4.5" },
+  { label: "4.0 & up", value: "4.0" },
+  { label: "3.5 & up", value: "3.5" },
+];
 
 interface ShopFiltersProps {
   selectedCategory: string | null;
   onCategoryChange: (slug: string | null) => void;
-  setPriceRange: (value: string | null) => void
   priceRange: string | null;
+  rating: string | null;
+  handlePriceRangeChange: (value: string | null) => void;
+  handleRatingChange: (value: string | null) => void;
 }
 
-export default function ShopFilters({selectedCategory, onCategoryChange, setPriceRange, priceRange}: ShopFiltersProps) {
+export default function ShopFilters({selectedCategory, onCategoryChange, priceRange, rating, handlePriceRangeChange, handleRatingChange}: ShopFiltersProps) {
   const isSelectedCategory = (slug: string | null) => {
     // "All" tab: jab koi category selected na ho
     if (slug === null) {
@@ -68,7 +74,7 @@ export default function ShopFilters({selectedCategory, onCategoryChange, setPric
           {PRICE_OPTIONS.map(({label, value}, idx) => (
             <li key={idx}>
               <button
-                onClick={()=>setPriceRange(value)}
+                onClick={() => handlePriceRangeChange(value)}
                 type="button"
                 className={`w-full text-left px-3 py-2.5 rounded-xl text-sm transition-colors
                 ${priceRange === value 
@@ -89,11 +95,16 @@ export default function ShopFilters({selectedCategory, onCategoryChange, setPric
           Rating
         </h3>
         <ul className="space-y-1">
-          {RATING_OPTIONS.map((label, value) => (
-            <li key={label}>
+          {RATING_OPTIONS.map(({label, value}, idx) => (
+            <li key={idx}>
               <button
+                onClick={()=>handleRatingChange(value)}
                 type="button"
-                className=""
+                className={`w-full text-left px-3 py-2.5 rounded-xl text-sm transition-colors
+                ${rating === value 
+                  ? "bg-black text-white" 
+                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                }`}
               >
                 {label}
               </button>

@@ -19,27 +19,46 @@ export default function ShopPage() {
 
   // homepage se aaye to URL me category already hogi
   const categoryFromUrl = searchParams.get("category");
+  const priceRangeFromUrl = searchParams.get("price_range");
+  const ratingFromUrl = searchParams.get("rating");
 
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [priceRange, setPriceRange] = useState<string | null>(null);
   const [pagination, setPagination] = useState({
     limit: 10,
     offset: 0,
     currentPage: 1,
   });
 
+  // existing query params preserve karke sirf diya hua key update/remove karo
+  const updateSearchParam = (key: string, value: string | null) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (value) {
+      params.set(key, value);
+    } else {
+      params.delete(key);
+    }
+
+    const query = params.toString();
+    router.push(query ? `/shop?${query}` : "/shop");
+  };
+
   // category change hone pe URL update karo
   const handleCategoryChange = (slug: string | null) => {
-    setPage(1); // naya filter = page 1 se start
+    setPage(1);
+    updateSearchParam("category", slug);
+  };
 
-    if (slug) {
-      router.push(`/shop?category=${slug}`);
-    } else {
-      router.push("/shop"); // "All" → category hata do
-    }
+  const handlePriceRangeChange = (value: string | null) => {
+    setPage(1);
+    updateSearchParam("price_range", value);
+  };
+  const handleRatingChange = (value: string | null) => {
+    setPage(1);
+    updateSearchParam("rating", value);
   };
 
   useEffect(() => {
@@ -47,7 +66,7 @@ export default function ShopPage() {
       setLoading(true);
       try {
         const res = await http.get(
-          endpoints.product.allProducts(limit, page, categoryFromUrl, priceRange)
+          endpoints.product.allProducts(limit, page, categoryFromUrl, priceRangeFromUrl, ratingFromUrl)
         );
         setProducts(res.data.products);
         setPagination(res.data.pagination);
@@ -60,7 +79,7 @@ export default function ShopPage() {
     };
 
     fetchProducts();
-  }, [page, limit, categoryFromUrl, priceRange]);
+  }, [page, limit, categoryFromUrl, priceRangeFromUrl, ratingFromUrl]);
 
   return (
     <div className="bg-white min-h-screen">
@@ -73,8 +92,10 @@ export default function ShopPage() {
               <ShopFilters
                 selectedCategory={categoryFromUrl}
                 onCategoryChange={handleCategoryChange}
-                setPriceRange={setPriceRange}
-                priceRange={priceRange}
+                priceRange={priceRangeFromUrl}
+                rating={ratingFromUrl}
+                handlePriceRangeChange={handlePriceRangeChange}
+                handleRatingChange={handleRatingChange}
               />
             </div>
 
