@@ -21,7 +21,7 @@ export default function CategoryGrid({ categories }: CategoryGridProps) {
           delay={index * 0.08}
         >
           <Link
-            href={`/category/${category.slug}`}
+            href={`/shop?category=${category.slug}`}
             className="group relative block rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.02),0_4px_16px_rgba(0,0,0,0.05)]"
           >
             <div className="relative h-[320px] sm:h-[380px] overflow-hidden">
