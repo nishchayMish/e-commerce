@@ -24,6 +24,7 @@ export default function ShopPage() {
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [priceRange, setPriceRange] = useState<string | null>(null);
   const [pagination, setPagination] = useState({
     limit: 10,
     offset: 0,
@@ -46,7 +47,7 @@ export default function ShopPage() {
       setLoading(true);
       try {
         const res = await http.get(
-          endpoints.product.allProducts(limit, page, categoryFromUrl)
+          endpoints.product.allProducts(limit, page, categoryFromUrl, priceRange)
         );
         setProducts(res.data.products);
         setPagination(res.data.pagination);
@@ -59,7 +60,7 @@ export default function ShopPage() {
     };
 
     fetchProducts();
-  }, [page, limit, categoryFromUrl]);
+  }, [page, limit, categoryFromUrl, priceRange]);
 
   return (
     <div className="bg-white min-h-screen">
@@ -72,6 +73,8 @@ export default function ShopPage() {
               <ShopFilters
                 selectedCategory={categoryFromUrl}
                 onCategoryChange={handleCategoryChange}
+                setPriceRange={setPriceRange}
+                priceRange={priceRange}
               />
             </div>
 

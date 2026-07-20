@@ -1,20 +1,20 @@
 import { bestSellerProducts, fetchHomeProducts, fetchProducts, fetchSingleProduct } from "./products.repository.js";
 
-export const fetchProductService = async(page, limit, category) => {
+export const fetchProductService = async(page, limit, filters) => {
     if(page <= 0){
         throw{
             status: 400,
             message: "Invalid page number"
         }
     }
-    if(limit < 0){
+    if(limit <= 0){
         throw{
             status: 400,
             message: "Invalid limit"
         }
     }
     const offset = (page - 1) * limit;
-    return await fetchProducts(offset, limit, page, category)
+    return await fetchProducts(offset, limit, page, filters)
 }
 
 export const fetchSingleProductService = async(productId) => {

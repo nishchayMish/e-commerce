@@ -8,10 +8,10 @@ const CATEGORY_OPTIONS = [
 ];
 
 const PRICE_OPTIONS = [
-  "Under ₹500",
-  "₹500 – ₹1,000",
-  "₹1,000 – ₹2,500",
-  "Above ₹2,500",
+  { label: "Under ₹500", value: "lt-500" },
+  { label: "₹500 – ₹1,000", value: "500-1000" },
+  { label: "₹1,000 – ₹2,500", value: "1000-2500" },
+  { label: "Above ₹2,500", value: "gt-2500" },
 ];
 
 const RATING_OPTIONS = ["4.5 & up", "4.0 & up", "3.5 & up"];
@@ -19,13 +19,12 @@ const RATING_OPTIONS = ["4.5 & up", "4.0 & up", "3.5 & up"];
 interface ShopFiltersProps {
   selectedCategory: string | null;
   onCategoryChange: (slug: string | null) => void;
+  setPriceRange: (value: string | null) => void
+  priceRange: string | null;
 }
 
-export default function ShopFilters({
-  selectedCategory,
-  onCategoryChange,
-}: ShopFiltersProps) {
-  const isSelected = (slug: string | null) => {
+export default function ShopFilters({selectedCategory, onCategoryChange, setPriceRange, priceRange}: ShopFiltersProps) {
+  const isSelectedCategory = (slug: string | null) => {
     // "All" tab: jab koi category selected na ho
     if (slug === null) {
       return !selectedCategory;
@@ -48,7 +47,7 @@ export default function ShopFilters({
                 type="button"
                 onClick={() => onCategoryChange(slug)}
                 className={`w-full text-left px-3 py-2.5 rounded-xl text-sm transition-colors ${
-                  isSelected(slug)
+                  isSelectedCategory(slug)
                     ? "bg-black text-white"
                     : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                 }`}
@@ -66,11 +65,16 @@ export default function ShopFilters({
           Price
         </h3>
         <ul className="space-y-1">
-          {PRICE_OPTIONS.map((label) => (
-            <li key={label}>
+          {PRICE_OPTIONS.map(({label, value}, idx) => (
+            <li key={idx}>
               <button
+                onClick={()=>setPriceRange(value)}
                 type="button"
-                className="w-full text-left px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+                className={`w-full text-left px-3 py-2.5 rounded-xl text-sm transition-colors
+                ${priceRange === value 
+                  ? "bg-black text-white" 
+                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                }`}
               >
                 {label}
               </button>
@@ -85,11 +89,11 @@ export default function ShopFilters({
           Rating
         </h3>
         <ul className="space-y-1">
-          {RATING_OPTIONS.map((label) => (
+          {RATING_OPTIONS.map((label, value) => (
             <li key={label}>
               <button
                 type="button"
-                className="w-full text-left px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+                className=""
               >
                 {label}
               </button>

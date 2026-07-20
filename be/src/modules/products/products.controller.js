@@ -4,8 +4,20 @@ export const fetchProductController = async(req, res) => {
     try {
         const page = Number(req.query.page) || 1;
         const limit = Number(req.query.limit) || 10;
-        const {category} = req.query
-        const { rows, pagination } = await fetchProductService(page, limit, category);
+        const filters = {
+            category: req.query.category || null,
+            priceRange: req.query.price_range || null
+        }
+       
+        const { rows, pagination } = await fetchProductService(page, limit, filters);
+
+        if(rows.length === 0){
+            return res.status(200).json({
+                message:"No products found",
+                products:[],
+                pagination
+            })
+        }
 
         return res.status(200).json({
             message: "products fetched successfully",

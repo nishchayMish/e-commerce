@@ -1,30 +1,76 @@
 import { pool } from "../../config/db.js"
 
-export const fetchProducts = async(offset, limit, page, category) => {
-    const pagination = {
-        limit: Number(limit),
-        offset,
-        currentPage: page,
+export const fetchProducts = async(offset, limit, page, filters) => {
+    let query = "SELECT * FROM products";
+    let countQuery = "SELECT COUNT(*) FROM products";
+
+    const conditions = [];
+    const values = [];
+
+    if(filters.category){
+        values.push(filters.category);
+        conditions.push(`category=$${values.length}`)
     }
 
-    if(category){
-        const { rows } = await pool.query(`
-            SELECT * FROM products
-            WHERE category = $1
-            ORDER BY created_at DESC
-            LIMIT $2 OFFSET $3
-        `, [category, limit, offset]);
-        return {rows, pagination};
+    if(filters.priceRange){
+        switch(filters.priceRange){
+            
+            case "lt-500":
+                conditions.push(`price < 500`);
+                break;
+
+            case "500-1000":
+                conditions.push(`price between 500 AND 1000`)
+                break;
+                
+            case "1000-2500":
+                conditions.push(`price between 1000 AND 2500`)
+                break;
+                
+            case "gt-2500":
+                conditions.push(`price > 2500`);
+                break;    
+
+            default: 
+            throw{
+                statusCode: 400,
+                message: "Invalid price range"
+            }    
+        }
     }
-    
-    const {rows} = await pool.query(`
-        SELECT * FROM products 
-        ORDER BY created_at DESC 
-        LIMIT $1 OFFSET $2
-        `, 
-        [limit, offset]
-    );
-    return { rows, pagination };
+
+    if(conditions.length > 0){
+        const where = ` WHERE ${conditions.join(" AND ")}`
+        query += where
+        countQuery += where
+    }
+
+    query += `
+        ORDER BY created_at DESC
+        LIMIT $${values.length + 1}
+        OFFSET $${values.length + 2}
+    `;
+
+    const dataValues = [...values, limit, offset];
+
+    // Fetch products
+    const { rows } = await pool.query(query, dataValues);
+
+    // Fetch total count
+    const { rows: countRows } = await pool.query(countQuery, values);
+
+    const totalProducts = Number(countRows[0].count);
+
+    return {
+        rows,
+        pagination: {
+            currentPage: page,
+            limit: Number(limit),
+            offset,
+            totalProducts,
+            totalPages: Math.ceil(totalProducts / limit),
+        },
+    }
 }
 
 export const fetchSingleProduct = async(productId) => {
