@@ -3,7 +3,7 @@ import { pool } from "../../config/db.js"
 export const fetchProducts = async(offset, limit, page, filters) => {
     let query = "SELECT * FROM products";
     let countQuery = "SELECT COUNT(*) FROM products";
-
+    let orderBy = "created_at DESC"
     const conditions = [];
     const values = [];
 
@@ -62,6 +62,32 @@ export const fetchProducts = async(offset, limit, page, filters) => {
         }
     }
 
+    if(filters.sort){
+        switch(filters.sort){
+            case "newest":
+            orderBy = "created_at DESC";
+            break;
+
+        case "price_asc":
+            orderBy = "price ASC";
+            break;
+
+        case "price_desc":
+            orderBy = "price DESC";
+            break;
+
+        case "top_rated":
+            orderBy = "rating DESC";
+            break;
+
+        default:
+            throw {
+                statusCode: 400,
+                message: "Invalid sort option"
+            };
+        }
+    }
+
     if(conditions.length > 0){
         const where = ` WHERE ${conditions.join(" AND ")}`
         query += where
@@ -69,10 +95,11 @@ export const fetchProducts = async(offset, limit, page, filters) => {
     }
 
     query += `
-        ORDER BY created_at DESC
+        ORDER BY ${orderBy}
         LIMIT $${values.length + 1}
         OFFSET $${values.length + 2}
     `;
+    console.log(query)
 
     const dataValues = [...values, limit, offset];
 

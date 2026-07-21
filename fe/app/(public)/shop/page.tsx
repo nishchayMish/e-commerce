@@ -26,6 +26,7 @@ export default function ShopPage() {
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sort, setSort] = useState("")
   const [pagination, setPagination] = useState({
     limit: 10,
     offset: 0,
@@ -70,7 +71,7 @@ export default function ShopPage() {
       setLoading(true);
       try {
         const res = await http.get(
-          endpoints.product.allProducts(limit, page, categoryFromUrl, priceRangeFromUrl, ratingFromUrl)
+          endpoints.product.allProducts(limit, page, categoryFromUrl, priceRangeFromUrl, ratingFromUrl, sort)
         );
         setProducts(res.data.products);
         setPagination(res.data.pagination);
@@ -83,7 +84,7 @@ export default function ShopPage() {
     };
 
     fetchProducts();
-  }, [page, limit, categoryFromUrl, priceRangeFromUrl, ratingFromUrl]);
+  }, [page, limit, categoryFromUrl, priceRangeFromUrl, ratingFromUrl, sort]);
 
   return (
     <div className="bg-white min-h-screen">
@@ -105,7 +106,11 @@ export default function ShopPage() {
             </div>
 
             <div>
-              <ShopToolbar limit={limit} setLimit={setLimit} />
+              <ShopToolbar 
+              limit={limit} 
+              setLimit={setLimit} 
+              setSort={setSort}
+              />
 
               {loading ? (
                 <ProductGridSkeleton count={limit > 9 ? 9 : limit} />

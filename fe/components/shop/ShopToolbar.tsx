@@ -1,19 +1,19 @@
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 
 const SORT_OPTIONS = [
-  "Featured",
-  "Newest",
-  "Price: Low to High",
-  "Price: High to Low",
-  "Top Rated",
+  { label: "Newest", value: "newest" },
+  { label: "Price: Low to High", value: "price_asc" },
+  { label: "Price: High to Low", value: "price_desc" },
+  { label: "Top Rated", value: "top_rated" }
 ];
 
 interface ShopToolbarProps {
   limit: number;
   setLimit: (limit: number) => void;
+  setSort: (value: string) => void;
 }
 
-export default function ShopToolbar({ limit, setLimit }: ShopToolbarProps) {
+export default function ShopToolbar({ limit, setLimit, setSort }: ShopToolbarProps) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
       <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -48,14 +48,14 @@ export default function ShopToolbar({ limit, setLimit }: ShopToolbarProps) {
           <span className="hidden sm:inline">Sort by</span>
           <div className="relative">
             <select
-              defaultValue="Featured"
+              onChange={(e)=>setSort(e.target.value)}
               className="appearance-none bg-white border border-gray-200 rounded-xl px-4 py-2.5 pr-10 text-sm font-medium text-gray-900 hover:border-gray-900 focus:outline-none focus:border-gray-900 transition-colors cursor-pointer"
             >
               {SORT_OPTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
+                <option key={option.value} value={option.value}>
+                  {option.label}
                 </option>
-              ))}
+              ))} 
             </select>
             <ChevronDown
               size={14}

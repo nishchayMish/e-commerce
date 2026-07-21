@@ -8,7 +8,7 @@ export const endpoints = {
     products: "/home",
   },
   product: {
-    allProducts: (limit: number, page: number, category?: string | null, priceRange?: string | null, rating?: string | null) => {
+    allProducts: (limit: number, page: number, category?: string | null, priceRange?: string | null, rating?: string | null, sort?: string | null) => {
       let url = `/products?page=${page}&limit=${limit}`;
 
       // agar category selected hai to query me add kar do
@@ -22,6 +22,10 @@ export const endpoints = {
 
       if(rating){
         url += `&rating=${rating}`
+      }
+
+      if(sort){
+        url += `&sort=${sort}`
       }
 
       return url;
