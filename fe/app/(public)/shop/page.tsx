@@ -61,6 +61,10 @@ export default function ShopPage() {
     updateSearchParam("rating", value);
   };
 
+  const clearAllFilters = () => {
+    router.push("/shop")
+  }
+
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -96,6 +100,7 @@ export default function ShopPage() {
                 rating={ratingFromUrl}
                 handlePriceRangeChange={handlePriceRangeChange}
                 handleRatingChange={handleRatingChange}
+                clearAllFilters={clearAllFilters}
               />
             </div>
 

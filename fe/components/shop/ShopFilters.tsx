@@ -27,9 +27,10 @@ interface ShopFiltersProps {
   rating: string | null;
   handlePriceRangeChange: (value: string | null) => void;
   handleRatingChange: (value: string | null) => void;
+  clearAllFilters: () => void;
 }
 
-export default function ShopFilters({selectedCategory, onCategoryChange, priceRange, rating, handlePriceRangeChange, handleRatingChange}: ShopFiltersProps) {
+export default function ShopFilters({selectedCategory, onCategoryChange, priceRange, rating, handlePriceRangeChange, handleRatingChange, clearAllFilters}: ShopFiltersProps) {
   const isSelectedCategory = (slug: string | null) => {
     // "All" tab: jab koi category selected na ho
     if (slug === null) {
@@ -111,6 +112,14 @@ export default function ShopFilters({selectedCategory, onCategoryChange, priceRa
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="w-full">
+        <button
+          onClick={clearAllFilters} 
+          className="text-gray-600 font-thin cursor-pointer text-sm underline hover:text-gray-900">
+          Clear all
+        </button>
       </div>
     </aside>
   );
