@@ -11,9 +11,10 @@ interface ShopToolbarProps {
   limit: number;
   setLimit: (limit: number) => void;
   setSort: (value: string) => void;
+  onOpenFilters: () => void;
 }
 
-export default function ShopToolbar({ limit, setLimit, setSort }: ShopToolbarProps) {
+export default function ShopToolbar({ limit, setLimit, setSort, onOpenFilters }: ShopToolbarProps) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
       <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -35,9 +36,10 @@ export default function ShopToolbar({ limit, setLimit, setSort }: ShopToolbarPro
       </div>
 
       <div className="flex items-center gap-3">
-        {/* Mobile filter trigger — UI only */}
+        {/* Mobile filter trigger */}
         <button
           type="button"
+          onClick={onOpenFilters}
           className="lg:hidden inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:border-gray-900 transition-colors"
         >
           <SlidersHorizontal size={15} />
