@@ -1,6 +1,8 @@
-import { fetchMe, findUser, registerUser } from "./auth.repository.js"
+import { fetchMe, findUser, registerUser, saveOTP } from "./auth.repository.js"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { OTP } from "../../utils/helpers.js";
+import { sendEmail } from "../../utils/email.js";
 
 export const registerService = async(username, email, password) => {
     const existingUser = await findUser(email)
@@ -14,9 +16,18 @@ export const registerService = async(username, email, password) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    return registerUser(username, email, hashedPassword);
-}
+    const user = await registerUser(username, email, hashedPassword);
 
+    const otp = OTP();
+
+    await saveOTP(user.id, otp, "user email verification");
+    await sendEmail(user.email, otp);
+
+    return {
+        message: "Registration successful. Please verify your email.",
+        userId: user.id
+    };
+}
 
 export const loginService = async(email, password) => {
     const user = await findUser(email)

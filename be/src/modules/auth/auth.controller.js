@@ -28,10 +28,7 @@ export const RegisterController = async(req, res) => {
     try {
         const { username, email, password } = req.body;
         const result = await registerService(username, email, password)
-        res.status(200).json({
-            message: "user logined successfully",
-            result
-        })
+        res.status(200).send(result)
     } catch (err) {
         res.status(err.statusCode || 500).json({
             message: err.message || "Internal server error"
