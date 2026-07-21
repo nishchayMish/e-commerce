@@ -30,8 +30,8 @@ const Signup = () => {
     e.preventDefault();
 
     const res = await http.post(endpoints.auth.register, formData)
-    if(res.status===201){
-      router.push("/login")
+    if(res.status===200){
+      router.push(`/verify-otp?user_id=${res.data.userId}`)
       toast.success("user registered successfully");
     }
     

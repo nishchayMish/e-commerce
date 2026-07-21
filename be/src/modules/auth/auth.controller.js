@@ -1,4 +1,4 @@
-import { fetchMeService, loginService, registerService } from "./auth.service.js";
+import { fetchMeService, loginService, registerService, verifyOtpService } from "./auth.service.js";
 
 export const loginController = async(req, res) => {
     try {   
@@ -21,6 +21,18 @@ export const loginController = async(req, res) => {
         res.status(err.statusCode || 500).json({
             message: err.message || "Internal server error"
         })
+    }
+}
+
+export const verifyOtpController = async(req, res) => {
+    try {
+        const {id, otp} = req.body;
+        const result = await verifyOtpService(id, otp);
+        res.status(201).send(result);
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Internal server error"
+        })   
     }
 }
 

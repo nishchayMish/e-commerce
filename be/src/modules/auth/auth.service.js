@@ -1,4 +1,4 @@
-import { fetchMe, findUser, registerUser, saveOTP } from "./auth.repository.js"
+import { fetchMe, findUser, registerUser, saveOTP, verifyOTP } from "./auth.repository.js"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { OTP } from "../../utils/helpers.js";
@@ -88,4 +88,25 @@ export const fetchMeService = async(userId) => {
         email: res.username
     }
     return userPayload;
+}
+
+export const verifyOtpService = async(id, otp) => {
+    const user = await findUser(null, id)
+    if(!user){
+        throw{
+            statusCode: 401,
+            message: "user not found"
+        }
+    }
+
+    const res = await verifyOTP(id, otp)
+
+    if(res.otp !== otp){
+        throw{
+            statusCode: 401,
+            message: "Invalid otp"
+        }
+    }
+
+    return { message: "user verified" }
 }

@@ -3,6 +3,7 @@ export const endpoints = {
     me: "/auth/me",
     login: "/auth/login",
     register: "/auth/register",
+    "verifyUser": "/auth/verify-otp"
   },
   homePage: {
     products: "/home",
@@ -36,4 +37,5 @@ export const endpoints = {
     },
     singleProduct: (id: string) => `/products/${id}`,
   },
+
 };
