@@ -8,9 +8,10 @@ export const fetchProductController = async(req, res) => {
             category: req.query.category || null,
             priceRange: req.query.price_range || null,
             rating: req.query.rating || null,
-            sort: req.query.sort || null
+            sort: req.query.sort || null,
+            search: req.query.search || null
         }
-       
+        
         const { rows, pagination } = await fetchProductService(page, limit, filters);
 
         if(rows.length === 0){

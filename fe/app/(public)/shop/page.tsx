@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import ShopHeader from "@/components/shop/ShopHeader";
 import ShopFilters from "@/components/shop/ShopFilters";
@@ -13,16 +13,21 @@ import { endpoints } from "@/lib/endpoints";
 import type { Product } from "@/lib/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import ShopFiltersDrawer from "@/components/shop/ShopFiltersDrawer";
-import { Search, X } from "lucide-react";
+import ShopSearchBar from "@/components/shop/ShopSearchBar";
+import { useDebounce } from "@/hooks/useDebounce";
 
 export default function ShopPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // homepage se aaye to URL me category already hogi
   const categoryFromUrl = searchParams.get("category");
   const priceRangeFromUrl = searchParams.get("price_range");
   const ratingFromUrl = searchParams.get("rating");
+
+  const [searchInput, setSearchInput] = useState("");
+  const debouncedSearch = useDebounce(searchInput, 500);
+  const searchQuery = debouncedSearch.trim();
+  const lastSearchRef = useRef(searchQuery);
 
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
@@ -66,18 +71,36 @@ export default function ShopPage() {
   };
 
   const clearAllFilters = () => {
-    router.push("/shop")
-  }
+    setSearchInput("");
+    router.push("/shop");
+  };
 
   useEffect(() => {
+    const searchChanged = lastSearchRef.current !== searchQuery;
+    const fetchPage = searchChanged ? 1 : page;
+
     const fetchProducts = async () => {
       setLoading(true);
       try {
         const res = await http.get(
-          endpoints.product.allProducts(limit, page, categoryFromUrl, priceRangeFromUrl, ratingFromUrl, sort)
+          endpoints.product.allProducts(
+            limit,
+            fetchPage,
+            categoryFromUrl,
+            priceRangeFromUrl,
+            ratingFromUrl,
+            sort,
+            searchQuery || null
+          )
         );
         setProducts(res.data.products);
         setPagination(res.data.pagination);
+        lastSearchRef.current = searchQuery;
+
+        // naya search ho to page 1 pe le aao
+        if (searchChanged && page !== 1) {
+          setPage(1);
+        }
       } catch (error) {
         toast.error("Error fetching products");
         console.error(error);
@@ -87,7 +110,7 @@ export default function ShopPage() {
     };
 
     fetchProducts();
-  }, [page, limit, categoryFromUrl, priceRangeFromUrl, ratingFromUrl, sort]);
+  }, [page, limit, categoryFromUrl, priceRangeFromUrl, ratingFromUrl, sort, searchQuery]);
 
   return (
     <div className="bg-white min-h-screen">
@@ -95,27 +118,10 @@ export default function ShopPage() {
       
       {/* input box for search */}
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 -mt-6 sm:-mt-8 mb-8">
-        <div className="relative">
-        <Search
-          size={17}
-          className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+        <ShopSearchBar 
+        searchInput={searchInput} 
+        setSearchInput={setSearchInput} 
         />
-
-        <input
-          type="text"
-          placeholder="Search products, brands, categories…"
-          aria-label="Search products"
-          className="w-full rounded-2xl border border-gray-200 bg-white pl-11 pr-11 py-3.5 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-black focus:ring-4 focus:ring-black/5"
-        />
-
-          <button
-            type="button"
-            aria-label="Clear search"
-            className="absolute right-3.5 top-1/2 -translate-y-1/2 rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-900 transition-colors cursor-pointer"
-          >
-            <X size={15} />
-          </button>
-        </div>
       </div>
 
       <section className="pb-24 sm:pb-32">
