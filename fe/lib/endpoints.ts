@@ -3,7 +3,9 @@ export const endpoints = {
     me: "/auth/me",
     login: "/auth/login",
     register: "/auth/register",
-    "verifyUser": "/auth/verify-otp"
+    verifyUser: "/auth/verify-otp",
+    forgotPassword: "/auth/forgot-password",
+    resetPassword: "/auth/reset-password"
   },
   homePage: {
     products: "/home",

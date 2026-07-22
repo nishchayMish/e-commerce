@@ -45,7 +45,12 @@ export const updateUserStatus = async(userId) => {
     await pool.query("UPDATE users SET is_verified = TRUE WHERE id = $1", [userId]);
 }
 
-export const verifyOTP = async(userId, otp) => {
+export const updateUserPassword = async(userId, newPassword) => {
+    await pool.query("UPDATE users SET password = $1 WHERE id = $2", [newPassword, userId]);
+}
+
+export const verifyOTP = async(userId) => {
     const result = await pool.query("SELECT * FROM otp where user_id = $1 AND expires_at > NOW()", [userId]);
+    console.log(result.rows[0])
     return result.rows[0];
 }

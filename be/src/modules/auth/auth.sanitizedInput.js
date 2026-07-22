@@ -88,3 +88,40 @@ export const sanitizedVerifyOtpInput = (req, res, next) => {
     }
     next();
 }
+
+export const sanitizedResetPasswordInput = (req, res, next) => {
+    const { email, otp, password} = req.body;
+    if(!email){
+        throw{
+            statusCode: 400,
+            message: "email is required"
+        }
+    }
+
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({
+            message: "Invalid email format"
+        });
+    }
+
+    if(!otp){
+        throw{
+            statusCode: 400,
+            message: "otp is required"
+        }
+    }
+    
+    if(!password){
+        throw{
+            statusCode: 400,
+            message: "password is required"
+        }
+    }
+
+    if (password.length < 6) {
+        return res.status(400).json({
+            message: "Password must be at least 6 characters long"
+        });
+    }
+    next();
+}

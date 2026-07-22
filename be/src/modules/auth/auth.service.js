@@ -1,4 +1,4 @@
-import { fetchMe, findUser, registerUser, saveOTP, updateUserStatus, verifyOTP } from "./auth.repository.js"
+import { fetchMe, findUser, registerUser, saveOTP, updateUserPassword, updateUserStatus, verifyOTP } from "./auth.repository.js"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { OTP } from "../../utils/helpers.js";
@@ -22,7 +22,9 @@ export const registerService = async(username, email, password) => {
 
     await saveOTP(user.id, otp, "user email verification");
     
-    sendEmail(user.email, otp)
+    const subject = "Verify your account";
+
+    sendEmail(user.email, otp, subject)
     .then(() => {
         console.log("email sent")
     })
@@ -106,7 +108,7 @@ export const verifyOtpService = async(id, otp) => {
         }
     }
 
-    const res = await verifyOTP(id, otp)
+    const res = await verifyOTP(id)
 
     if(res.otp !== otp){
         throw{
@@ -118,4 +120,73 @@ export const verifyOtpService = async(id, otp) => {
     await updateUserStatus(id);
 
     return { message: "user verified" }
+}
+
+export const forgotPasswordService = async(email) => {
+    const user = await findUser(email);
+    if(!user){
+        throw{
+            statusCode: 401,
+            message: "user not found"
+        }
+    }
+    const subject = "Reset your password";
+
+    const otp = OTP();
+
+    await saveOTP(user.id, otp, "forgot-password");
+
+    sendEmail(user.email, otp, subject)
+    .then(()=>{
+        console.log("email sent")
+    })
+    .catch((err) => {
+        console.error(err)
+    })
+
+    return{
+        message: "otp has been sent to your email"
+    }
+}
+
+export const resetPasswordService = async(email, otp, password) => {
+    const user = await findUser(email);
+
+    if(!user){
+        throw{
+            statusCode: 401,
+            message: "user not found"
+        }
+    } 
+
+    const res = await verifyOTP(user.id);
+
+    if(!res){
+        throw{
+            statusCode: 401,
+            message: "OTP expired"
+        }
+    }
+    
+    if(res.otp !== otp){    
+        throw{
+            statusCode: 401,
+            message: "Invalid otp"
+        }
+    }
+
+    if(!res){
+        throw{
+            statusCode: 401,
+            message: "Invalid or OTP expired"
+        }
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await updateUserPassword(user.id, hashedPassword);
+
+    return {
+        message: "Password updated successfully"
+    }
 }

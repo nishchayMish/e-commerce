@@ -8,7 +8,7 @@
         otp VARCHAR(6) NOT NULL,
         purpose text NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
-        expires_at TIMESTAMP DEFAULT (NOW() + INTERVAL '5 minutes')
+        expires_at TIMESTAMP DEFAULT (NOW() + INTERVAL '10 minutes')
     );
     
     COMMIT;
