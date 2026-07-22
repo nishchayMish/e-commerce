@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import ShopHeader from "@/components/shop/ShopHeader";
 import ShopFilters from "@/components/shop/ShopFilters";
@@ -17,6 +17,14 @@ import ShopSearchBar from "@/components/shop/ShopSearchBar";
 import { useDebounce } from "@/hooks/useDebounce";
 
 export default function ShopPage() {
+  return (
+    <Suspense fallback={<ProductGridSkeleton count={9} />}>
+      <ShopPageContent />
+    </Suspense>
+  );
+}
+
+function ShopPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
