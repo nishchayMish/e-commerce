@@ -1,36 +1,18 @@
 "use client";
 
-import { endpoints } from "@/lib/endpoints";
-import http from "@/lib/http";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import toast from "react-hot-toast";
 
-const VerifyOtp = () => {
+const ForgotPassword = () => {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const searchParams = useSearchParams();
-  const userId = searchParams.get("user_id");
-  const router = useRouter();
+  const [resendLoading, setResendLoading] = useState(false);
 
   const handleVerify = async () => {
-    if (!userId) {
-      toast.error("user id is required");
-      return;
-    }
     if (otp.length !== 6) return;
 
     try {
       setLoading(true);
-      const payload = {
-        id: userId,
-        otp,
-      };
-      await http.post(endpoints.auth.verifyUser, payload);
-      router.push("/login");
-      toast.success("user verified successfully");
     } catch (error) {
       console.log(error);
     } finally {
@@ -38,11 +20,24 @@ const VerifyOtp = () => {
     }
   };
 
+  const handleResend = async () => {
+    try {
+      setResendLoading(true);
+
+      // API call here
+      // await resendOTP()
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setResendLoading(false);
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-12">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-28 right-1/4 w-[420px] h-[420px] bg-indigo-50 rounded-full opacity-80 blur-[90px]" />
-        <div className="absolute -bottom-36 left-1/5 w-[380px] h-[380px] bg-indigo-100/50 rounded-full opacity-70 blur-[90px]" />
+        <div className="absolute -top-28 left-1/4 w-[420px] h-[420px] bg-indigo-50 rounded-full opacity-80 blur-[90px]" />
+        <div className="absolute -bottom-36 right-1/5 w-[380px] h-[380px] bg-indigo-100/50 rounded-full opacity-70 blur-[90px]" />
         <div className="grid-bg absolute inset-0 opacity-40" />
       </div>
 
@@ -70,24 +65,24 @@ const VerifyOtp = () => {
                 className="h-5 w-5 text-indigo-600"
                 aria-hidden
               >
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-                <path d="m9 12 2 2 4-4" />
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
               </svg>
             </div>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-600 mb-3 block">
-              Security check
+              Almost there
             </span>
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight leading-tight">
-              Enter OTP
+              Verify Your Email
             </h1>
             <p className="mt-2 text-sm text-gray-500 leading-relaxed">
-              Enter the 6-digit code sent to your email.
+              We sent a 6-digit code to your email address.
             </p>
           </div>
 
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-700">
-              OTP
+              Enter OTP
             </label>
             <input
               value={otp}
@@ -95,7 +90,6 @@ const VerifyOtp = () => {
                 setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))
               }
               placeholder="••••••"
-              maxLength={6}
               inputMode="numeric"
               autoComplete="one-time-code"
               className="w-full h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 text-center text-2xl font-semibold tracking-[0.4em] text-gray-900 outline-none transition-all duration-200 placeholder:tracking-[0.4em] placeholder:text-gray-300 hover:border-gray-300 focus:border-indigo-600 focus:bg-white"
@@ -107,13 +101,17 @@ const VerifyOtp = () => {
             disabled={loading || otp.length !== 6}
             className="mt-6 w-full h-12 rounded-xl bg-gray-900 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-indigo-600 disabled:opacity-50 disabled:hover:bg-gray-900 active:scale-[0.98] cursor-pointer disabled:cursor-not-allowed"
           >
-            {loading ? "Verifying..." : "Verify OTP"}
+            {loading ? "Verifying..." : "Verify Email"}
           </button>
 
-          <div className="mt-7 text-center text-sm text-gray-500">
-            Didn&apos;t receive OTP?{" "}
-            <button className="font-semibold text-gray-900 hover:text-indigo-600 transition-colors cursor-pointer">
-              Resend
+          <div className="mt-7 text-center">
+            <p className="text-sm text-gray-500">Didn&apos;t receive the code?</p>
+            <button
+              onClick={handleResend}
+              disabled={resendLoading}
+              className="mt-2 text-sm font-semibold text-gray-900 hover:text-indigo-600 transition-colors disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
+            >
+              {resendLoading ? "Sending..." : "Resend OTP"}
             </button>
           </div>
         </div>
@@ -122,4 +120,4 @@ const VerifyOtp = () => {
   );
 };
 
-export default VerifyOtp;
+export default ForgotPassword;

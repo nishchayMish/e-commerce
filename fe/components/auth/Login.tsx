@@ -9,6 +9,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
+const inputClass =
+  "w-full bg-gray-50 border border-gray-200 hover:border-gray-300 focus:border-indigo-600 focus:bg-white rounded-xl px-4 py-3.5 text-sm text-gray-900 outline-none transition-all duration-200 placeholder:text-gray-400";
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -27,13 +30,13 @@ const Login = () => {
 
   const { setUser } = useAuth();
 
-  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = await http.post(endpoints.auth.login, formData)
-    setUser(res.data.user)
-    if(res.status===200){
-      router.push("/")
+    const res = await http.post(endpoints.auth.login, formData);
+    setUser(res.data.user);
+    if (res.status === 200) {
+      router.push("/");
       toast.success("Login successful");
     }
 
@@ -44,126 +47,134 @@ const Login = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-100 px-4">
-      <div className="w-full max-w-md rounded-3xl border border-gray-200 bg-white p-8 shadow-xl">
-        {/* Heading */}
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Welcome Back
-          </h1>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-12">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-32 -right-20 w-[480px] h-[480px] bg-indigo-50 rounded-full opacity-80 blur-[90px]" />
+        <div className="absolute -bottom-40 -left-24 w-[420px] h-[420px] bg-indigo-100/60 rounded-full opacity-70 blur-[90px]" />
+        <div className="grid-bg absolute inset-0 opacity-40" />
+      </div>
 
-          <p className="mt-2 text-gray-500">
-            Sign in to continue shopping.
-          </p>
+      <div className="relative w-full max-w-[420px]">
+        <div className="mb-8 text-center">
+          <Link
+            href="/"
+            className="inline-block text-xl font-bold tracking-[0.28em] text-gray-900 hover:text-indigo-600 transition-colors"
+          >
+            AURUM
+          </Link>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Email */}
-          <div>
-            <label
-              htmlFor="email"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Email Address
-            </label>
-
-            <input
-              autoComplete="off"
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="john@example.com"
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition-all duration-200 focus:border-black"
-              required
-            />
+        <div className="rounded-2xl border border-gray-200/80 bg-white/90 backdrop-blur-sm p-8 sm:p-9 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+          <div className="mb-8">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-600 mb-3 block">
+              Welcome back
+            </span>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight leading-tight">
+              Sign in
+            </h1>
+            <p className="mt-2 text-sm text-gray-500 leading-relaxed">
+              Continue shopping curated essentials.
+            </p>
           </div>
 
-          {/* Password */}
-          <div>
-            <div className="mb-2 flex items-center justify-between">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
               <label
-                htmlFor="password"
-                className="text-sm font-medium text-gray-700"
+                htmlFor="email"
+                className="mb-2 block text-sm font-medium text-gray-700"
               >
-                Password
+                Email Address
               </label>
-
-              <Link
-                href="/forgot-password"
-                className="text-sm font-medium text-gray-600 hover:text-black"
-              >
-                Forgot Password?
-              </Link>
+              <input
+                autoComplete="off"
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="you@example.com"
+                className={inputClass}
+                required
+              />
             </div>
 
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="••••••••"
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition-all duration-200 focus:border-black"
-              required
-            />
-          </div>
-
-          {/* Remember Me */}
-          <div className="flex items-center">
-            <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+            <div>
+              <div className="mb-2 flex items-center justify-between">
+                <label
+                  htmlFor="password"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Password
+                </label>
+                <Link
+                  href="/forgot-password"
+                  className="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
               <input
-                type="checkbox"
-                className="h-4 w-4 rounded border-gray-300"
+                id="password"
+                name="password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="••••••••"
+                className={inputClass}
+                required
               />
-              Remember me
-            </label>
+            </div>
+
+            <div className="flex items-center">
+              <label className="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600/20"
+                />
+                Remember me
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full cursor-pointer rounded-xl bg-gray-900 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-indigo-600 active:scale-[0.98]"
+            >
+              Sign In
+            </button>
+          </form>
+
+          <div className="my-7 flex items-center gap-3">
+            <div className="h-px flex-1 bg-gray-100" />
+            <span className="text-xs font-medium uppercase tracking-wider text-gray-400">
+              Or
+            </span>
+            <div className="h-px flex-1 bg-gray-100" />
           </div>
 
-          {/* Submit */}
           <button
-            type="submit"
-            className="w-full cursor-pointer rounded-xl bg-black py-3 font-semibold text-white transition-all duration-200 hover:bg-gray-800 active:scale-[0.98]"
+            type="button"
+            className="flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white py-3.5 text-sm font-medium text-gray-700 transition-all duration-200 hover:border-gray-300 hover:bg-gray-50"
           >
-            Sign In
+            <Image
+              width={20}
+              height={20}
+              src="https://www.svgrepo.com/show/475656/google-color.svg"
+              alt="Google"
+              className="h-5 w-5"
+            />
+            Continue with Google
           </button>
-        </form>
 
-        {/* Divider */}
-        <div className="my-8 flex items-center">
-          <div className="h-px flex-1 bg-gray-200" />
-          <span className="px-3 text-sm text-gray-400">OR</span>
-          <div className="h-px flex-1 bg-gray-200" />
+          <p className="mt-8 text-center text-sm text-gray-500">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/signup"
+              className="font-semibold text-gray-900 hover:text-indigo-600 transition-colors"
+            >
+              Create Account
+            </Link>
+          </p>
         </div>
-
-        {/* Google */}
-        <button
-          type="button"
-          className="flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 py-3 font-medium transition hover:bg-gray-50"
-        >
-          <Image
-            width={5}
-            height={5}
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google"
-            className="h-5 w-5"
-          />
-
-          Continue with Google
-        </button>
-
-        {/* Register */}
-        <p className="mt-8 text-center text-sm text-gray-500">
-          Don&apos;t have an account?{" "}
-          <Link
-            href="/signup"
-            className="font-semibold text-black hover:underline"
-          >
-            Create Account
-          </Link>
-        </p>
       </div>
     </section>
   );
