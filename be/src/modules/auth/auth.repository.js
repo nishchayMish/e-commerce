@@ -41,6 +41,10 @@ const deleteOldUserOTP = async(userId) => {
     await pool.query("DELETE FROM otp where user_id = $1", [userId]);
 }
 
+export const updateUserStatus = async(userId) => {
+    await pool.query("UPDATE users SET is_verified = TRUE WHERE id = $1", [userId]);
+}
+
 export const verifyOTP = async(userId, otp) => {
     const result = await pool.query("SELECT * FROM otp where user_id = $1 AND expires_at > NOW()", [userId]);
     return result.rows[0];

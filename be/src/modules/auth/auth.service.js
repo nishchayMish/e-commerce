@@ -1,4 +1,4 @@
-import { fetchMe, findUser, registerUser, saveOTP, verifyOTP } from "./auth.repository.js"
+import { fetchMe, findUser, registerUser, saveOTP, updateUserStatus, verifyOTP } from "./auth.repository.js"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { OTP } from "../../utils/helpers.js";
@@ -107,6 +107,8 @@ export const verifyOtpService = async(id, otp) => {
             message: "Invalid otp"
         }
     }
+
+    await updateUserStatus(id);
 
     return { message: "user verified" }
 }

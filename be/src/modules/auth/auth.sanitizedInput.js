@@ -65,3 +65,26 @@ export const sanitizedLoginInput = (req, res, next) => {
 
     next();
 };
+
+export const sanitizedVerifyOtpInput = (req, res, next) => {
+    const { id, otp } = req.body;
+
+    if(!id){
+        return res.status(400).json({
+            message: "id is required"
+        });
+    }
+
+    if(!otp){
+        return res.status(400).json({
+            message: "otp is required"
+        });
+    }
+
+    if(otp.length!==6){
+        return res.status(400).json({
+            message: "Invalid otp"
+        });
+    }
+    next();
+}

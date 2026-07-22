@@ -2,7 +2,7 @@
 
 import { endpoints } from "@/lib/endpoints";
 import http from "@/lib/http";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
