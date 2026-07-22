@@ -21,7 +21,14 @@ export const registerService = async(username, email, password) => {
     const otp = OTP();
 
     await saveOTP(user.id, otp, "user email verification");
-    await sendEmail(user.email, otp);
+    
+    sendEmail(user.email, otp)
+    .then(() => {
+        console.log("email sent")
+    })
+    .catch((err) => {
+        console.error("email failed", err)  
+    })
 
     return {
         message: "Registration successful. Please verify your email.",
