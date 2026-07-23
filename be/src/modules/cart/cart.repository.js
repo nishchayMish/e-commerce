@@ -93,3 +93,12 @@ export const updateCart = async(cartId, pId, action) => {
     }
 }
 
+export const deleteFromCart = async(cartId, pId) => {
+    const res = await pool.query(`
+        DELETE FROM cart_items
+        WHERE product_id = $1
+        AND cart_id = $2
+        RETURNING *
+    `, [pId, cartId])
+    return res.rows[0];
+}

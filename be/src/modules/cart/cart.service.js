@@ -1,4 +1,4 @@
-import { addToCart, createCart, fetchCartItems, findItem, findUsersCart, getCart, updateCart, updateCartQuantity } from "./cart.repository.js";
+import { addToCart, createCart, deleteFromCart, fetchCartItems, findItem, findUsersCart, getCart, updateCart, updateCartQuantity } from "./cart.repository.js";
 
 export const addToCartService = async(pId, userId) => {
     const cart = await findUsersCart(userId);
@@ -32,8 +32,24 @@ export const updateCartService = async(userId, pId, action) => {
     const cart = await getCart(userId);
 
     if(!cart){
-        return {message: "Cart is Empty"}
+        throw{
+            statusCode: 400,
+            message: "Cart is Empty"
+        }
     }
 
     return await updateCart(cart.id, pId, action);
+}
+
+export const deleteCartService = async(pId, userId) => {
+    const cart = await getCart(userId);
+    
+    if(!cart){
+        throw{
+            statusCode: 400,
+            message: "Cart is Empty"
+        }
+    }
+    
+    return await deleteFromCart(cart.id, pId)
 }
