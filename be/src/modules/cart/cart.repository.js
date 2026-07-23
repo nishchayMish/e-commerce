@@ -36,3 +36,29 @@ export const updateCartQuantity = async(cartId, pId) => {
     `, [cartId, pId])
     return res.rows[0];
 }
+
+export const getCart = async(userId) => {
+    const res = await pool.query(`
+        SELECT * FROM cart
+        WHERE user_id = $1
+    `, [userId]);
+
+    return res.rows[0];
+}
+
+export const fetchCartItems = async(cartId) => {
+    const result = await pool.query(`
+        SELECT 
+            ci.id,
+            ci.quantity,
+            p.id AS product_id,
+            p.name,
+            p.price,
+            p.description
+        FROM cart_items ci
+        JOIN products p ON ci.product_id = p.id
+        WHERE ci.cart_id = $1;
+    `, [cartId])
+
+    return result.rows;
+}
