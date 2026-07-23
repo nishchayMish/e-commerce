@@ -62,3 +62,34 @@ export const fetchCartItems = async(cartId) => {
 
     return result.rows;
 }
+
+export const updateCart = async(cartId, pId, action) => {
+    switch (action) {
+        case "increment":
+            const res1 = await pool.query(`
+                UPDATE cart_items
+                SET quantity = quantity + 1
+                WHERE cart_id = $1 AND product_id = $2  
+                RETURNING *
+            `, [cartId, pId])
+        return res1.rows[0];
+
+        // todo: agar quantity 1 se kam ho to delete from cart
+        case "decrement":
+            const res2 = await pool.query(`
+                UPDATE cart_items
+                SET quantity = quantity - 1
+                WHERE cart_id = $1 AND product_id = $2 AND quantity > 1
+                RETURNING *
+            `, [cartId, pId])
+        return res2.rows[0];
+    
+        default:
+            throw{
+                statusCode:400,
+                message: "Invalid action"
+            }
+        break;
+    }
+}
+

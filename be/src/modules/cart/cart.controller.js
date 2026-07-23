@@ -1,4 +1,4 @@
-import { addToCartService, getCartService } from "./cart.service.js";
+import { addToCartService, getCartService, updateCartService } from "./cart.service.js";
 
 export const addToCartController = async(req, res) => {
     try {
@@ -31,3 +31,20 @@ export const getCartController = async(req, res) => {
         })
     }
 }
+
+export const updateCartController = async(req, res) => {
+    try {
+        const userId = req.user.id;
+        const { pId, action } = req.body;
+        const data = await updateCartService(userId, pId, action);
+        res.status(200).json({
+            message: "cart updated successfully",
+            data
+        })
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Internal server error"
+        })
+    }
+}
+

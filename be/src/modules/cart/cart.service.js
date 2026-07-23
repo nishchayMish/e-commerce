@@ -1,4 +1,4 @@
-import { addToCart, createCart, fetchCartItems, findItem, findUsersCart, getCart, updateCartQuantity } from "./cart.repository.js";
+import { addToCart, createCart, fetchCartItems, findItem, findUsersCart, getCart, updateCart, updateCartQuantity } from "./cart.repository.js";
 
 export const addToCartService = async(pId, userId) => {
     const cart = await findUsersCart(userId);
@@ -26,4 +26,14 @@ export const getCartService = async(userId) => {
     }
 
     return await fetchCartItems(cart.id)
+}
+
+export const updateCartService = async(userId, pId, action) => {
+    const cart = await getCart(userId);
+
+    if(!cart){
+        return {message: "Cart is Empty"}
+    }
+
+    return await updateCart(cart.id, pId, action);
 }
