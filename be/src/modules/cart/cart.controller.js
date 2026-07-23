@@ -1,10 +1,11 @@
-import { addToCartService } from "./cart.service";
+import { addToCartService } from "./cart.service.js";
 
-export const addToCartController = async(res, req) => {
+export const addToCartController = async(req, res) => {
     try {
         const { pId } = req.body;
-        const { userId } = req.user.id;
-        const result =  addToCartService(pId, userId); 
+        const userId = req.user.id;
+
+        const result =  await addToCartService(pId, userId); 
         res.status(201).json({
             message: "product added to cart",
             result
