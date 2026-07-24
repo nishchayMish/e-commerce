@@ -39,5 +39,11 @@ export const endpoints = {
     },
     singleProduct: (id: string) => `/products/${id}`,
   },
+  cart:{
+    addToCart: "/cart",
+    fetchCart: "/cart",
+    updateCart: "/cart",
+    deleteFromCart: "/cart"
+  }
 
 };

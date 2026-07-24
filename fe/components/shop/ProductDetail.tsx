@@ -16,16 +16,16 @@ import {
   ChevronRight,
 } from "lucide-react";
 import type { Product } from "@/lib/types";
+import http from "@/lib/http";
+import { endpoints } from "@/lib/endpoints";
+import toast from "react-hot-toast";
 
 interface ProductDetailProps {
   product: Product;
 }
 
 export default function ProductDetail({ product }: ProductDetailProps) {
-  const [quantity, setQuantity] = useState(1);
   const [wishlisted, setWishlisted] = useState(false);
-  const [added, setAdded] = useState(false);
-
   const price = Number(product.price);
   const oldPrice =
     product.old_price != null ? Number(product.old_price) : null;
@@ -35,12 +35,17 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   const inStock = product.in_stock ?? (product.quantity ?? 0) > 0;
   const rating = Number(product.rating) || 0;
 
-  const decreaseQty = () => setQuantity((q) => Math.max(1, q - 1));
-  const increaseQty = () => setQuantity((q) => q + 1);
-
-  const handleAddToCart = () => {
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
+  const handleAddToCart = async(pId: string) => {
+    try {
+      await http.post(endpoints.cart.addToCart, {
+        pId
+      })
+      toast.success("Item added to cart")
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
@@ -170,18 +175,18 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <div className="inline-flex items-center border border-gray-200 rounded-xl overflow-hidden shrink-0">
                 <button
                   type="button"
-                  onClick={decreaseQty}
+                 
                   className="w-11 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"
                   aria-label="Decrease quantity"
                 >
                   <Minus size={15} />
                 </button>
                 <span className="w-12 text-center text-sm font-semibold text-gray-900">
-                  {quantity}
+                  3
                 </span>
                 <button
                   type="button"
-                  onClick={increaseQty}
+                  
                   className="w-11 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"
                   aria-label="Increase quantity"
                 >
@@ -189,22 +194,14 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 </button>
               </div>
 
-              <motion.button
-                whileTap={{ scale: 0.98 }}
+              <button
                 type="button"
-                onClick={handleAddToCart}
-                disabled={!inStock}
-                className={`flex-1 flex items-center justify-center gap-2.5 h-12 rounded-xl text-sm font-semibold transition-all duration-250 ${
-                  !inStock
-                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                    : added
-                      ? "bg-emerald-500 text-white"
-                      : "bg-gray-900 text-white hover:bg-indigo-600"
-                }`}
+                onClick={()=>handleAddToCart(product.id)}
+                className="flex items-center justify-center gap-2.5 h-12 rounded-xl hover:text-gray-100 hover:bg-gray-700  text-sm font-semibold text-white cursor-pointer bg-gray-800 w-full transition-all duration-250"
               >
                 <ShoppingBag size={16} />
-                {added ? "Added to Cart" : "Add to Cart"}
-              </motion.button>
+                Add to Cart
+              </button>
 
               <button
                 type="button"

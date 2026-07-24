@@ -10,7 +10,7 @@
         category VARCHAR(50) NOT NULL CHECK(TRIM(category) <> ''),
         description TEXT NOT NULL CHECK(TRIM(description) <> ''),
         rating DECIMAL(2,1) NOT NULL DEFAULT 0 CHECK(rating >= 0 AND rating <= 5),
-        quantity INT NOT NULL DEFAULT 0 CHECK(quantity >= 0),
+        quantity INT NOT NULL DEFAULT 1 CHECK(quantity > 0),
         old_price DECIMAL(10,2),
         trending BOOLEAN DEFAULT FALSE,
         bestSeller BOOLEAN DEFAULT FALSE,
