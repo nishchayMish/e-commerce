@@ -1,21 +1,41 @@
-import { addToCart, createCart, deleteFromCart, fetchCartItems, findItem, findUsersCart, getCart, updateCart, updateCartQuantity } from "./cart.repository.js";
+import { addToCart, createCart, createGuestCart, deleteFromCart, fetchCartItems, findGuestCart, findItem, findUsersCart, getCart, updateCart, updateCartQuantity } from "./cart.repository.js";
 
-export const addToCartService = async(pId, userId) => {
-    const cart = await findUsersCart(userId);
+export const addToCartService = async(pId, userId, guestId) => {
+    if(userId){
+        const cart = await findUsersCart(userId);
 
-    if(!cart){
-        const result = await createCart(userId);
+        if(!cart){
+            const result = await createCart(userId);
 
-        return await addToCart(result.id, pId, 1);
+            return await addToCart(result.id, pId, 1);
+        }
+
+        const item = await findItem(pId, cart.id)
+
+        if(item){
+            return await updateCartQuantity(cart.id, pId);
+        }
+
+        return await addToCart(cart.id, pId, 1);
     }
 
-    const item = await findItem(pId, cart.id)
+    if(guestId){
+        const cart = await findGuestCart(guestId);
 
-    if(item){
-        return await updateCartQuantity(cart.id, pId);
+        if(!cart){
+            const result = await createGuestCart(guestId);
+
+            return await addToCart(result.id, pId, 1);
+        }
+
+        const item = await findItem(pId, cart.id)
+
+        if(item){
+            return await updateCartQuantity(cart.id, pId);
+        }
+
+        return await addToCart(cart.id, pId, 1);
     }
-
-    return await addToCart(cart.id, pId, 1);
 }
 
 export const getCartService = async(userId) => {

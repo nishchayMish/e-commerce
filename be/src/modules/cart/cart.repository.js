@@ -5,6 +5,16 @@ export const findUsersCart = async(userId) => {
     return res.rows[0];
 }
 
+export const findGuestCart = async(guestId) => {
+    const res = await pool.query("SELECT * FROM cart WHERE guest_id = $1", [guestId])
+    return res.rows[0];
+}
+
+export const createGuestCart = async(guestId) => {
+    const res = await pool.query("INSERT INTO cart(guest_id) VALUES($1) RETURNING *", [guestId]);
+    return res.rows[0];
+}
+
 export const createCart = async(userId) => {
     const res = await pool.query("INSERT INTO cart(user_id) VALUES($1) RETURNING *", [userId]);
     return res.rows[0];

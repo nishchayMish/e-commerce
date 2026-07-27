@@ -3,9 +3,10 @@ import { addToCartService, deleteCartService, getCartService, updateCartService 
 export const addToCartController = async(req, res) => {
     try {
         const { pId } = req.body;
-        const userId = req.user.id;
+        const guestId = req.guestId;
+        const userId = req.user?.id;
 
-        const result =  await addToCartService(pId, userId); 
+        const result =  await addToCartService(pId, userId, guestId); 
         res.status(201).json({
             message: "product added to cart",
             result
@@ -19,8 +20,9 @@ export const addToCartController = async(req, res) => {
 
 export const getCartController = async(req, res) => {
     try {
-        const userId = req.user.id;
-        const data = await getCartService(userId);
+        const userId = req.user?.id;
+        const guestId = req.guestId;
+        const data = await getCartService(userId, guestId);
         res.status(200).json({
             message: "user cart fetched successfully",
             data
@@ -34,9 +36,10 @@ export const getCartController = async(req, res) => {
 
 export const updateCartController = async(req, res) => {
     try {
-        const userId = req.user.id;
+        const userId = req.user?.id;
+        const guestId = req.guestId;
         const { pId, action } = req.body;
-        const data = await updateCartService(userId, pId, action);
+        const data = await updateCartService(userId, guestId, pId, action);
         res.status(200).json({
             message: "cart updated successfully",
             data
@@ -51,8 +54,9 @@ export const updateCartController = async(req, res) => {
 export const deleteCartController = async(req, res) => {
     try {
         const { pId } = req.body;
-        const userId = req.user.id;
-        const data = await deleteCartService(pId, userId);
+        const userId = req.user?.id;
+        const guestId = req.guestId;
+        const data = await deleteCartService(pId, userId, guestId);
         res.status(200).json({
             message: "product deleted successfully",
             data

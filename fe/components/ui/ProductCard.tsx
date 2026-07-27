@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 import { Heart, ShoppingBag, Star, Eye } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useRouter } from "next/navigation";
+import http from "@/lib/http";
+import { endpoints } from "@/lib/endpoints";
+import toast from "react-hot-toast";
 
 interface ProductCardProps {
   product: Product;
@@ -24,7 +27,16 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
   const isBestSeller = Boolean(product.bestSeller ?? product.bestseller);
   const badgeLabel = isBestSeller ? "Best Seller" : product.trending ? "Trending" : null;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async(pId: string) => {
+    try {
+      const res = await http.post(endpoints.cart.addToCart,{
+        pId
+      })
+      console.log(res);
+    } catch (error) {
+      toast.error("error adding product")
+      console.log(error)
+    }
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
@@ -125,8 +137,9 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
 
         {/* Add to Cart */}
         <motion.button
+          disabled={added}
           whileTap={{ scale: 0.97 }}
-          onClick={handleAddToCart}
+          onClick={()=>handleAddToCart(product.id)}
           className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-250 ${added
               ? "bg-emerald-500 text-white"
               : "bg-gray-900 text-white hover:bg-indigo-600 active:scale-[0.98]"
