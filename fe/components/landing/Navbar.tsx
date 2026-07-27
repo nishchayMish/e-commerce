@@ -89,17 +89,19 @@ export default function Navbar() {
               </button>
 
               {/* Cart */}
-              <button
-                className="relative w-9 h-9 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
-                aria-label="Cart"
-              >
-                <ShoppingBag size={17} />
-                {cartCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] bg-indigo-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
-                    {cartCount}
-                  </span>
-                )}
-              </button>
+              <Link href="/cart">
+                <button
+                  className="relative cursor-pointer w-9 h-9 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+                  aria-label="Cart"
+                >
+                  <ShoppingBag size={17} />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] bg-indigo-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+                      {cartCount}
+                    </span>
+                  )}
+                </button>
+              </Link>
 
               {/* Profile (desktop only) */}
               {user ? 

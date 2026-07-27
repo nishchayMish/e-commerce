@@ -28,6 +28,7 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
   const badgeLabel = isBestSeller ? "Best Seller" : product.trending ? "Trending" : null;
 
   const handleAddToCart = async(pId: string) => {
+    setAdded(true);
     try {
       const res = await http.post(endpoints.cart.addToCart,{
         pId
@@ -37,8 +38,7 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
       toast.error("error adding product")
       console.log(error)
     }
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
+    setTimeout(() => setAdded(false), 1000);
   };
 
   const onClickHandler = () => {
