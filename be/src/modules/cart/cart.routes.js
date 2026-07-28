@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/cart", optionalAuthMiddleware, sanitizedAddToCart, addToCartController);
 router.get("/cart", optionalAuthMiddleware, getCartController);
-router.patch("/cart", optionalAuthMiddleware, updateCartSanitizedInput, updateCartController);
-router.delete("/cart", optionalAuthMiddleware, sanitizedDeleteFromCart, deleteCartController);
+router.patch("/cart/:pId", optionalAuthMiddleware, updateCartSanitizedInput, updateCartController);
+router.delete("/cart/:pId", optionalAuthMiddleware, sanitizedDeleteFromCart, deleteCartController);
 
 export default router;

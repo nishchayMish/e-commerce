@@ -38,7 +38,8 @@ export const updateCartController = async(req, res) => {
     try {
         const userId = req.user?.id;
         const guestId = req.guestId;
-        const { pId, action } = req.body;
+        const { action } = req.body;
+        const { pId } = req.params;
         const data = await updateCartService(userId, guestId, pId, action);
         res.status(200).json({
             message: "cart updated successfully",
@@ -53,7 +54,7 @@ export const updateCartController = async(req, res) => {
 
 export const deleteCartController = async(req, res) => {
     try {
-        const { pId } = req.body;
+        const { pId } = req.params;
         const userId = req.user?.id;
         const guestId = req.guestId;
         const data = await deleteCartService(pId, userId, guestId);
@@ -61,7 +62,7 @@ export const deleteCartController = async(req, res) => {
             message: "product deleted successfully",
             data
         })
-    } catch (error) {
+    } catch (err) {
         res.status(err.statusCode || 500).json({
             message: err.message || "Internal server error"
         })

@@ -1,4 +1,4 @@
-import { addToCart, createCart, createGuestCart, deleteFromCart, fetchCartItems, findGuestCart, findItem, findUsersCart, getCart, updateCart, updateCartQuantity } from "./cart.repository.js";
+import { addToCart, createCart, createGuestCart, deleteFromCart, fetchCartItems, findGuestCart, findItem, findUsersCart, getCart, getGuestCart, updateCart, updateCartQuantity } from "./cart.repository.js";
 
 export const addToCartService = async(pId, userId, guestId) => {
     if(userId){
@@ -38,14 +38,26 @@ export const addToCartService = async(pId, userId, guestId) => {
     }
 }
 
-export const getCartService = async(userId) => {
-    const cart = await getCart(userId);
+export const getCartService = async(userId, guestId) => {
+    if(userId){
+        const cart = await getCart(userId);
 
-    if(!cart){
-        return {message: "Cart is Empty"}
+        if(!cart){
+            return {message: "Cart is Empty"}
+        }
+
+        return await fetchCartItems(cart.id)
     }
+    
+    if(guestId){
+        const cart = await getGuestCart(guestId);
 
-    return await fetchCartItems(cart.id)
+        if(!cart){
+            return {message: "Cart is Empty"}
+        }
+
+        return await fetchCartItems(cart.id)
+    }
 }
 
 export const updateCartService = async(userId, pId, action) => {
@@ -61,15 +73,31 @@ export const updateCartService = async(userId, pId, action) => {
     return await updateCart(cart.id, pId, action);
 }
 
-export const deleteCartService = async(pId, userId) => {
-    const cart = await getCart(userId);
+export const deleteCartService = async(pId, userId, guestId) => {
+
+    if(userId){
+        const cart = await getCart(userId);
     
-    if(!cart){
-        throw{
-            statusCode: 400,
-            message: "Cart is Empty"
+        if(!cart){
+            throw{
+                statusCode: 400,
+                message: "Cart is Empty"
+            }
         }
-    }
+        
+        return await deleteFromCart(cart.id, pId);
+    }  
     
-    return await deleteFromCart(cart.id, pId)
+    if(guestId){
+        const cart = await getGuestCart(guestId);
+        if(!cart){
+            throw{
+                statusCode: 400,
+                message: "Cart is Empty"
+            }
+        }
+        
+        return await deleteFromCart(cart.id, pId);
+    }
+
 }

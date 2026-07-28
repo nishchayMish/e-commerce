@@ -14,51 +14,11 @@ import {
   Lock,
 } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-
-const cartItems = [
-  {
-    id: "1",
-    name: "Acoustic Pro Wireless",
-    category: "Electronics",
-    variant: "Matte Black · One size",
-    price: 3499,
-    oldPrice: 4299,
-    quantity: 1,
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80",
-  },
-  {
-    id: "2",
-    name: "Chrono Prestige",
-    category: "Fashion",
-    variant: "Silver dial · 42mm",
-    price: 12999,
-    oldPrice: null as number | null,
-    quantity: 1,
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80",
-  },
-  {
-    id: "3",
-    name: "Forma Leather Tote",
-    category: "Fashion",
-    variant: "Cognac · Medium",
-    price: 2850,
-    oldPrice: 3200,
-    quantity: 2,
-    image:
-      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&q=80",
-  },
-];
+import { useCallback, useEffect, useState } from "react";
+import http from "@/lib/http";
+import { endpoints } from "@/lib/endpoints";
 
 const formatPrice = (n: number) => `₹${n.toLocaleString("en-IN")}`;
-
-const itemCount = cartItems.reduce((s, i) => s + i.quantity, 0);
-const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-const discount = 500;
-const total = subtotal - discount;
-const freeShippingThreshold = 1500;
-const shippingProgress = Math.min(100, (subtotal / freeShippingThreshold) * 100);
 
 const perks = [
   { icon: Truck, label: "Free delivery" },
@@ -66,7 +26,56 @@ const perks = [
   { icon: ShieldCheck, label: "Secure pay" },
 ];
 
+interface CartI{
+  id: string;
+  product_id: string;
+  quantity: number;
+  name: string;
+  category: string;
+  price: number;
+  old_price: number;
+  description: string;
+  image: string;
+}
+
 export default function CartContent() {
+  const[cartItems, setCartItems] = useState<CartI[]>([]);
+
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const discount = 500;
+  const total = subtotal - discount;
+  const freeShippingThreshold = 500;
+  const shippingProgress = Math.min(100, (subtotal / freeShippingThreshold) * 100);
+
+  const fetchCart = useCallback(async () => {
+    try {
+      const res = await http.get(`/cart`);
+      setCartItems(res.data.data)
+      console.log(res)
+    } catch (error) {
+      console.log(error);
+    }
+  }, [])
+
+  const deleteFromCart = async(pId: string) => {
+    try {
+      await http.delete(endpoints.cart.deleteFromCart(pId))
+      fetchCart();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchCart();
+  },[])
+
+  if(cartItems.length<=0){
+    return(
+      <div>Cart is empty!</div>
+    )
+  }
+
   return (
     <section className="relative pt-20 sm:pt-24 lg:pt-[5.5rem] pb-24 sm:pb-28 lg:pb-32">
       <div className="absolute inset-0 bg-slate-50/70 pointer-events-none" />
@@ -80,7 +89,7 @@ export default function CartContent() {
                 Cart
               </h1>
               <span className="text-sm text-gray-400 tabular-nums">
-                {itemCount} {itemCount === 1 ? "item" : "items"}
+                {cartItems.length} {cartItems.length === 1 ? "item" : "items"}
               </span>
             </div>
             <Link
@@ -168,12 +177,10 @@ export default function CartContent() {
                                   {item.name}
                                 </h3>
                               </Link>
-                              <p className="mt-1 text-xs sm:text-sm text-gray-400 truncate">
-                                {item.variant}
-                              </p>
                             </div>
 
                             <button
+                              onClick={()=>deleteFromCart(item.product_id)}
                               type="button"
                               aria-label="Remove item"
                               className="shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl flex items-center justify-center text-gray-300 hover:text-rose-500 hover:bg-rose-50 transition-colors -mt-0.5 -mr-1"
@@ -185,9 +192,9 @@ export default function CartContent() {
                           {/* Unit price — desktop inline under variant */}
                           <p className="hidden sm:block mt-1.5 text-sm text-gray-500">
                             {formatPrice(item.price)}
-                            {item.oldPrice != null && (
+                            {item.old_price != null && (
                               <span className="ml-2 text-gray-300 line-through">
-                                {formatPrice(item.oldPrice)}
+                                {formatPrice(item.old_price)}
                               </span>
                             )}
                             <span className="text-gray-300"> each</span>
@@ -219,9 +226,9 @@ export default function CartContent() {
                               <p className="text-base sm:text-lg font-bold text-gray-900 tabular-nums leading-none">
                                 {formatPrice(item.price * item.quantity)}
                               </p>
-                              {item.oldPrice != null && (
+                              {item.old_price != null && (
                                 <p className="mt-1 text-xs text-gray-300 line-through tabular-nums sm:hidden">
-                                  {formatPrice(item.oldPrice * item.quantity)}
+                                  {formatPrice(item.old_price * item.quantity)}
                                 </p>
                               )}
                             </div>

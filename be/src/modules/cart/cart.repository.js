@@ -56,6 +56,14 @@ export const getCart = async(userId) => {
     return res.rows[0];
 }
 
+export const getGuestCart = async(guestId) => {
+    const res = await pool.query(`
+        SELECT * FROM cart
+        WHERE guest_id = $1
+    `, [guestId]);
+    return res.rows[0];
+}
+
 export const fetchCartItems = async(cartId) => {
     const result = await pool.query(`
         SELECT 
@@ -63,8 +71,11 @@ export const fetchCartItems = async(cartId) => {
             ci.quantity,
             p.id AS product_id,
             p.name,
-            p.price,
-            p.description
+            p.category,
+            p.old_price::float AS old_price,
+            p.price::float AS price,
+            p.description,
+            p.image
         FROM cart_items ci
         JOIN products p ON ci.product_id = p.id
         WHERE ci.cart_id = $1;
@@ -110,5 +121,6 @@ export const deleteFromCart = async(cartId, pId) => {
         AND cart_id = $2
         RETURNING *
     `, [pId, cartId])
+
     return res.rows[0];
 }

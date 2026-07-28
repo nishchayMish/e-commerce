@@ -9,7 +9,9 @@ export const sanitizedAddToCart = (req, res, next) => {
 }
 
 export const updateCartSanitizedInput = (req, res, next) => {
-    const { pId, action } = req.body
+    const { action } = req.body;
+    const { pId } = req.params;
+    
     if(!pId){
         return res.status(400).json({
             message: "product id is required"
@@ -25,7 +27,7 @@ export const updateCartSanitizedInput = (req, res, next) => {
 }
 
 export const sanitizedDeleteFromCart = (req, res, next) => {
-    const { pId } = req.body
+    const { pId } = req.params
     if(!pId){
         return res.status(400).json({
             message: "product id is required"
