@@ -60,17 +60,31 @@ export const getCartService = async(userId, guestId) => {
     }
 }
 
-export const updateCartService = async(userId, pId, action) => {
-    const cart = await getCart(userId);
+export const updateCartService = async(userId, guestId, pId, action) => {
+    if(userId){
+        const cart = await getCart(userId);
 
-    if(!cart){
-        throw{
-            statusCode: 400,
-            message: "Cart is Empty"
+        if(!cart){
+            throw{
+                statusCode: 400,
+                message: "Cart is Empty"
+            }
         }
+
+        return await updateCart(cart.id, pId, action);
     }
 
-    return await updateCart(cart.id, pId, action);
+    if(guestId){
+        const cart = await getGuestCart(guestId);
+        if(!cart){
+            throw{
+                statusCode: 400,
+                message: "Cart is Empty"
+            }
+        }
+
+        return await updateCart(cart.id, pId, action);
+    }
 }
 
 export const deleteCartService = async(pId, userId, guestId) => {

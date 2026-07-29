@@ -66,6 +66,17 @@ export default function CartContent() {
     }
   }
 
+  const updateQuantity = async(pId: string, action: string) => {
+    try {
+      await http.patch(endpoints.cart.updateCart(pId), {
+        action
+      })
+      fetchCart();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     fetchCart();
   },[])
@@ -204,6 +215,7 @@ export default function CartContent() {
                           <div className="mt-auto pt-3 sm:pt-4 flex items-center justify-between gap-3">
                             <div className="inline-flex items-center rounded-xl border border-gray-200 bg-white shadow-sm">
                               <button
+                                onClick={()=>updateQuantity(item.product_id, "decrement")}
                                 type="button"
                                 aria-label="Decrease quantity"
                                 className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 rounded-l-xl transition-colors"
@@ -214,6 +226,7 @@ export default function CartContent() {
                                 {item.quantity}
                               </span>
                               <button
+                                onClick={()=>updateQuantity(item.product_id, "increment")}
                                 type="button"
                                 aria-label="Increase quantity"
                                 className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 rounded-r-xl transition-colors"
