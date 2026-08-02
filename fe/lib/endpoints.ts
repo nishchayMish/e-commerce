@@ -44,6 +44,9 @@ export const endpoints = {
     fetchCart: "/cart",
     updateCart:(pId : string) => `/cart/${pId}`,
     deleteFromCart: (pId : string) => `/cart/${pId}`
+  },
+  checkout:{
+    check: "/checkout"
   }
 
 };

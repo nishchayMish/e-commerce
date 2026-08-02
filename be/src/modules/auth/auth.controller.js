@@ -2,8 +2,13 @@ import { fetchMeService, forgotPasswordService, loginService, registerService, r
 
 export const loginController = async(req, res) => {
     try {   
+        const guestId = req.guestId;
         const { email, password } = req.body;
-        const { token, userPayload } = await loginService(email, password)
+        const { token, userPayload, merged } = await loginService(email, password, guestId)
+
+        if(merged){
+            res.clearCookie("guest_id")
+        }
 
         res.cookie("access_token", token, {
             httpOnly: true,

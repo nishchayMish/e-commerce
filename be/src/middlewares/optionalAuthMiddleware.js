@@ -4,14 +4,15 @@ export const optionalAuthMiddleware = async(req, res, next) => {
     const token = req.cookies.access_token
 
     if(token){
-        const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        if(!decoded){
-            return res.status(400).json({
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            req.user = decoded;
+            return next();
+        } catch(err) {
+            return res.status(401).json({
                 message: "Invalid token"
             })
         }
-        req.user = decoded
-        return next();
     }
 
     let guestId = req.cookies.guest_id;

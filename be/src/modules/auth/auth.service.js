@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { OTP } from "../../utils/helpers.js";
 import { sendEmail } from "../../utils/email.js";
+import { addToUserCart, deleteGuestCart, deleteUserCartItems, findUsersCart, updateUserId } from "../cart/cart.repository.js";
 
 export const registerService = async(username, email, password) => {
     const existingUser = await findUser(email)
@@ -38,7 +39,7 @@ export const registerService = async(username, email, password) => {
     };
 }
 
-export const loginService = async(email, password) => {
+export const loginService = async(email, password, guestId) => {
     const user = await findUser(email)
 
     if(!user){
@@ -64,6 +65,76 @@ export const loginService = async(email, password) => {
         }
     }
 
+    if(!guestId){
+        const token = jwt.sign(
+            {id: user.id},
+            process.env.JWT_SECRET,
+            {expiresIn: "15m"}
+        )
+
+        const userPayload = {
+            id: user.id,
+            username: user.username,
+            email: user.email
+        }
+
+        return { token, userPayload }
+    }
+
+    // find user cart
+    const userCart = await findUsersCart(user.id);
+
+    if(!userCart){
+        await updateUserId(guestId, user.id)
+
+        const token = jwt.sign(
+            {id: user.id},
+            process.env.JWT_SECRET,
+            {expiresIn: "15m"}
+        )
+
+        const userPayload = {
+            id: user.id,
+            username: user.username,
+            email: user.email
+        }
+
+        return { token, userPayload }
+    }
+
+    //merge user cart with guest cart
+
+    const [userCartItems, guestCartItems] = await Promise.all([
+        fetchUserCartItems(user.id),
+        fetchGuestCartItems(guestId)
+    ]);
+
+    const mergedCartItems = [...userCartItems];
+
+    guestCartItems.forEach((guestItem) => {
+        const existingItem = mergedCartItems.find(
+            (item) => item.product_id === guestItem.product_id
+        )
+
+        if(existingItem){
+            existingItem.quantity+=guestItem.quantity
+        } else{
+            mergedCartItems.push(guestItem)
+        }
+    })
+
+    await deleteUserCartItems(user.id);
+
+    for(const item of mergedCartItems){
+        await addToUserCart(
+            user.id,
+            item.product_id,
+            item.quantity
+        )
+    }
+
+    await deleteGuestCart(guestId);
+
     const token = jwt.sign(
         {id: user.id},
         process.env.JWT_SECRET,
@@ -76,10 +147,7 @@ export const loginService = async(email, password) => {
         email: user.email
     }
 
-    return {
-        token,
-        userPayload
-    }
+    return { token, userPayload, merged: true }
 
 }
 

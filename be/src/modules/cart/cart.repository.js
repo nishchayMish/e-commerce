@@ -124,3 +124,38 @@ export const deleteFromCart = async(cartId, pId) => {
 
     return res.rows[0];
 }
+
+export const updateUserId = async (guestId, userId) => {
+    await pool.query(`
+    UPDATE cart
+    SET user_id = $1,
+    guest_id = NULL
+    WHERE guest_id = $2
+  `, [userId, guestId]);
+}
+
+export const deleteUserCartItems = async(userId) => {
+    const cart = await getCart(userId);
+    const res = await pool.query(`
+        DELETE FROM cart_items
+        WHERE cart_id = $1
+        RETURNING *
+    `, [cart.id])
+
+    return res.rows[0];
+}
+
+export const addToUserCart = async(userId, productId, quantity) => {
+    const cart = await getCart(userId);
+    const res = await pool.query(`
+        INSERT INTO cart_items(cart_id, product_id, quantity)
+        VALUES($1, $2, $3)
+        RETURNING *
+    `, [cart.id, productId, quantity])
+    return res.rows[0];
+}
+
+export const deleteGuestCart = async(guestId) => {
+    const res = await pool.query("DELETE FROM cart WHERE guest_id = $1 RETURNING *", [guestId]);
+    return res.rows[0];
+}

@@ -17,6 +17,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import { useCallback, useEffect, useState } from "react";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
+import { useRouter } from "next/navigation";
 
 const formatPrice = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
@@ -39,8 +40,8 @@ interface CartI{
 }
 
 export default function CartContent() {
+  const router = useRouter();
   const[cartItems, setCartItems] = useState<CartI[]>([]);
-
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = 500;
   const total = subtotal - discount;
@@ -348,13 +349,13 @@ export default function CartContent() {
                       </p>
                     </div>
 
-                    <button
-                      type="button"
+                    <Link
+                      href="/checkout"
                       className="mt-6 w-full flex items-center justify-center gap-2 py-3.5 sm:py-4 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] shadow-[0_8px_24px_rgba(79,70,229,0.28)] transition-all duration-200"
                     >
                       Proceed to checkout
                       <ArrowRight size={16} />
-                    </button>
+                    </Link>
 
                     <div className="mt-4 flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-gray-400">
                       <Lock size={12} className="shrink-0" />
@@ -392,13 +393,13 @@ export default function CartContent() {
               {formatPrice(total)}
             </p>
           </div>
-          <button
-            type="button"
+          <Link
+            href="/checkout"
             className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] shadow-[0_6px_20px_rgba(79,70,229,0.3)] transition-all"
           >
             Checkout
             <ArrowRight size={15} />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

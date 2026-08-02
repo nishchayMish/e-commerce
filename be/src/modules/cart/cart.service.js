@@ -39,22 +39,21 @@ export const addToCartService = async(pId, userId, guestId) => {
 }
 
 export const getCartService = async(userId, guestId) => {
+    if (!userId && !guestId) {
+        throw {
+            statusCode: 400,
+            message: "Either userId or guestId is required"
+        };
+    }
+
     if(userId){
         const cart = await getCart(userId);
-
-        if(!cart){
-            return {message: "Cart is Empty"}
-        }
 
         return await fetchCartItems(cart.id)
     }
     
     if(guestId){
         const cart = await getGuestCart(guestId);
-
-        if(!cart){
-            return {message: "Cart is Empty"}
-        }
 
         return await fetchCartItems(cart.id)
     }
