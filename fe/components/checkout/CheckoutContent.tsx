@@ -16,6 +16,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import { useEffect, useState } from "react";
 import http from "@/lib/http";
 import { redirect, useRouter } from "next/navigation";
+import { endpoints } from "@/lib/endpoints";
 
 const formatPrice = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
@@ -63,7 +64,7 @@ export default function CheckoutContent() {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const res = await http.get("/cart");
+        const res = await http.get(endpoints.checkout.cartItems);
         setCartItems(res.data.data);
       } catch (error) {
         console.log(error);

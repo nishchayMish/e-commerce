@@ -17,7 +17,6 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import { useCallback, useEffect, useState } from "react";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
-import { useRouter } from "next/navigation";
 
 const formatPrice = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
@@ -40,7 +39,6 @@ interface CartI{
 }
 
 export default function CartContent() {
-  const router = useRouter();
   const[cartItems, setCartItems] = useState<CartI[]>([]);
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = 500;
