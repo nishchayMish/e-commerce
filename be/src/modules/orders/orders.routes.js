@@ -4,6 +4,6 @@ import { getCartController } from "../cart/cart.controller.js";
 
 const router = express.Router();
 
-router.get("/checkout", authMiddleware, getCartController)
+router.get("/summary", authMiddleware, getCartController)
 
 export default router;

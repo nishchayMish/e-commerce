@@ -46,10 +46,10 @@ const CartContextProvider = ({children}: {children: React.ReactNode}) => {
     fetchCart();
   }, [fetchCart]);
 
-    return (
-    <cartContext.Provider value={{cartCount, cartItems, loading, fetchCart}}>
-        {children}
-    </cartContext.Provider>
+  return (
+  <cartContext.Provider value={{cartCount, cartItems, loading, fetchCart}}>
+    {children}
+  </cartContext.Provider>
   )
 }
 
