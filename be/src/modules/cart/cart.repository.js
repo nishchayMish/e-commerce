@@ -84,6 +84,22 @@ export const fetchCartItems = async(cartId) => {
     return result.rows;
 }
 
+export const fetchUserCartItems = async(userId) => {
+    const cart = await findUsersCart(userId);
+    if (!cart) {
+        return [];
+    }
+    return fetchCartItems(cart.id);
+}
+
+export const fetchGuestCartItems = async(guestId) => {
+    const cart = await findGuestCart(guestId);
+    if (!cart) {
+        return [];
+    }
+    return fetchCartItems(cart.id);
+}
+
 export const updateCart = async(cartId, pId, action) => {
     switch (action) {
         case "increment":

@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { OTP } from "../../utils/helpers.js";
 import { sendEmail } from "../../utils/email.js";
-import { addToUserCart, deleteGuestCart, deleteUserCartItems, findUsersCart, updateUserId } from "../cart/cart.repository.js";
+import { addToUserCart, deleteGuestCart, deleteUserCartItems, fetchGuestCartItems, fetchUserCartItems, findUsersCart, updateUserId } from "../cart/cart.repository.js";
 
 export const registerService = async(username, email, password) => {
     const existingUser = await findUser(email)
