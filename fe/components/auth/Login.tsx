@@ -5,7 +5,7 @@ import { endpoints } from "@/lib/endpoints";
 import http from "@/lib/http";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -18,6 +18,7 @@ const Login = () => {
     password: "",
   });
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -36,7 +37,12 @@ const Login = () => {
     const res = await http.post(endpoints.auth.login, formData);
     setUser(res.data.user);
     if (res.status === 200) {
-      router.push("/");
+      const redirect = searchParams.get("redirect");
+      const safeRedirect =
+        redirect && redirect.startsWith("/") && !redirect.startsWith("//")
+          ? redirect
+          : "/";
+      router.push(safeRedirect);
       toast.success("Login successful");
     }
 

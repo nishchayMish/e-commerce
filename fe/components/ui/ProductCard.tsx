@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Heart, ShoppingBag, Star, Eye } from "lucide-react";
+import { Heart, ShoppingBag, Star } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useRouter } from "next/navigation";
 import http from "@/lib/http";
