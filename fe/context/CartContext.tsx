@@ -27,7 +27,7 @@ export const cartContext = createContext<CartContextType | null>(null);
 const CartContextProvider = ({children}: {children: React.ReactNode}) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const cartCount = cartItems.length;
 
   const fetchCart = useCallback(async () => {
     try {
