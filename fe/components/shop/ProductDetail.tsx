@@ -19,6 +19,7 @@ import type { Product } from "@/lib/types";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 import toast from "react-hot-toast";
+import { useCart } from "@/context/CartContext";
 
 interface ProductDetailProps {
   product: Product;
@@ -26,6 +27,7 @@ interface ProductDetailProps {
 
 export default function ProductDetail({ product }: ProductDetailProps) {
   const [wishlisted, setWishlisted] = useState(false);
+  const { fetchCart } = useCart();
   const price = Number(product.price);
   const oldPrice =
     product.old_price != null ? Number(product.old_price) : null;
@@ -40,6 +42,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       await http.post(endpoints.cart.addToCart, {
         pId
       })
+      await fetchCart();
       toast.success("Item added to cart")
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

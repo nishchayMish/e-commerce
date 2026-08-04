@@ -16,9 +16,10 @@ import {
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import CartSkeleton from "@/components/cart/CartSkeleton";
 import EmptyCart from "@/components/cart/EmptyCart";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
+import { useCart } from "@/context/CartContext";
 
 const formatPrice = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
@@ -28,38 +29,13 @@ const perks = [
   { icon: ShieldCheck, label: "Secure pay" },
 ];
 
-interface CartI{
-  id: string;
-  product_id: string;
-  quantity: number;
-  name: string;
-  category: string;
-  price: number;
-  old_price: number;
-  description: string;
-  image: string;
-}
-
 export default function CartContent() {
-  const [cartItems, setCartItems] = useState<CartI[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { cartItems, loading, fetchCart } = useCart();
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = 500;
   const total = subtotal - discount;
   const freeShippingThreshold = 500;
   const shippingProgress = Math.min(100, (subtotal / freeShippingThreshold) * 100);
-
-  const fetchCart = useCallback(async () => {
-    try {
-      const res = await http.get(`/cart`);
-      setCartItems(res.data.data ?? []);
-    } catch (error) {
-      console.log(error);
-      setCartItems([]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
 
   const deleteFromCart = async (pId: string) => {
     try {
@@ -88,7 +64,7 @@ export default function CartContent() {
     fetchCart();
   }, [fetchCart]);
 
-  if (isLoading) {
+  if (loading) {
     return <CartSkeleton />;
   }
 

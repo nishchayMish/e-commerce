@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Heart, ShoppingBag, User, Menu, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/context/CartContext";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -17,7 +18,6 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const cartCount = 3;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -31,8 +31,9 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  const { user, loading } = useAuth();
-  const firstName = user?.username[0];
+  const { user } = useAuth();
+  const { cartCount } = useCart();
+  const firstName = user?.username?.[0] ?? "";
 
   return (
     <>

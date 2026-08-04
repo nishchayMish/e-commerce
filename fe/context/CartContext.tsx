@@ -1,7 +1,7 @@
 "use client"
 import { endpoints } from "@/lib/endpoints";
 import http from "@/lib/http";
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useCallback, useContext, useEffect, useState } from "react"
 
 interface CartItem {
   id: string;
@@ -18,7 +18,8 @@ interface CartItem {
 interface CartContextType{
   cartCount: number;
   cartItems: CartItem[];
-  loading: boolean
+  loading: boolean;
+  fetchCart: () => Promise<void>;
 }
 
 export const cartContext = createContext<CartContextType | null>(null);
@@ -26,24 +27,27 @@ export const cartContext = createContext<CartContextType | null>(null);
 const CartContextProvider = ({children}: {children: React.ReactNode}) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const cartCount = cartItems.length;
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const res = await http.get(endpoints.checkout.cartItems);
-        setCartItems(res.data.data ?? []);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCart();
+  const fetchCart = useCallback(async () => {
+    try {
+      const res = await http.get(endpoints.cart.fetchCart);
+      setCartItems(res.data.data ?? []);
+    } catch (error) {
+      console.log(error);
+      setCartItems([]);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchCart();
+  }, [fetchCart]);
+
     return (
-    <cartContext.Provider value={{cartCount, cartItems, loading}}>
+    <cartContext.Provider value={{cartCount, cartItems, loading, fetchCart}}>
         {children}
     </cartContext.Provider>
   )

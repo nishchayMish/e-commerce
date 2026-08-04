@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import AuthContextProvider from "@/context/AuthContext";
+import CartContextProvider from "@/context/CartContext";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -43,9 +44,11 @@ export default function RootLayout({
           toastOptions={{
             duration: 3000,
           }}
-        />
+        />  
         <AuthContextProvider>
-          {children}
+          <CartContextProvider>
+            {children}
+          </CartContextProvider>
         </AuthContextProvider>
       </body>
     </html>

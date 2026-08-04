@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 import toast from "react-hot-toast";
+import { useCart } from "@/context/CartContext";
 
 interface ProductCardProps {
   product: Product;
@@ -17,6 +18,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, compact = false }: ProductCardProps) {
   const router = useRouter();
+  const { fetchCart } = useCart();
   const [wishlisted, setWishlisted] = useState(false);
   const [added, setAdded] = useState(false);
 
@@ -30,10 +32,10 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
   const handleAddToCart = async(pId: string) => {
     setAdded(true);
     try {
-      const res = await http.post(endpoints.cart.addToCart,{
+      await http.post(endpoints.cart.addToCart,{
         pId
       })
-      console.log(res);
+      await fetchCart();
     } catch (error) {
       toast.error("error adding product")
       console.log(error)
