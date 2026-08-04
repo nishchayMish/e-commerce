@@ -14,6 +14,8 @@ import {
   Lock,
 } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import CartSkeleton from "@/components/cart/CartSkeleton";
+import EmptyCart from "@/components/cart/EmptyCart";
 import { useCallback, useEffect, useState } from "react";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
@@ -39,7 +41,8 @@ interface CartI{
 }
 
 export default function CartContent() {
-  const[cartItems, setCartItems] = useState<CartI[]>([]);
+  const [cartItems, setCartItems] = useState<CartI[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = 500;
   const total = subtotal - discount;
@@ -49,44 +52,48 @@ export default function CartContent() {
   const fetchCart = useCallback(async () => {
     try {
       const res = await http.get(`/cart`);
-      setCartItems(res.data.data)
-      console.log(res)
+      setCartItems(res.data.data ?? []);
+    } catch (error) {
+      console.log(error);
+      setCartItems([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const deleteFromCart = async (pId: string) => {
+    try {
+      await http.delete(endpoints.cart.deleteFromCart(pId));
+      fetchCart();
     } catch (error) {
       console.log(error);
     }
-  }, [])
+  };
 
-  const deleteFromCart = async(pId: string) => {
-    try {
-      await http.delete(endpoints.cart.deleteFromCart(pId))
-      fetchCart();
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const updateQuantity = async(pId: string, action: string, quantity: number) => {
-    if(action === "decrement" && quantity === 1){
+  const updateQuantity = async (pId: string, action: string, quantity: number) => {
+    if (action === "decrement" && quantity === 1) {
       return;
     }
     try {
       await http.patch(endpoints.cart.updateCart(pId), {
-        action
-      })
+        action,
+      });
       fetchCart();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchCart();
-  },[])
+  }, [fetchCart]);
 
-  if(cartItems.length<=0){
-    return(
-      <div>Cart is empty!</div>
-    )
+  if (isLoading) {
+    return <CartSkeleton />;
+  }
+
+  if (cartItems.length <= 0) {
+    return <EmptyCart />;
   }
 
   return (
