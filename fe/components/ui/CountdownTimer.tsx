@@ -58,21 +58,21 @@ export default function CountdownTimer({ targetHours = 11 }: CountdownTimerProps
   ];
 
   return (
-    <div className="flex items-end gap-2 sm:gap-3">
+    <div className="flex items-end gap-2">
       {units.map(({ value, label }, i) => (
-        <div key={label} className="flex items-end gap-2 sm:gap-3">
+        <div key={label} className="flex items-end gap-2">
           <div className="flex flex-col items-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20 min-w-[56px] sm:min-w-[72px] px-3 sm:px-5 py-3 sm:py-4 text-center">
-              <span className="text-2xl sm:text-4xl font-bold text-white tabular-nums tracking-tight">
+            <div className="min-w-13 sm:min-w-15 rounded-lg border border-gray-200 bg-[#fafafa] px-3 sm:px-4 py-2.5 text-center">
+              <span className="text-xl sm:text-2xl font-semibold text-gray-900 tabular-nums tracking-tight">
                 {mounted ? String(value).padStart(2, "0") : "--"}
               </span>
             </div>
-            <span className="text-[10px] sm:text-xs text-white/50 mt-2 uppercase tracking-[0.15em] font-medium">
+            <span className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-gray-400">
               {label}
             </span>
           </div>
           {i < 2 && (
-            <div className="text-white/30 text-2xl sm:text-3xl font-light pb-6 sm:pb-8 leading-none">
+            <div className="pb-5 text-lg font-light leading-none text-gray-300">
               :
             </div>
           )}

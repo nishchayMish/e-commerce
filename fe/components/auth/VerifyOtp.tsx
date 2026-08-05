@@ -39,84 +39,75 @@ const VerifyOtp = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-12">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-28 right-1/4 w-[420px] h-[420px] bg-indigo-50 rounded-full opacity-80 blur-[90px]" />
-        <div className="absolute -bottom-36 left-1/5 w-[380px] h-[380px] bg-indigo-100/50 rounded-full opacity-70 blur-[90px]" />
-        <div className="grid-bg absolute inset-0 opacity-40" />
-      </div>
-
-      <div className="relative w-full max-w-[420px]">
-        <div className="mb-8 text-center">
+    <section className="min-h-dvh flex items-center justify-center bg-[#fafafa] px-4 py-12">
+      <div className="w-full max-w-sm">
+        <div className="mb-6 text-center">
           <Link
             href="/"
-            className="inline-block text-xl font-bold tracking-[0.28em] text-gray-900 hover:text-indigo-600 transition-colors"
+            className="inline-block text-base font-semibold tracking-[0.18em] text-gray-900 transition hover:text-gray-600"
           >
             AURUM
           </Link>
         </div>
 
-        <div className="rounded-2xl border border-gray-200/80 bg-white/90 backdrop-blur-sm p-8 sm:p-9 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-          <div className="mb-8 text-center sm:text-left">
-            <div className="mx-auto sm:mx-0 mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 border border-indigo-100/80">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5 text-indigo-600"
-                aria-hidden
-              >
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-                <path d="m9 12 2 2 4-4" />
-              </svg>
-            </div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-600 mb-3 block">
-              Security check
-            </span>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight leading-tight">
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:p-7">
+          <div className="mb-6">
+            <span className="eyebrow mb-2 block">Security check</span>
+            <h1 className="text-xl font-semibold tracking-tight text-gray-900">
               Enter OTP
             </h1>
-            <p className="mt-2 text-sm text-gray-500 leading-relaxed">
+            <p className="mt-1 text-[13px] text-gray-500">
               Enter the 6-digit code sent to your email.
             </p>
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
+            <label className="mb-1.5 block text-[13px] font-medium text-gray-600">
               OTP
             </label>
-            <input
-              value={otp}
-              onChange={(e) =>
-                setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))
-              }
-              placeholder="••••••"
-              maxLength={6}
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              className="w-full h-14 rounded-xl border border-gray-200 bg-gray-50 px-4 text-center text-2xl font-semibold tracking-[0.4em] text-gray-900 outline-none transition-all duration-200 placeholder:tracking-[0.4em] placeholder:text-gray-300 hover:border-gray-300 focus:border-indigo-600 focus:bg-white"
-            />
+            <div className="relative flex items-center justify-between">
+              <input
+                value={otp}
+                onChange={(e) =>
+                  setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))
+                }
+                placeholder="••••••"
+                maxLength={6}
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                className="peer absolute inset-0 z-10 h-full w-full cursor-text bg-transparent opacity-0 outline-none"
+              />
+              {[0, 1, 2, 3, 4, 5].map((index) => (
+                <div
+                  key={index}
+                  aria-hidden
+                  className={`flex h-11 w-11 items-center justify-center rounded-lg border bg-white text-base font-medium text-gray-900 transition ${
+                    otp.length === index
+                      ? "border-gray-200 peer-focus:border-gray-900 peer-focus:ring-4 peer-focus:ring-gray-900/5"
+                      : "border-gray-200"
+                  }`}
+                >
+                  {otp[index] ?? ""}
+                </div>
+              ))}
+            </div>
           </div>
 
           <button
             onClick={handleVerify}
             disabled={loading || otp.length !== 6}
-            className="mt-6 w-full h-12 rounded-xl bg-gray-900 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-indigo-600 disabled:opacity-50 disabled:hover:bg-gray-900 active:scale-[0.98] cursor-pointer disabled:cursor-not-allowed"
+            className="mt-5 h-10 w-full cursor-pointer rounded-lg bg-gray-900 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-gray-900"
           >
             {loading ? "Verifying..." : "Verify OTP"}
           </button>
-
-          <div className="mt-7 text-center text-sm text-gray-500">
-            Didn&apos;t receive OTP?{" "}
-            <button className="font-semibold text-gray-900 hover:text-indigo-600 transition-colors cursor-pointer">
-              Resend
-            </button>
-          </div>
         </div>
+
+        <p className="mt-5 text-center text-[13px] text-gray-500">
+          Didn&apos;t receive OTP?{" "}
+          <button className="cursor-pointer font-medium text-gray-900 underline decoration-gray-300 underline-offset-4 transition hover:decoration-gray-900">
+            Resend
+          </button>
+        </p>
       </div>
     </section>
   );

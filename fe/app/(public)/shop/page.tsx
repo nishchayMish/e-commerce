@@ -18,7 +18,13 @@ import { useDebounce } from "@/hooks/useDebounce";
 
 export default function ShopPage() {
   return (
-    <Suspense fallback={<ProductGridSkeleton count={9} />}>
+    <Suspense
+      fallback={
+        <div className="container-page pt-24 pb-20">
+          <ProductGridSkeleton count={9} />
+        </div>
+      }
+    >
       <ShopPageContent />
     </Suspense>
   );
@@ -121,33 +127,37 @@ function ShopPageContent() {
   }, [page, limit, categoryFromUrl, priceRangeFromUrl, ratingFromUrl, sort, searchQuery]);
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-[#fafafa] min-h-screen">
       <ShopHeader />
       
       {/* input box for search */}
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 -mt-6 sm:-mt-8 mb-8">
-        <ShopSearchBar 
-        searchInput={searchInput} 
-        setSearchInput={setSearchInput} 
-        />
+      <div className="border-b border-gray-200 bg-white">
+        <div className="container-page py-4">
+          <ShopSearchBar 
+          searchInput={searchInput} 
+          setSearchInput={setSearchInput} 
+          />
+        </div>
       </div>
 
-      <section className="pb-24 sm:pb-32">
-        <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10 lg:gap-14">
+      <section className="py-8 sm:py-10 pb-20 sm:pb-24">
+        <div className="container-page">
+          <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-10">
             <div className="hidden lg:block">
-              <ShopFilters
-                selectedCategory={categoryFromUrl}
-                onCategoryChange={handleCategoryChange}
-                priceRange={priceRangeFromUrl}
-                rating={ratingFromUrl}
-                handlePriceRangeChange={handlePriceRangeChange}
-                handleRatingChange={handleRatingChange}
-                clearAllFilters={clearAllFilters}
-              />
+              <div className="sticky top-20">
+                <ShopFilters
+                  selectedCategory={categoryFromUrl}
+                  onCategoryChange={handleCategoryChange}
+                  priceRange={priceRangeFromUrl}
+                  rating={ratingFromUrl}
+                  handlePriceRangeChange={handlePriceRangeChange}
+                  handleRatingChange={handleRatingChange}
+                  clearAllFilters={clearAllFilters}
+                />
+              </div>
             </div>
 
-            <div>
+            <div className="min-w-0">
               <ShopToolbar 
               limit={limit} 
               setLimit={setLimit} 

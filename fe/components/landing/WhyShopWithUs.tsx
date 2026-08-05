@@ -44,45 +44,45 @@ const features = [
 
 export default function WhyShopWithUs() {
   return (
-    <section className="py-24 sm:py-32 bg-white">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section className="py-16 sm:py-20 bg-white">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-2xl mb-16 sm:mb-20">
+        <div className="max-w-xl mb-8 sm:mb-10">
           <AnimatedSection direction="up">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-600 mb-3 block">
+            <span className="eyebrow mb-2 block">
               Our Values
             </span>
-            <h2 className="text-3xl sm:text-[42px] lg:text-[48px] font-bold text-gray-900 leading-[1.1] tracking-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 tracking-tight mb-2">
               Why Shop With Us
             </h2>
-            <p className="text-sm sm:text-base text-gray-500 max-w-lg leading-relaxed">
+            <p className="text-[13px] sm:text-sm text-gray-500 leading-relaxed">
               We redefine modern luxury retail. Driven by a commitment to perfection, each order is handled with discrete care.
             </p>
           </AnimatedSection>
         </div>
 
         {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {features.map((feature, idx) => {
             const Icon = feature.icon;
             return (
               <AnimatedSection
                 key={feature.id}
                 direction="up"
-                delay={idx * 0.06}
-                className="group relative bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:border-gray-200 transition-all duration-350 flex flex-col justify-between hover:bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.03)]"
+                delay={idx * 0.04}
+                className="group rounded-xl border border-gray-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-[border-color,box-shadow] duration-200 hover:border-gray-300 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
               >
                 <div>
                   {/* Icon wrapper */}
-                  <div className="w-12 h-12 rounded-xl bg-white border border-gray-200/80 flex items-center justify-center text-gray-800 group-hover:bg-indigo-600 group-hover:border-indigo-600 group-hover:text-white transition-colors duration-300 shadow-sm mb-6">
-                    <Icon size={20} strokeWidth={1.5} />
+                  <div className="w-9 h-9 rounded-lg bg-[#fafafa] border border-gray-200 flex items-center justify-center text-gray-500 transition-colors duration-200 group-hover:text-gray-900 mb-4">
+                    <Icon size={16} strokeWidth={1.75} />
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 leading-tight mb-2.5">
+                  <h3 className="text-sm font-medium text-gray-900 leading-snug mb-1.5">
                     {feature.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+                  <p className="text-[13px] text-gray-500 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>

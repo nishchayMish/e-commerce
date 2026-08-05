@@ -7,40 +7,35 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function AboutCTA() {
   return (
-    <section className="py-20 sm:py-28">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section className="py-16 sm:py-20">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection direction="up">
-          <div className="relative rounded-[2rem] overflow-hidden bg-gray-950 px-8 py-14 sm:px-14 sm:py-20 text-center">
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute -top-24 left-1/4 w-72 h-72 bg-indigo-600/30 rounded-full blur-[90px]" />
-              <div className="absolute -bottom-24 right-1/4 w-64 h-64 bg-indigo-500/20 rounded-full blur-[80px]" />
-            </div>
-
-            <div className="relative max-w-2xl mx-auto">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-300 mb-4 block">
+          <div className="rounded-xl border border-gray-200 bg-[#fafafa] px-6 py-12 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:px-12 sm:py-14">
+            <div className="mx-auto max-w-xl">
+              <span className="block text-xs font-medium uppercase tracking-[0.12em] text-gray-400">
                 Explore
               </span>
-              <h2 className="text-3xl sm:text-[42px] font-bold text-white leading-[1.1] tracking-tight mb-4">
+              <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
                 Ready to find your signature?
               </h2>
-              <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-9 max-w-md mx-auto">
+              <p className="mx-auto mt-3 max-w-md text-sm text-gray-500 leading-relaxed">
                 Browse our latest arrivals and discover pieces curated for the
                 way you live.
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
+                <motion.div whileTap={{ scale: 0.99 }}>
                   <Link
                     href="/shop"
-                    className="inline-flex items-center gap-2 bg-white text-gray-900 hover:bg-indigo-50 px-7 py-3.5 rounded-xl text-sm font-semibold transition-colors duration-300"
+                    className="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-5 text-[13px] font-medium text-white transition hover:bg-gray-800"
                   >
                     Shop Collection
                     <ArrowRight size={14} />
                   </Link>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div whileTap={{ scale: 0.99 }}>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 border border-gray-700 text-gray-300 hover:border-gray-500 hover:text-white px-7 py-3.5 rounded-xl text-sm font-semibold transition-colors duration-300"
+                    className="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-gray-200 bg-white px-5 text-[13px] font-medium text-gray-900 transition hover:bg-gray-50 hover:border-gray-300"
                   >
                     Get in Touch
                   </Link>

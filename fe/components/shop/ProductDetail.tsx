@@ -52,35 +52,30 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   };
 
   return (
-    <div className="relative bg-white min-h-screen overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 right-0 w-[420px] h-[420px] bg-indigo-50 rounded-full opacity-60 blur-[80px]" />
-        <div className="grid-bg absolute inset-0 opacity-25" />
-      </div>
-
-      <div className="relative max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 pt-28 sm:pt-32 pb-24 sm:pb-32">
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-20">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-1.5 text-sm text-gray-400 mb-10 flex-wrap">
-          <Link href="/" className="hover:text-gray-900 transition-colors">
+        <nav className="mb-8 flex flex-wrap items-center gap-1.5 text-[13px] text-gray-400">
+          <Link href="/" className="transition-colors hover:text-gray-900">
             Home
           </Link>
-          <ChevronRight size={14} className="text-gray-300" />
-          <Link href="/shop" className="hover:text-gray-900 transition-colors">
+          <ChevronRight size={13} className="text-gray-300" />
+          <Link href="/shop" className="transition-colors hover:text-gray-900">
             Shop
           </Link>
-          <ChevronRight size={14} className="text-gray-300" />
-          <span className="text-gray-900 font-medium truncate max-w-[200px] sm:max-w-none">
+          <ChevronRight size={13} className="text-gray-300" />
+          <span className="max-w-[200px] truncate font-medium text-gray-900 sm:max-w-none">
             {product.name}
           </span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
           {/* ─── Image ─────────────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="relative aspect-square rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.04),0_12px_40px_rgba(0,0,0,0.06)]"
+            className="relative aspect-square overflow-hidden rounded-xl border border-gray-200 bg-[#fafafa] shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
           >
             {product.image && (
               <Image
@@ -94,14 +89,14 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             )}
 
             {(isBestSeller || product.trending) && (
-              <div className="absolute top-4 left-4 flex flex-col gap-2">
+              <div className="absolute top-3 left-3 flex flex-col gap-2">
                 {isBestSeller && (
-                  <span className="rounded-full bg-white/90 backdrop-blur-md px-3 py-1.5 text-[11px] font-semibold tracking-wide text-gray-800 shadow-sm ring-1 ring-black/5">
+                  <span className="rounded-md border border-gray-200 bg-white/90 px-2 py-0.5 text-[11px] font-medium text-gray-600 backdrop-blur">
                     Best Seller
                   </span>
                 )}
                 {product.trending && !isBestSeller && (
-                  <span className="rounded-full bg-white/90 backdrop-blur-md px-3 py-1.5 text-[11px] font-semibold tracking-wide text-gray-800 shadow-sm ring-1 ring-black/5">
+                  <span className="rounded-md border border-gray-200 bg-white/90 px-2 py-0.5 text-[11px] font-medium text-gray-600 backdrop-blur">
                     Trending
                   </span>
                 )}
@@ -116,49 +111,54 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col"
           >
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-600 mb-3">
+            <span className="mb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-gray-400">
               {product.category}
             </span>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-gray-900 tracking-tight leading-[1.15] mb-4">
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
               {product.name}
             </h1>
 
             {/* Rating */}
-            <div className="flex items-center gap-2.5 mb-6">
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-[13px]">
               <div className="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
-                    size={15}
+                    size={13}
                     className={
                       i < Math.floor(rating)
-                        ? "text-amber-400 fill-amber-400"
+                        ? "fill-gray-900 text-gray-900"
                         : "text-gray-200 fill-gray-200"
                     }
                   />
                 ))}
               </div>
-              <span className="text-sm font-semibold text-gray-800">
+              <span className="font-medium text-gray-900 tabular-nums">
                 {rating.toFixed(1)}
               </span>
-              <span className="text-sm text-gray-400">·</span>
+              <span className="text-gray-300">·</span>
               <span
-                className={`text-sm font-medium ${
-                  inStock ? "text-emerald-600" : "text-rose-500"
+                className={`inline-flex items-center gap-1.5 font-medium ${
+                  inStock ? "text-gray-900" : "text-gray-400"
                 }`}
               >
+                <span
+                  className={`h-1.5 w-1.5 rounded-full ${
+                    inStock ? "bg-gray-900" : "bg-gray-300"
+                  }`}
+                />
                 {inStock ? "In Stock" : "Out of Stock"}
               </span>
             </div>
 
             {/* Price */}
-            <div className="flex items-baseline gap-3 mb-8">
-              <span className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+            <div className="mt-5 flex items-baseline gap-2.5">
+              <span className="text-2xl font-semibold tracking-tight text-gray-900 tabular-nums">
                 ₹{price.toLocaleString("en-IN")}
               </span>
               {showOldPrice && (
-                <span className="text-lg text-gray-400 line-through">
+                <span className="text-sm text-gray-400 line-through tabular-nums">
                   ₹{oldPrice!.toLocaleString("en-IN")}
                 </span>
               )}
@@ -166,7 +166,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             {/* Description */}
             {product.description && (
-              <p className="text-sm sm:text-base text-gray-500 leading-relaxed mb-10 max-w-lg">
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-gray-500">
                 {product.description.length > 280
                   ? `${product.description.slice(0, 280).trim()}…`
                   : product.description}
@@ -174,54 +174,54 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             )}
 
             {/* Quantity + Actions */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-8">
-              <div className="inline-flex items-center border border-gray-200 rounded-xl overflow-hidden shrink-0">
+            <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
+              <div className="inline-flex h-10 shrink-0 items-center overflow-hidden rounded-lg border border-gray-200 bg-white">
                 <button
                   type="button"
                  
-                  className="w-11 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"
+                  className="flex h-10 w-10 items-center justify-center text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-900"
                   aria-label="Decrease quantity"
                 >
-                  <Minus size={15} />
+                  <Minus size={14} />
                 </button>
-                <span className="w-12 text-center text-sm font-semibold text-gray-900">
+                <span className="w-10 text-center text-[13px] font-medium text-gray-900 tabular-nums">
                   3
                 </span>
                 <button
                   type="button"
                   
-                  className="w-11 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"
+                  className="flex h-10 w-10 items-center justify-center text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-900"
                   aria-label="Increase quantity"
                 >
-                  <Plus size={15} />
+                  <Plus size={14} />
                 </button>
               </div>
 
               <button
                 type="button"
                 onClick={()=>handleAddToCart(product.id)}
-                className="flex items-center justify-center gap-2.5 h-12 rounded-xl hover:text-gray-100 hover:bg-gray-700  text-sm font-semibold text-white cursor-pointer bg-gray-800 w-full transition-all duration-250"
+                className="inline-flex h-10 w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-gray-900 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99]"
               >
-                <ShoppingBag size={16} />
+                <ShoppingBag size={14} />
                 Add to Cart
               </button>
 
               <button
                 type="button"
                 onClick={() => setWishlisted((w) => !w)}
-                className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-colors shrink-0 ${
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition ${
                   wishlisted
-                    ? "bg-rose-500 border-rose-500 text-white"
-                    : "border-gray-200 text-gray-600 hover:border-gray-900 hover:text-gray-900"
+                    ? "border-gray-900 bg-gray-900 text-white"
+                    : "border-gray-200 bg-white text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                 }`}
                 aria-label="Add to wishlist"
               >
-                <Heart size={17} fill={wishlisted ? "currentColor" : "none"} />
+                <Heart size={15} fill={wishlisted ? "currentColor" : "none"} />
               </button>
             </div>
 
             {/* Trust row */}
-            <div className="mt-auto grid grid-cols-1 sm:grid-cols-3 gap-3 pt-8 border-t border-gray-100">
+            <div className="mt-auto grid grid-cols-1 gap-2 border-t border-gray-200 pt-6 sm:grid-cols-3">
               {[
                 { icon: Truck, label: "Free shipping" },
                 { icon: RotateCcw, label: "Easy returns" },
@@ -229,11 +229,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               ].map(({ icon: Icon, label }) => (
                 <div
                   key={label}
-                  className="flex items-center gap-2.5 text-sm text-gray-500"
+                  className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-[13px] font-medium text-gray-600"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-gray-50 flex items-center justify-center text-gray-700 shrink-0">
-                    <Icon size={15} />
-                  </div>
+                  <Icon size={14} strokeWidth={1.75} className="shrink-0 text-gray-400" />
                   {label}
                 </div>
               ))}
@@ -247,12 +245,12 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.2 }}
-            className="mt-16 sm:mt-20 max-w-3xl"
+            className="mt-12 max-w-3xl rounded-xl border border-gray-200 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
           >
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight mb-4">
+            <h2 className="text-base font-semibold tracking-tight text-gray-900">
               About this product
             </h2>
-            <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
+            <p className="mt-2 text-sm leading-relaxed text-gray-500">
               {product.description}
             </p>
           </motion.section>

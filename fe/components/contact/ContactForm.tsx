@@ -7,7 +7,12 @@ import toast from "react-hot-toast";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const inputClass =
-  "w-full bg-gray-50 border border-gray-200 hover:border-gray-300 focus:border-indigo-600 focus:bg-white rounded-xl px-4 py-3.5 text-sm text-gray-900 outline-none transition-all duration-200 placeholder:text-gray-400";
+  "w-full h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-gray-900 focus:ring-4 focus:ring-gray-900/5";
+
+const textareaClass =
+  "w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-gray-900 focus:ring-4 focus:ring-gray-900/5";
+
+const labelClass = "mb-1.5 block text-[13px] font-medium text-gray-600";
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -40,33 +45,34 @@ export default function ContactForm() {
 
   return (
     <AnimatedSection direction="up">
-      <div className="bg-white rounded-[1.75rem] border border-gray-100 p-7 sm:p-9 lg:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.01),0_16px_40px_rgba(0,0,0,0.04)]">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight mb-1.5">
+      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:p-8">
+        <h2 className="text-base font-semibold tracking-tight text-gray-900">
           Send a message
         </h2>
-        <p className="text-sm text-gray-500 mb-8 leading-relaxed">
+        <p className="mt-1 mb-6 text-[13px] text-gray-500 leading-relaxed">
           Fill out the form and we&apos;ll get back within one business day.
         </p>
 
         {submitted ? (
           <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col items-center gap-3 bg-emerald-50 border border-emerald-100 rounded-2xl p-8 text-center"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="flex flex-col items-center gap-3 rounded-lg border border-gray-200 bg-[#fafafa] p-8 text-center"
           >
-            <CheckCircle2 className="text-emerald-500" size={28} />
+            <CheckCircle2 className="text-gray-900" size={24} strokeWidth={1.75} />
             <div>
-              <h3 className="font-bold text-emerald-900 text-sm sm:text-base">
+              <h3 className="text-sm font-medium text-gray-900">
                 Message received
               </h3>
-              <p className="text-xs sm:text-sm text-emerald-700/90 mt-1.5 max-w-xs mx-auto leading-relaxed">
+              <p className="mx-auto mt-1.5 max-w-xs text-[13px] text-gray-500 leading-relaxed">
                 Thank you for reaching out. Our team will reply shortly.
               </p>
             </div>
             <button
               type="button"
               onClick={() => setSubmitted(false)}
-              className="mt-2 text-sm font-medium text-emerald-800 hover:text-emerald-950 underline underline-offset-2 cursor-pointer"
+              className="mt-1 cursor-pointer text-[13px] font-medium text-gray-900 underline decoration-gray-300 underline-offset-4 transition hover:decoration-gray-900"
             >
               Send another message
             </button>
@@ -75,10 +81,7 @@ export default function ContactForm() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label
-                  htmlFor="name"
-                  className="block text-xs font-semibold text-gray-700 mb-2"
-                >
+                <label htmlFor="name" className={labelClass}>
                   Full name
                 </label>
                 <input
@@ -94,10 +97,7 @@ export default function ContactForm() {
                 />
               </div>
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-xs font-semibold text-gray-700 mb-2"
-                >
+                <label htmlFor="email" className={labelClass}>
                   Email
                 </label>
                 <input
@@ -115,10 +115,7 @@ export default function ContactForm() {
             </div>
 
             <div>
-              <label
-                htmlFor="subject"
-                className="block text-xs font-semibold text-gray-700 mb-2"
-              >
+              <label htmlFor="subject" className={labelClass}>
                 Subject
               </label>
               <input
@@ -134,10 +131,7 @@ export default function ContactForm() {
             </div>
 
             <div>
-              <label
-                htmlFor="message"
-                className="block text-xs font-semibold text-gray-700 mb-2"
-              >
+              <label htmlFor="message" className={labelClass}>
                 Message
               </label>
               <textarea
@@ -148,22 +142,21 @@ export default function ContactForm() {
                 value={form.message}
                 onChange={handleChange}
                 placeholder="Tell us a little more..."
-                className={`${inputClass} resize-none`}
+                className={`${textareaClass} resize-none`}
               />
             </div>
 
             <motion.button
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{ scale: 0.99 }}
               type="submit"
               disabled={sending}
-              className="w-full sm:w-auto mt-2 bg-gray-900 hover:bg-indigo-600 disabled:opacity-60 text-white font-semibold text-sm px-8 py-3.5 rounded-xl transition-all duration-300 shadow-sm flex items-center justify-center gap-2 group cursor-pointer"
+              className="group mt-2 inline-flex h-10 w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-5 text-[13px] font-medium text-white transition hover:bg-gray-800 disabled:opacity-50 disabled:pointer-events-none sm:w-auto"
             >
               {sending ? "Sending..." : "Send Message"}
               {!sending && (
                 <ArrowRight
                   size={14}
-                  className="group-hover:translate-x-0.5 transition-transform"
+                  className="transition-transform group-hover:translate-x-0.5"
                 />
               )}
             </motion.button>

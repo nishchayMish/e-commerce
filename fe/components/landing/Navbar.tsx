@@ -43,61 +43,60 @@ export default function Navbar() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/80 backdrop-blur-2xl border-b border-gray-200/70 shadow-[0_1px_20px_rgba(0,0,0,0.06)]"
-            : "bg-transparent"
+            ? "bg-white/80 backdrop-blur-xl border-b border-gray-200"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
-              <span className="text-xl lg:text-2xl font-bold tracking-[0.2em] text-gray-900 select-none">
+              <span className="text-base font-semibold tracking-[0.18em] text-gray-900 select-none">
                 AURUM
               </span>
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
+            <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="relative text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200 group py-1"
+                  className="rounded-lg px-3 py-1.5 text-[13px] font-medium text-gray-500 transition hover:text-gray-900 hover:bg-gray-100"
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-gray-900 group-hover:w-full transition-all duration-300 rounded-full" />
                 </Link>
               ))}
             </nav>
 
             {/* Action icons */}
-            <div className="flex items-center gap-1 sm:gap-1.5">
+            <div className="flex items-center gap-0.5">
               {/* Search */}
               <button
-                className="w-9 h-9 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+                className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
                 aria-label="Search"
               >
-                <Search size={17} />
+                <Search size={16} />
               </button>
 
               {/* Wishlist */}
               <button
-                className="w-9 h-9 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+                className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
                 aria-label="Wishlist"
               >
-                <Heart size={17} />
+                <Heart size={16} />
               </button>
 
               {/* Cart */}
               <Link href="/cart">
                 <button
-                  className="relative cursor-pointer w-9 h-9 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+                  className="relative cursor-pointer w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
                   aria-label="Cart"
                 >
-                  <ShoppingBag size={17} />
+                  <ShoppingBag size={16} />
                   {cartCount > 0 && (
-                    <span className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] bg-indigo-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+                    <span className="absolute top-0.5 right-0.5 w-4 h-4 bg-gray-900 text-white text-[10px] font-semibold rounded-full flex items-center justify-center leading-none ring-2 ring-white">
                       {cartCount}
                     </span>
                   )}
@@ -107,23 +106,23 @@ export default function Navbar() {
               {/* Profile (desktop only) */}
               {user ? 
               <button
-                className="hidden uppercase lg:flex w-6 h-6 p-3.5 rounded-full items-center justify-center text-blue-900 bg-gray-300"
+                className="hidden uppercase lg:flex ml-1.5 w-8 h-8 rounded-full items-center justify-center text-[11px] font-semibold text-white bg-gray-900"
                 aria-label="Account"
               >
                 {firstName}
               </button>
               : <button
-                className="hidden lg:flex w-10 h-10 rounded-xl items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+                className="hidden lg:flex w-9 h-9 rounded-lg items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
                 aria-label="Account"
               >
-                <User size={17} />
+                <User size={16} />
               </button>
               }
 
               {/* Mobile hamburger */}
               <button
                 onClick={() => setMobileOpen((o) => !o)}
-                className="lg:hidden w-9 h-9 rounded-xl flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-all duration-200 ml-1"
+                className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gray-100 transition ml-0.5"
                 aria-label="Menu"
               >
                 <AnimatePresence mode="wait" initial={false}>
@@ -151,10 +150,10 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-white/96 backdrop-blur-2xl pt-16"
+            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-16"
           >
             <motion.nav
-              className="flex flex-col px-6 pt-8"
+              className="flex flex-col px-6 pt-6"
               initial="hidden"
               animate="show"
               variants={{
@@ -174,7 +173,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block py-5 text-2xl sm:text-3xl font-semibold text-gray-900 border-b border-gray-100 hover:text-indigo-600 transition-colors"
+                    className="block py-4 text-lg font-medium text-gray-900 border-b border-gray-100 transition hover:text-gray-500"
                   >
                     {link.label}
                   </Link>
@@ -182,10 +181,10 @@ export default function Navbar() {
               ))}
               <motion.div
                 variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-                className="mt-10 flex items-center gap-4"
+                className="mt-8 flex items-center gap-4"
               >
-                <button className="flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-xl text-sm font-semibold">
-                  <User size={15} /> Sign In
+                <button className="btn-primary w-full">
+                  <User size={14} /> Sign In
                 </button>
               </motion.div>
             </motion.nav>

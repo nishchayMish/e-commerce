@@ -10,11 +10,11 @@ const milestones = [
 
 export default function AboutStory() {
   return (
-    <section className="pb-20 sm:pb-28">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section className="py-16 sm:py-20">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <AnimatedSection direction="up">
-            <div className="relative aspect-[4/5] sm:aspect-[5/6] rounded-[2rem] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-[#fafafa] shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
               <Image
                 src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=960&q=85"
                 alt="AURUM boutique interior"
@@ -23,18 +23,17 @@ export default function AboutStory() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
             </div>
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={0.1}>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-600 mb-3 block">
+            <span className="block text-xs font-medium uppercase tracking-[0.12em] text-gray-400">
               Who We Are
             </span>
-            <h2 className="text-3xl sm:text-[40px] font-bold text-gray-900 leading-[1.15] tracking-tight mb-5">
+            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
               Less noise. More intention.
             </h2>
-            <div className="space-y-4 text-sm sm:text-base text-gray-500 leading-relaxed mb-10">
+            <div className="mt-4 space-y-3 text-sm text-gray-500 leading-relaxed">
               <p>
                 We started AURUM with a simple belief: luxury should feel calm,
                 considered, and reachable — not loud or overwhelming.
@@ -52,13 +51,16 @@ export default function AboutStory() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-gray-100">
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
               {milestones.map(({ value, label }) => (
-                <div key={label}>
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+                <div
+                  key={label}
+                  className="rounded-lg border border-gray-200 bg-white px-3 py-3"
+                >
+                  <p className="text-base font-semibold tracking-tight text-gray-900 tabular-nums">
                     {value}
                   </p>
-                  <p className="text-xs sm:text-sm text-gray-500 mt-1">{label}</p>
+                  <p className="mt-0.5 text-xs text-gray-400">{label}</p>
                 </div>
               ))}
             </div>

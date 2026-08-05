@@ -2,10 +2,10 @@ import Skeleton from "@/components/ui/Skeleton";
 
 export default function ProductDetailSkeleton() {
   return (
-    <div className="relative bg-white min-h-screen overflow-hidden">
-      <div className="relative max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 pt-28 sm:pt-32 pb-24 sm:pb-32">
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-20">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 mb-10">
+        <div className="mb-8 flex items-center gap-2">
           <Skeleton className="h-3 w-10" />
           <Skeleton className="h-3 w-3 !rounded-full" />
           <Skeleton className="h-3 w-12" />
@@ -13,32 +13,32 @@ export default function ProductDetailSkeleton() {
           <Skeleton className="h-3 w-40" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Image panel */}
-          <Skeleton className="aspect-square !rounded-2xl" />
+          <Skeleton className="aspect-square !rounded-xl" />
 
           {/* Info panel — mirrors ProductDetail layout */}
           <div className="flex flex-col">
-            <Skeleton className="h-2.5 w-20 mb-4" />
+            <Skeleton className="h-2.5 w-20 mb-3" />
 
-            <Skeleton className="h-9 w-[88%] mb-2.5" />
-            <Skeleton className="h-9 w-[55%] mb-6" />
+            <Skeleton className="h-7 w-[88%] mb-2" />
+            <Skeleton className="h-7 w-[55%]" />
 
             {/* Rating + stock */}
-            <div className="flex items-center gap-2.5 mb-6">
-              <Skeleton className="h-3.5 w-24" />
-              <Skeleton className="h-3.5 w-8" />
+            <div className="mt-3 flex items-center gap-2">
+              <Skeleton className="h-3.5 w-20" />
+              <Skeleton className="h-3.5 w-7" />
               <Skeleton className="h-3.5 w-16" />
             </div>
 
             {/* Price */}
-            <div className="flex items-center gap-3 mb-8">
-              <Skeleton className="h-8 w-36" />
-              <Skeleton className="h-5 w-20" />
+            <div className="mt-5 flex items-center gap-2.5">
+              <Skeleton className="h-7 w-32" />
+              <Skeleton className="h-4 w-16" />
             </div>
 
             {/* Description lines */}
-            <div className="space-y-2.5 mb-10 max-w-lg">
+            <div className="mt-4 max-w-lg space-y-2.5">
               <Skeleton className="h-3 w-full" />
               <Skeleton className="h-3 w-full" />
               <Skeleton className="h-3 w-[92%]" />
@@ -46,19 +46,16 @@ export default function ProductDetailSkeleton() {
             </div>
 
             {/* Qty + CTA + wishlist */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-8">
-              <Skeleton className="h-12 w-36 !rounded-xl shrink-0" />
-              <Skeleton className="h-12 flex-1 !rounded-xl" />
-              <Skeleton className="h-12 w-12 !rounded-xl shrink-0" />
+            <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
+              <Skeleton className="h-10 w-30 !rounded-lg shrink-0" />
+              <Skeleton className="h-10 flex-1 !rounded-lg" />
+              <Skeleton className="h-10 w-10 !rounded-lg shrink-0" />
             </div>
 
             {/* Trust row */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-8 border-t border-gray-100 mt-auto">
+            <div className="mt-auto grid grid-cols-1 gap-2 border-t border-gray-200 pt-6 sm:grid-cols-3">
               {[0, 1, 2].map((i) => (
-                <div key={i} className="flex items-center gap-2.5">
-                  <Skeleton className="h-9 w-9 !rounded-xl shrink-0" />
-                  <Skeleton className="h-3 w-24" />
-                </div>
+                <Skeleton key={i} className="h-11 w-full !rounded-lg" />
               ))}
             </div>
           </div>

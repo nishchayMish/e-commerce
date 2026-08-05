@@ -28,6 +28,9 @@ const perks = [
   { icon: ShieldCheck, label: "Secure pay" },
 ];
 
+const cardClass =
+  "rounded-xl border border-gray-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]";
+
 export default function CartContent() {
   const { cartItems, loading, fetchCart } = useCart();
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -72,24 +75,22 @@ export default function CartContent() {
   }
 
   return (
-    <section className="relative pt-20 sm:pt-24 lg:pt-[5.5rem] pb-24 sm:pb-28 lg:pb-32">
-      <div className="absolute inset-0 bg-slate-50/70 pointer-events-none" />
-
-      <div className="relative max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section className="min-h-dvh bg-[#fafafa] pt-16 pb-24 lg:pb-12">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Compact page title — sits under navbar, no second hero */}
         <AnimatedSection direction="up">
-          <div className="flex items-center justify-between gap-4 py-5 sm:py-6 mb-1 sm:mb-2">
-            <div className="min-w-0 flex items-baseline gap-2.5 sm:gap-3">
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+          <div className="flex items-center justify-between gap-4 py-5 sm:py-6">
+            <div className="min-w-0 flex items-baseline gap-2.5">
+              <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">
                 Cart
               </h1>
-              <span className="text-sm text-gray-400 tabular-nums">
+              <span className="text-[13px] text-gray-500 tabular-nums">
                 {cartItems.length} {cartItems.length === 1 ? "item" : "items"}
               </span>
             </div>
             <Link
               href="/shop"
-              className="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors shrink-0"
+              className="inline-flex shrink-0 items-center gap-1 text-[13px] font-medium text-gray-900 underline underline-offset-4 decoration-gray-300 transition hover:decoration-gray-900"
             >
               <span className="hidden sm:inline">Continue shopping</span>
               <span className="sm:hidden">Shop</span>
@@ -98,40 +99,42 @@ export default function CartContent() {
           </div>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-start">
+        <div className="grid lg:grid-cols-5 gap-5 lg:gap-6 items-start">
           {/* ─── Items column ──────────────────────────────── */}
-          <div className="lg:col-span-7 xl:col-span-8 min-w-0">
+          <div className="lg:col-span-3 min-w-0">
             {/* Unified list panel */}
             <AnimatedSection direction="up" delay={0.04}>
-              <div className="bg-white rounded-2xl sm:rounded-3xl border border-gray-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02),0_12px_40px_rgba(15,23,42,0.04)] overflow-hidden">
+              <div className={`${cardClass} overflow-hidden`}>
                 {/* Free shipping nudge */}
-                <div className="px-4 sm:px-6 lg:px-7 pt-5 sm:pt-6 pb-4 border-b border-gray-100 bg-gradient-to-r from-indigo-50/60 via-white to-white">
+                <div className="border-b border-gray-200 bg-[#fafafa] px-5 py-4">
                   <div className="flex items-start sm:items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-white border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 shadow-sm">
-                      <Truck size={16} strokeWidth={1.75} />
-                    </div>
+                    <Truck
+                      size={16}
+                      strokeWidth={1.75}
+                      className="mt-0.5 sm:mt-0 shrink-0 text-gray-400"
+                    />
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs sm:text-sm text-gray-700 leading-snug">
+                      <p className="text-[13px] text-gray-500 leading-snug">
                         {subtotal >= freeShippingThreshold ? (
                           <>
                             You&apos;ve unlocked{" "}
-                            <span className="font-semibold text-indigo-600">
+                            <span className="font-medium text-gray-900">
                               free shipping
                             </span>
                           </>
                         ) : (
                           <>
                             Add{" "}
-                            <span className="font-semibold text-gray-900">
+                            <span className="font-medium text-gray-900">
                               {formatPrice(freeShippingThreshold - subtotal)}
                             </span>{" "}
                             more for free shipping
                           </>
                         )}
                       </p>
-                      <div className="mt-2.5 h-1.5 rounded-full bg-gray-100 overflow-hidden">
+                      <div className="mt-2 h-1 rounded-full bg-gray-200 overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-indigo-500 transition-all duration-500"
+                          className="h-full rounded-full bg-gray-900 transition-all duration-500"
                           style={{ width: `${shippingProgress}%` }}
                         />
                       </div>
@@ -139,36 +142,36 @@ export default function CartContent() {
                   </div>
                 </div>
 
-                <ul className="divide-y divide-gray-100">
+                <ul className="divide-y divide-gray-200">
                   {cartItems.map((item) => (
                     <li
                       key={item.id}
-                      className="group relative p-4 sm:p-5 lg:p-6 hover:bg-slate-50/50 transition-colors duration-200"
+                      className="group relative px-5 py-4 transition-colors duration-200 hover:bg-[#fafafa]"
                     >
-                      <div className="flex gap-3.5 sm:gap-5">
+                      <div className="flex gap-4">
                         {/* Image */}
                         <Link
                           href={`/shop/${item.id}`}
-                          className="relative shrink-0 w-[88px] h-[88px] sm:w-28 sm:h-28 lg:w-[120px] lg:h-[120px] rounded-xl sm:rounded-2xl overflow-hidden bg-gray-50 ring-1 ring-black/[0.04]"
+                          className="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border border-gray-200 bg-[#fafafa]"
                         >
                           <Image
                             src={item.image}
                             alt={item.name}
                             fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                            sizes="(max-width: 640px) 88px, 120px"
+                            className="object-cover"
+                            sizes="(max-width: 640px) 80px, 96px"
                           />
                         </Link>
 
                         {/* Main content */}
                         <div className="flex-1 min-w-0 flex flex-col">
-                          <div className="flex items-start justify-between gap-2 sm:gap-4">
+                          <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
-                              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.14em] text-indigo-600">
+                              <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-gray-400">
                                 {item.category}
                               </span>
                               <Link href={`/shop/${item.id}`}>
-                                <h3 className="text-[15px] sm:text-base lg:text-lg font-semibold text-gray-900 leading-snug mt-0.5 line-clamp-2 hover:text-indigo-600 transition-colors">
+                                <h3 className="mt-0.5 text-sm font-medium text-gray-900 leading-snug line-clamp-2 transition-colors hover:text-gray-500">
                                   {item.name}
                                 </h3>
                               </Link>
@@ -178,53 +181,53 @@ export default function CartContent() {
                               onClick={()=>deleteFromCart(item.product_id)}
                               type="button"
                               aria-label="Remove item"
-                              className="shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl flex items-center justify-center text-gray-300 hover:text-rose-500 hover:bg-rose-50 transition-colors -mt-0.5 -mr-1"
+                              className="-mt-1 -mr-1 shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 transition-colors hover:text-red-600 hover:bg-gray-50"
                             >
                               <Trash2 size={15} strokeWidth={1.75} />
                             </button>
                           </div>
 
                           {/* Unit price — desktop inline under variant */}
-                          <p className="hidden sm:block mt-1.5 text-sm text-gray-500">
+                          <p className="hidden sm:block mt-1 text-[13px] text-gray-500">
                             {formatPrice(item.price)}
                             {item.old_price != null && (
-                              <span className="ml-2 text-gray-300 line-through">
+                              <span className="ml-2 text-gray-400 line-through">
                                 {formatPrice(item.old_price)}
                               </span>
                             )}
-                            <span className="text-gray-300"> each</span>
+                            <span className="text-gray-400"> each</span>
                           </p>
 
                           {/* Qty + line total */}
-                          <div className="mt-auto pt-3 sm:pt-4 flex items-center justify-between gap-3">
-                            <div className="inline-flex items-center rounded-xl border border-gray-200 bg-white shadow-sm">
+                          <div className="mt-auto pt-3 flex items-center justify-between gap-3">
+                            <div className="inline-flex items-center rounded-lg border border-gray-200 bg-white">
                               <button
                                 onClick={()=>updateQuantity(item.product_id, "decrement", item.quantity)}
                                 type="button"
                                 aria-label="Decrease quantity"
-                                className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 rounded-l-xl transition-colors"
+                                className="w-9 h-9 flex items-center justify-center rounded-l-lg text-gray-500 transition-colors hover:text-gray-900 hover:bg-gray-50"
                               >
-                                <Minus size={14} strokeWidth={2.25} />
+                                <Minus size={14} strokeWidth={2} />
                               </button>
-                              <span className="w-8 sm:w-9 text-center text-sm font-semibold text-gray-900 tabular-nums select-none">
+                              <span className="w-8 text-center text-[13px] font-medium text-gray-900 tabular-nums select-none">
                                 {item.quantity}
                               </span>
                               <button
                                 onClick={()=>updateQuantity(item.product_id, "increment", item.quantity)}
                                 type="button"
                                 aria-label="Increase quantity"
-                                className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-gray-500 hover:text-gray-900 active:bg-gray-50 rounded-r-xl transition-colors"
+                                className="w-9 h-9 flex items-center justify-center rounded-r-lg text-gray-500 transition-colors hover:text-gray-900 hover:bg-gray-50"
                               >
-                                <Plus size={14} strokeWidth={2.25} />
+                                <Plus size={14} strokeWidth={2} />
                               </button>
                             </div>
 
                             <div className="text-right">
-                              <p className="text-base sm:text-lg font-bold text-gray-900 tabular-nums leading-none">
+                              <p className="text-[15px] font-semibold text-gray-900 tabular-nums leading-none">
                                 {formatPrice(item.price * item.quantity)}
                               </p>
                               {item.old_price != null && (
-                                <p className="mt-1 text-xs text-gray-300 line-through tabular-nums sm:hidden">
+                                <p className="mt-1 text-xs text-gray-400 line-through tabular-nums sm:hidden">
                                   {formatPrice(item.old_price * item.quantity)}
                                 </p>
                               )}
@@ -239,15 +242,15 @@ export default function CartContent() {
             </AnimatedSection>
 
             {/* Perks — mobile / tablet under items */}
-            <AnimatedSection direction="up" delay={0.1} className="lg:hidden mt-5">
-              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            <AnimatedSection direction="up" delay={0.1} className="lg:hidden mt-3">
+              <div className="grid grid-cols-3 gap-2">
                 {perks.map(({ icon: Icon, label }) => (
                   <div
                     key={label}
-                    className="flex flex-col items-center gap-1.5 rounded-2xl bg-white border border-gray-100 px-2 py-3.5 text-center shadow-sm"
+                    className="flex flex-col items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-2 py-3 text-center"
                   >
-                    <Icon size={16} className="text-indigo-600" strokeWidth={1.75} />
-                    <span className="text-[10px] sm:text-xs font-medium text-gray-600 leading-tight">
+                    <Icon size={14} className="text-gray-400" strokeWidth={1.75} />
+                    <span className="text-xs font-medium text-gray-600 leading-tight">
                       {label}
                     </span>
                   </div>
@@ -257,65 +260,64 @@ export default function CartContent() {
           </div>
 
           {/* ─── Summary column (sticky on lg+) ────────────── */}
-          <div className="lg:col-span-5 xl:col-span-4 min-w-0 lg:sticky lg:top-24 xl:top-28 lg:self-start">
+          <div className="lg:col-span-2 min-w-0 lg:sticky lg:top-24 lg:self-start">
             <AnimatedSection direction="up" delay={0.08}>
-              <aside>
-                <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-gray-100 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.02),0_16px_48px_rgba(15,23,42,0.06)]">
-                  {/* Accent wash */}
-                  <div className="pointer-events-none absolute -top-24 -right-16 w-56 h-56 rounded-full bg-indigo-50 blur-3xl opacity-80" />
-
-                  <div className="relative p-5 sm:p-6 lg:p-7">
-                    <h2 className="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
+              <aside className="space-y-3">
+                <div className={`${cardClass} overflow-hidden`}>
+                  <div className="px-5 pt-5">
+                    <h2 className="text-base font-semibold text-gray-900 tracking-tight">
                       Order summary
                     </h2>
-                    <p className="mt-1 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                    <p className="mt-1 text-[13px] text-gray-500">
                       Shipping & taxes calculated at checkout.
                     </p>
+                  </div>
 
-                    {/* Breakdown */}
-                    <dl className="mt-5 sm:mt-6 space-y-3 text-sm border-t border-gray-100 pt-5">
-                      <div className="flex justify-between gap-4">
-                        <dt className="text-gray-500">Subtotal</dt>
-                        <dd className="font-medium text-gray-900 tabular-nums">
-                          {formatPrice(subtotal)}
-                        </dd>
-                      </div>
-                      <div className="flex justify-between gap-4">
-                        <dt className="text-gray-500">Discount</dt>
-                        <dd className="font-medium text-emerald-600 tabular-nums">
-                          −{formatPrice(discount)}
-                        </dd>
-                      </div>
-                      <div className="flex justify-between gap-4">
-                        <dt className="text-gray-500 flex items-center gap-1.5">
-                          <Truck size={13} className="text-gray-400" />
-                          Shipping
-                        </dt>
-                        <dd className="font-medium text-emerald-600">Free</dd>
-                      </div>
-                    </dl>
+                  {/* Breakdown */}
+                  <dl className="mx-5 mt-5 space-y-2.5 border-t border-gray-200 pt-4 text-[13px]">
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-gray-500">Subtotal</dt>
+                      <dd className="font-medium text-gray-900 tabular-nums">
+                        {formatPrice(subtotal)}
+                      </dd>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-gray-500">Discount</dt>
+                      <dd className="font-medium text-gray-900 tabular-nums">
+                        −{formatPrice(discount)}
+                      </dd>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-gray-500 flex items-center gap-1.5">
+                        <Truck size={13} className="text-gray-400" />
+                        Shipping
+                      </dt>
+                      <dd className="font-medium text-gray-900">Free</dd>
+                    </div>
+                  </dl>
 
-                    <div className="mt-5 pt-5 border-t border-gray-100 flex items-end justify-between gap-4">
-                      <div>
-                        <p className="text-sm font-medium text-gray-500">Total</p>
-                        <p className="text-[11px] text-gray-400 mt-0.5">
-                          Incl. all discounts
-                        </p>
-                      </div>
-                      <p className="text-2xl sm:text-[28px] font-bold text-gray-900 tracking-tight tabular-nums leading-none">
-                        {formatPrice(total)}
+                  <div className="mx-5 mt-4 flex items-end justify-between gap-4 border-t border-gray-200 pt-4">
+                    <div>
+                      <p className="text-[13px] font-medium text-gray-900">Total</p>
+                      <p className="mt-0.5 text-xs text-gray-400">
+                        Incl. all discounts
                       </p>
                     </div>
+                    <p className="text-xl font-semibold text-gray-900 tracking-tight tabular-nums leading-none">
+                      {formatPrice(total)}
+                    </p>
+                  </div>
 
+                  <div className="mt-5 border-t border-gray-200 bg-[#fafafa] px-5 py-4">
                     <Link
                       href="/shipping-details"
-                      className="mt-6 w-full flex items-center justify-center gap-2 py-3.5 sm:py-4 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] shadow-[0_8px_24px_rgba(79,70,229,0.28)] transition-all duration-200"
+                      className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-lg bg-gray-900 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99]"
                     >
                       Continue to shipping details
-                      <ArrowRight size={16} />
+                      <ArrowRight size={14} />
                     </Link>
 
-                    <div className="mt-4 flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-gray-400">
+                    <div className="mt-2.5 flex items-center justify-center gap-1.5 text-xs text-gray-400">
                       <Lock size={12} className="shrink-0" />
                       <span>Secure payment · Free returns within 30 days</span>
                     </div>
@@ -323,14 +325,14 @@ export default function CartContent() {
                 </div>
 
                 {/* Perks — desktop under summary */}
-                <div className="hidden lg:grid grid-cols-3 gap-2.5 mt-4">
+                <div className="hidden lg:grid grid-cols-3 gap-2">
                   {perks.map(({ icon: Icon, label }) => (
                     <div
                       key={label}
-                      className="flex flex-col items-center gap-1.5 rounded-2xl bg-white/80 border border-gray-100 px-2 py-3.5 text-center"
+                      className="flex flex-col items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-2 py-3 text-center"
                     >
-                      <Icon size={15} className="text-indigo-600" strokeWidth={1.75} />
-                      <span className="text-[11px] font-medium text-gray-600">
+                      <Icon size={14} className="text-gray-400" strokeWidth={1.75} />
+                      <span className="text-xs font-medium text-gray-600">
                         {label}
                       </span>
                     </div>
@@ -343,20 +345,20 @@ export default function CartContent() {
       </div>
 
       {/* Mobile sticky checkout bar */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t border-gray-200/80 bg-white/90 backdrop-blur-xl px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.06)]">
-        <div className="max-w-[1440px] mx-auto flex items-center gap-3">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t border-gray-200 bg-white/90 backdrop-blur-xl px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <div className="mx-auto flex max-w-6xl items-center gap-3">
           <div className="min-w-0 flex-1">
-            <p className="text-[11px] text-gray-400 leading-none mb-1">Total</p>
-            <p className="text-lg font-bold text-gray-900 tabular-nums leading-none">
+            <p className="text-xs text-gray-400 leading-none mb-1">Total</p>
+            <p className="text-base font-semibold text-gray-900 tabular-nums leading-none">
               {formatPrice(total)}
             </p>
           </div>
           <Link
             href="/shipping-details"
-            className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] shadow-[0_6px_20px_rgba(79,70,229,0.3)] transition-all"
+            className="shrink-0 inline-flex h-10 items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-5 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99]"
           >
             Continue
-            <ArrowRight size={15} />
+            <ArrowRight size={14} />
           </Link>
         </div>
       </div>

@@ -26,7 +26,7 @@ const details = [
 
 export default function ContactInfo() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {details.map((item, idx) => {
         const Icon = item.icon;
         return (
@@ -34,14 +34,16 @@ export default function ContactInfo() {
             key={item.title}
             direction="up"
             delay={idx * 0.05}
-            className="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300"
+            className="group rounded-xl border border-gray-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-[border-color,box-shadow] duration-200 hover:border-gray-300 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
           >
-            <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/80 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:border-indigo-600 group-hover:text-white transition-colors duration-300 mb-4">
-              <Icon size={17} strokeWidth={1.5} />
+            <div className="mb-3.5 flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-[#fafafa] text-gray-500 transition-colors duration-200 group-hover:border-gray-900 group-hover:bg-gray-900 group-hover:text-white">
+              <Icon size={16} strokeWidth={1.75} />
             </div>
-            <h3 className="text-sm font-bold text-gray-900 mb-2">{item.title}</h3>
+            <h3 className="mb-1.5 text-sm font-medium text-gray-900">
+              {item.title}
+            </h3>
             {item.lines.map((line) => (
-              <p key={line} className="text-sm text-gray-500 leading-relaxed">
+              <p key={line} className="text-[13px] text-gray-500 leading-relaxed">
                 {line}
               </p>
             ))}

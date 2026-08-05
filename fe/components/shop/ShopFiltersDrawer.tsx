@@ -53,30 +53,30 @@ export default function ShopFiltersDrawer({
         type="button"
         aria-label="Close filters"
         onClick={onClose}
-        className="absolute inset-0 bg-black/40"
+        className="absolute inset-0 bg-gray-900/40 backdrop-blur-[2px]"
       />
 
       <div
         role="dialog"
         aria-modal="true"
         aria-label="Product filters"
-        className="relative flex h-full w-[min(100%,300px)] flex-col bg-white shadow-2xl"
+        className="relative flex h-full w-[min(100%,300px)] flex-col border-r border-gray-200 bg-[#fafafa]"
       >
-        <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-gray-900">
+        <div className="flex items-center justify-between border-b border-gray-200 bg-white px-4 py-3">
+          <h2 className="text-[13px] font-semibold tracking-tight text-gray-900">
             Filters
           </h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close filters"
-            className="rounded-full p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-900"
           >
-            <X size={18} />
+            <X size={16} />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-5 py-6">
+        <div className="flex-1 overflow-y-auto p-4">
           <ShopFilters
             selectedCategory={selectedCategory}
             onCategoryChange={onCategoryChange}

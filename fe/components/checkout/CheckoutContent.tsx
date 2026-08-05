@@ -316,13 +316,13 @@ export default function CheckoutContent() {
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500">Discount</dt>
-                  <dd className="font-medium text-emerald-600 tabular-nums">
+                  <dd className="font-medium text-gray-900 tabular-nums">
                     −{formatPrice(discount)}
                   </dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500">Shipping</dt>
-                  <dd className="font-medium text-emerald-600">Free</dd>
+                  <dd className="font-medium text-gray-900">Free</dd>
                 </div>
               </dl>
 

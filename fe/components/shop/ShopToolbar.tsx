@@ -16,42 +16,48 @@ interface ShopToolbarProps {
 
 export default function ShopToolbar({ limit, setLimit, setSort, onOpenFilters }: ShopToolbarProps) {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-      <div className="flex items-center gap-2 text-sm text-gray-600">
+    <div className="mb-6 flex flex-col gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center gap-2 text-[13px] text-gray-500">
         <span>Showing</span>
 
-        <select
-          value={limit}
-          onChange={(e) => setLimit(Number(e.target.value))}
-          className="rounded-md border border-gray-300 bg-white px-3 py-1 text-sm font-medium text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-black/10"
-        >
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={30}>30</option>
-          <option value={40}>40</option>
-          <option value={50}>50</option>
-        </select>
+        <div className="relative">
+          <select
+            value={limit}
+            onChange={(e) => setLimit(Number(e.target.value))}
+            className="h-9 appearance-none rounded-lg border border-gray-200 bg-white pl-3 pr-8 text-[13px] font-medium text-gray-900 tabular-nums outline-none transition cursor-pointer hover:border-gray-300 focus:border-gray-900 focus:ring-4 focus:ring-gray-900/5"
+          >
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={30}>30</option>
+            <option value={40}>40</option>
+            <option value={50}>50</option>
+          </select>
+          <ChevronDown
+            size={13}
+            className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400"
+          />
+        </div>
 
         <span>products</span>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         {/* Mobile filter trigger */}
         <button
           type="button"
           onClick={onOpenFilters}
-          className="lg:hidden inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:border-gray-900 transition-colors"
+          className="lg:hidden inline-flex h-9 items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 text-[13px] font-medium text-gray-900 transition hover:bg-gray-50 hover:border-gray-300"
         >
-          <SlidersHorizontal size={15} />
+          <SlidersHorizontal size={13} />
           Filters
         </button>
 
-        <label className="flex items-center gap-2 text-sm text-gray-500">
+        <label className="flex items-center gap-2 text-[13px] text-gray-500">
           <span className="hidden sm:inline">Sort by</span>
           <div className="relative">
             <select
               onChange={(e)=>setSort(e.target.value)}
-              className="appearance-none bg-white border border-gray-200 rounded-xl px-4 py-2.5 pr-10 text-sm font-medium text-gray-900 hover:border-gray-900 focus:outline-none focus:border-gray-900 transition-colors cursor-pointer"
+              className="h-9 appearance-none rounded-lg border border-gray-200 bg-white pl-3 pr-8 text-[13px] font-medium text-gray-900 outline-none transition cursor-pointer hover:border-gray-300 focus:border-gray-900 focus:ring-4 focus:ring-gray-900/5"
             >
               {SORT_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -60,8 +66,8 @@ export default function ShopToolbar({ limit, setLimit, setSort, onOpenFilters }:
               ))} 
             </select>
             <ChevronDown
-              size={14}
-              className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+              size={13}
+              className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400"
             />
           </div>
         </label>

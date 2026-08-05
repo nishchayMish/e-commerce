@@ -16,24 +16,31 @@ body {
     BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #111827;
+  color: #0a0a0a;
   background: #ffffff;
   overflow-x: hidden;
+  letter-spacing: -0.011em;
+}
+
+::selection {
+  background: #0a0a0a;
+  color: #ffffff;
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+  background: #e0e0e0;
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #c4c4c4;
 }
 
 /* ─── Hide scrollbar utility ────────────────────────────── */
@@ -61,7 +68,7 @@ body {
 
 /* ─── Subtle grid background ────────────────────────────── */
 .grid-bg {
-  background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
+  background-image: radial-gradient(circle, #ebebeb 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -73,7 +80,7 @@ body {
   -webkit-box-orient: vertical;
 }
 
-/* ─── YouTube-style skeleton ────────────────────────────── */
+/* ─── Skeleton ──────────────────────────────────────────── */
 @keyframes yt-shimmer {
   100% {
     transform: translateX(100%);
@@ -83,8 +90,8 @@ body {
 .skeleton {
   position: relative;
   overflow: hidden;
-  background-color: #e8e8e8;
-  border-radius: 4px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
 }
 
 .skeleton::after {
@@ -95,8 +102,73 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.7) 50%,
     transparent 100%
   );
   animation: yt-shimmer 1.2s ease-in-out infinite;
+}
+
+/* ─── Design system primitives ──────────────────────────── */
+@layer components {
+  /* Surfaces */
+  .card {
+    @apply rounded-xl border border-gray-200 bg-white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-interactive {
+    @apply rounded-xl border border-gray-200 bg-white transition duration-200;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+  .card-interactive:hover {
+    border-color: #d4d4d4;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Form controls */
+  .input {
+    @apply w-full h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition;
+    @apply placeholder:text-gray-400 focus:border-gray-900 focus:ring-4 focus:ring-gray-900/5;
+  }
+
+  .label {
+    @apply mb-1.5 block text-[13px] font-medium text-gray-600;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex h-10 items-center justify-center gap-1.5 rounded-lg px-4 text-[13px] font-medium transition;
+    @apply disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply inline-flex h-10 items-center justify-center gap-1.5 rounded-lg px-4 text-[13px] font-medium transition;
+    @apply bg-gray-900 text-white hover:bg-gray-800 active:scale-[0.99];
+    @apply disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex h-10 items-center justify-center gap-1.5 rounded-lg px-4 text-[13px] font-medium transition;
+    @apply border border-gray-200 bg-white text-gray-900 hover:bg-gray-50 hover:border-gray-300;
+    @apply disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-ghost {
+    @apply inline-flex h-10 items-center justify-center gap-1.5 rounded-lg px-4 text-[13px] font-medium transition;
+    @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100;
+    @apply disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  /* Misc */
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2.5 py-1 text-xs font-medium text-gray-600;
+  }
+
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.12em] text-gray-400;
+  }
+
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
 }

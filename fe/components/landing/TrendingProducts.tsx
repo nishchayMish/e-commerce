@@ -18,44 +18,46 @@ export default function TrendingProducts() {
   const filteredProducts = trendingProducts[activeTab] ?? [];
 
   return (
-    <section id="trending" className="py-24 sm:py-32 bg-white">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="trending" className="py-16 sm:py-20 bg-white">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10">
           <AnimatedSection direction="up" className="max-w-xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-600 mb-3 block">
+            <span className="eyebrow mb-2 block">
               Trending Now
             </span>
-            <h2 className="text-3xl sm:text-[42px] lg:text-[48px] font-bold text-gray-900 leading-[1.1] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 tracking-tight">
               Most Popular Items
             </h2>
           </AnimatedSection>
-          <AnimatedSection direction="up" delay={0.1} className="mt-4 md:mt-0">
+          <AnimatedSection direction="up" delay={0.06}>
             <Link
               href="/shop"
-              className="group flex items-center gap-1.5 text-sm font-semibold text-gray-900 hover:text-indigo-600 transition-colors"
+              className="group inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-900 transition-colors hover:text-gray-500"
             >
               Shop All Products
-              <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </AnimatedSection>
         </div>
 
-        {/* Premium Filter Tabs */}
-        <AnimatedSection direction="up" delay={0.1} className="mb-10 overflow-x-auto hide-scrollbar -mx-5 px-5 sm:mx-0 sm:px-0">
-          <div className="flex border-b border-gray-100 gap-6 sm:gap-8 pb-3 min-w-max">
+        {/* Filter Tabs */}
+        <AnimatedSection direction="up" delay={0.06} className="mb-8 overflow-x-auto hide-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex border-b border-gray-200 gap-5 sm:gap-7 pb-3 min-w-max">
             {filterTabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setSelectedTab(tab)}
-                className="relative py-2 text-sm font-semibold text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
+                className={`relative py-1.5 text-[13px] font-medium transition-colors cursor-pointer ${
+                  activeTab === tab ? "text-gray-900" : "text-gray-500 hover:text-gray-900"
+                }`}
               >
                 {tab}
                 {activeTab === tab && (
                   <motion.div
                     layoutId="trendingActiveIndicator"
-                    className="absolute bottom-[-13px] left-0 right-0 h-0.5 bg-indigo-600 rounded-full"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    className="absolute bottom-[-13px] left-0 right-0 h-px bg-gray-900"
+                    transition={{ type: "spring", stiffness: 400, damping: 34 }}
                   />
                 )}
               </button>
@@ -64,16 +66,16 @@ export default function TrendingProducts() {
         </AnimatedSection>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           <AnimatePresence mode="popLayout">
             {filteredProducts.map((product) => (
               <motion.div
                 key={product.id}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 6 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
               >
                 <ProductCard product={product} />
               </motion.div>

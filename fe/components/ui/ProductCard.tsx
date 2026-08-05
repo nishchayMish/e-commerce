@@ -49,17 +49,17 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
 
   return (
     <motion.div
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="group relative bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.04),0_8px_28px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.1),0_28px_56px_rgba(0,0,0,0.12)] transition-shadow duration-400 flex flex-col"
+      whileHover={{ y: -2 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-[border-color,box-shadow] duration-200 hover:border-gray-300 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
     >
       {/* ─── Image ────────────────────────────────────────── */}
-      <div className={`relative overflow-hidden bg-gray-50 ${compact ? "aspect-[4/3]" : "aspect-square"}`}>
+      <div className={`relative overflow-hidden bg-[#fafafa] border-b border-gray-100 ${compact ? "aspect-[4/3]" : "aspect-square"}`}>
         <motion.div
           onClick={onClickHandler}
-          className="w-full h-full"
-          whileHover={{ scale: 1.07 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full h-full cursor-pointer"
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
             src={product.image}
@@ -70,68 +70,51 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
           />
         </motion.div>
 
-        {/* Overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
         {badgeLabel && (
-          <span className="absolute top-3 left-3 z-10 rounded-full bg-white/85 backdrop-blur-md px-2.5 py-1 text-[11px] font-medium tracking-wide text-gray-800 shadow-[0_1px_2px_rgba(0,0,0,0.06)] ring-1 ring-black/5">
+          <span className="absolute top-3 left-3 z-10 rounded-md border border-gray-200 bg-white/90 backdrop-blur px-2 py-0.5 text-[11px] font-medium text-gray-600">
             {badgeLabel}
           </span>
         )}
 
         {/* Action buttons */}
-        <div className="absolute bottom-3 right-3 flex flex-col gap-2 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out">
+        <div className="absolute top-3 right-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
           <motion.button
-            whileTap={{ scale: 0.9 }}
+            whileTap={{ scale: 0.92 }}
             onClick={() => setWishlisted((w) => !w)}
-            className={`w-9 h-9 rounded-xl flex items-center justify-center shadow-lg backdrop-blur-sm border transition-colors ${wishlisted
-                ? "bg-rose-500 text-white border-rose-500"
-                : "bg-white/90 text-gray-600 border-white/60 hover:text-rose-500"
+            className={`w-8 h-8 rounded-lg flex items-center justify-center border transition ${wishlisted
+                ? "bg-gray-900 text-white border-gray-900"
+                : "bg-white/90 backdrop-blur text-gray-500 border-gray-200 hover:text-gray-900"
               }`}
             aria-label="Add to wishlist"
           >
-            <Heart size={15} fill={wishlisted ? "currentColor" : "none"} />
+            <Heart size={14} fill={wishlisted ? "currentColor" : "none"} />
           </motion.button>
         </div>
       </div>
 
       {/* ─── Content ──────────────────────────────────────── */}
       <div className="p-4 flex flex-col flex-1">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-indigo-600 mb-1.5">
-          {product.category}
-        </span>
-
-        <h3 onClick={onClickHandler} className="text-sm sm:text-base font-semibold text-gray-900 leading-snug line-clamp-2 group-hover:text-indigo-600 transition-colors duration-200 mb-0.5">
-          {product.name}
-        </h3>
-
-        {/* Rating */}
-        <div className="flex items-center gap-1.5 mb-3">
-          <div className="flex gap-0.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star
-                key={i}
-                size={11}
-                className={
-                  i < Math.floor(Number(product.rating))
-                    ? "text-amber-400 fill-amber-400"
-                    : "text-gray-200 fill-gray-200"
-                }
-              />
-            ))}
-          </div>
-          <span className="text-xs font-semibold text-gray-700">
+        <div className="flex items-center justify-between gap-2 mb-1.5">
+          <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-gray-400 truncate">
+            {product.category}
+          </span>
+          <span className="flex items-center gap-1 shrink-0 text-[11px] font-medium text-gray-500">
+            <Star size={10} className="fill-gray-900 text-gray-900" />
             {product.rating}
           </span>
         </div>
 
+        <h3 onClick={onClickHandler} className="text-sm font-medium text-gray-900 leading-snug line-clamp-2 cursor-pointer transition-colors hover:text-gray-500">
+          {product.name}
+        </h3>
+
         {/* Price row */}
-        <div className="flex items-baseline gap-2 mb-3 mt-auto">
-          <span className="text-base sm:text-lg font-bold text-gray-900">
+        <div className="flex items-baseline gap-2 mt-3 mb-3">
+          <span className="text-[15px] font-semibold text-gray-900 tabular-nums">
             ₹{price.toLocaleString("en-IN")}
           </span>
           {showOldPrice && (
-            <span className="text-sm text-gray-400 line-through">
+            <span className="text-[13px] text-gray-400 line-through tabular-nums">
               ₹{oldPrice.toLocaleString("en-IN")}
             </span>
           )}
@@ -140,15 +123,15 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
         {/* Add to Cart */}
         <motion.button
           disabled={added}
-          whileTap={{ scale: 0.97 }}
+          whileTap={{ scale: 0.99 }}
           onClick={()=>handleAddToCart(product.id)}
-          className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-250 ${added
-              ? "bg-emerald-500 text-white"
-              : "bg-gray-900 text-white hover:bg-indigo-600 active:scale-[0.98]"
+          className={`mt-auto inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg text-[13px] font-medium transition ${added
+              ? "bg-gray-100 text-gray-900 border border-gray-200"
+              : "bg-gray-900 text-white hover:bg-gray-800"
             }`}
         >
-          <ShoppingBag size={14} />
-          {added ? "Added ✓" : "Add to Cart"}
+          <ShoppingBag size={13} />
+          {added ? "Added" : "Add to Cart"}
         </motion.button>
       </div>
     </motion.div>

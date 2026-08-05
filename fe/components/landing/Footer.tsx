@@ -58,32 +58,32 @@ const paymentMethods = ["Visa", "Mastercard", "Apple Pay", "Stripe", "Amex"];
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-950 text-gray-400 border-t border-gray-900 pt-20 pb-12 sm:pt-28">
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
+    <footer className="border-t border-gray-200 bg-[#fafafa] pt-14 pb-8">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8 pb-16 sm:pb-20 border-b border-gray-900">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8 pb-12 border-b border-gray-200">
 
           {/* Logo & Bio Left */}
-          <div className="lg:col-span-2 flex flex-col items-start">
-            <Link href="/" className="mb-6">
-              <span className="text-xl sm:text-2xl font-bold tracking-[0.25em] text-white">
+          <div className="col-span-2 flex flex-col items-start">
+            <Link href="/" className="mb-4">
+              <span className="text-base font-semibold tracking-[0.18em] text-gray-900">
                 AURUM
               </span>
             </Link>
-            <p className="text-sm text-gray-500 leading-relaxed mb-8 max-w-sm">
+            <p className="text-[13px] text-gray-500 leading-relaxed mb-6 max-w-xs">
               We curate premium design and exceptional utility. Thoughtfully crafted for the modern citizen.
             </p>
 
             {/* Socials */}
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               {socialIcons.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-gray-900 hover:bg-indigo-600 border border-gray-900 hover:border-indigo-600 flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 shadow-sm"
+                  className="w-9 h-9 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-500 transition hover:text-gray-900 hover:border-gray-300"
                   aria-label={label}
                 >
                   <Icon />
@@ -95,15 +95,15 @@ export default function Footer() {
           {/* Links columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title} className="flex flex-col items-start">
-              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6">
+              <h4 className="text-[13px] font-medium text-gray-900 mb-3.5">
                 {title}
               </h4>
-              <ul className="space-y-4">
+              <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-gray-500 hover:text-white transition-colors duration-200"
+                      className="text-[13px] text-gray-500 transition-colors hover:text-gray-900"
                     >
                       {link.label}
                     </Link>
@@ -116,17 +116,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom copyright & payment methods */}
-        <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-xs text-gray-600">
-            &copy; {new Date().getFullYear()} AURUM Inc. All rights reserved. Made for curated portfolios.
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-gray-400">
+            &copy; {new Date().getFullYear()} AURUM Inc. All rights reserved.
           </p>
 
           {/* Payment Methods */}
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2">
             {paymentMethods.map((method) => (
               <span
                 key={method}
-                className="text-[10px] font-bold text-gray-500 bg-gray-900 border border-gray-800 rounded-lg px-2.5 py-1 select-none"
+                className="text-[11px] font-medium text-gray-500 bg-white border border-gray-200 rounded-md px-2 py-1 select-none"
               >
                 {method}
               </span>

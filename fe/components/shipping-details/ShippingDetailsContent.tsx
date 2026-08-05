@@ -16,9 +16,9 @@ import {
 } from "@/lib/checkout";
 
 const inputClass =
-  "w-full bg-slate-50/80 border border-gray-200/90 focus:border-indigo-500 focus:bg-white rounded-xl px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-300";
+  "w-full h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-gray-900 focus:ring-4 focus:ring-gray-900/5";
 
-const labelClass = "block text-xs font-medium text-gray-500 mb-1.5";
+const labelClass = "mb-1.5 block text-[13px] font-medium text-gray-600";
 
 export default function ShippingDetailsContent() {
   const router = useRouter();
@@ -54,9 +54,9 @@ export default function ShippingDetailsContent() {
 
   if (loading || cartItems.length <= 0) {
     return (
-      <section className="min-h-screen flex items-center justify-center bg-slate-50/70">
+      <section className="min-h-dvh flex items-center justify-center bg-[#fafafa]">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-7 h-7 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
           <p className="text-sm text-gray-500">Loading shipping details…</p>
         </div>
       </section>
@@ -64,26 +64,22 @@ export default function ShippingDetailsContent() {
   }
 
   return (
-    <section className="relative min-h-screen pt-10 sm:pt-12 lg:pt-14 pb-28 sm:pb-16">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/50 to-white pointer-events-none" />
-      <div className="absolute top-16 right-0 w-[420px] h-[420px] bg-indigo-50/60 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-24 left-0 w-[320px] h-[320px] bg-slate-100/80 rounded-full blur-[80px] pointer-events-none" />
-
-      <div className="relative max-w-3xl mx-auto px-5 sm:px-8">
+    <section className="min-h-dvh bg-[#fafafa] pt-10 sm:pt-12 lg:pt-14 pb-28 sm:pb-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <AnimatedSection direction="up">
           <div className="flex items-center gap-3 py-5 sm:py-6">
             <Link
               href="/cart"
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-400 hover:text-gray-900 hover:bg-white border border-transparent hover:border-gray-200 transition-all"
+              className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-900 hover:bg-white border border-transparent hover:border-gray-200 transition"
               aria-label="Back to cart"
             >
-              <ArrowLeft size={18} />
+              <ArrowLeft size={17} />
             </Link>
             <div className="min-w-0">
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+              <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">
                 Shipping details
               </h1>
-              <p className="text-xs sm:text-sm text-gray-400 mt-0.5">
+              <p className="text-[13px] text-gray-500 mt-0.5">
                 Where should we deliver your order?
               </p>
             </div>
@@ -93,15 +89,15 @@ export default function ShippingDetailsContent() {
         <AnimatedSection direction="up" delay={0.06}>
           <form
             onSubmit={handleSubmit}
-            className="mt-6 bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-gray-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02),0_16px_48px_rgba(15,23,42,0.05)] overflow-hidden"
+            className="mt-6 bg-white rounded-xl border border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)] overflow-hidden"
           >
             <div className="px-5 sm:px-8 pt-6 sm:pt-7 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600">
-                <MapPin size={18} strokeWidth={1.75} />
+              <div className="w-9 h-9 rounded-lg border border-gray-200 bg-[#fafafa] flex items-center justify-center text-gray-500">
+                <MapPin size={16} strokeWidth={1.75} />
               </div>
               <div>
-                <h2 className="text-base sm:text-lg font-bold text-gray-900">Delivery address</h2>
-                <p className="text-xs text-gray-400">We&apos;ll send order updates on this number</p>
+                <h2 className="text-base font-semibold text-gray-900 tracking-tight">Delivery address</h2>
+                <p className="text-[13px] text-gray-500">We&apos;ll send order updates on this number</p>
               </div>
             </div>
 
@@ -182,7 +178,7 @@ export default function ShippingDetailsContent() {
                     name="state"
                     value={form.state}
                     onChange={handleChange}
-                    className={`${inputClass} appearance-none pr-10 ${
+                    className={`${inputClass} appearance-none pr-9 ${
                       form.state ? "" : "text-gray-400"
                     }`}
                   >
@@ -195,7 +191,7 @@ export default function ShippingDetailsContent() {
                   </select>
                   <ChevronDown
                     size={14}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
                   />
                 </div>
               </div>
@@ -219,35 +215,34 @@ export default function ShippingDetailsContent() {
               </div>
             </div>
 
-            <div className="px-5 sm:px-8 pb-6 sm:pb-8">
+            <div className="hidden sm:flex items-center justify-between gap-4 border-t border-gray-200 bg-[#fafafa] px-5 sm:px-8 py-4">
+              <p className="flex items-center gap-1.5 text-[13px] text-gray-500">
+                <Lock size={13} className="shrink-0" />
+                Your details are encrypted and never shared
+              </p>
               <button
                 type="submit"
                 disabled={!isValid}
-                className="hidden sm:flex w-full items-center justify-center gap-2 py-4 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] shadow-[0_8px_24px_rgba(79,70,229,0.28)] transition-all duration-200 disabled:opacity-40 disabled:pointer-events-none disabled:shadow-none"
+                className="inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-4 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:opacity-40 disabled:pointer-events-none"
               >
                 Proceed to checkout
-                <ArrowRight size={16} />
+                <ArrowRight size={14} />
               </button>
-
-              <div className="mt-4 hidden sm:flex items-center justify-center gap-1.5 text-[11px] text-gray-400">
-                <Lock size={12} className="shrink-0" />
-                <span>Your details are encrypted and never shared</span>
-              </div>
             </div>
           </form>
         </AnimatedSection>
       </div>
 
       {/* Mobile sticky action bar */}
-      <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 border-t border-gray-200/80 bg-white/90 backdrop-blur-xl px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.06)]">
+      <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 border-t border-gray-200 bg-white/90 backdrop-blur-xl px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <button
           type="button"
           onClick={handleSubmit}
           disabled={!isValid}
-          className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] transition-all disabled:opacity-40 disabled:pointer-events-none"
+          className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-lg bg-gray-900 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:opacity-40 disabled:pointer-events-none"
         >
           Proceed to checkout
-          <ArrowRight size={15} />
+          <ArrowRight size={14} />
         </button>
       </div>
     </section>

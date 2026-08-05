@@ -2,29 +2,28 @@ import Skeleton from "@/components/ui/Skeleton";
 
 export default function ProductCardSkeleton() {
   return (
-    <div className="flex flex-col rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+    <div className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
       {/* Thumbnail — matches ProductCard image */}
-      <Skeleton className="aspect-square !rounded-none" />
+      <div className="border-b border-gray-100">
+        <Skeleton className="aspect-square rounded-none!" />
+      </div>
 
       <div className="p-4 flex flex-col flex-1">
-        {/* Category */}
-        <Skeleton className="h-2.5 w-[28%] mb-3" />
-
-        {/* Title — two lines like real card */}
-        <Skeleton className="h-3.5 w-[92%] mb-2" />
-        <Skeleton className="h-3.5 w-[62%] mb-3.5" />
-
-        {/* Rating stars row */}
-        <div className="flex items-center gap-1.5 mb-3">
-          <Skeleton className="h-2.5 w-16" />
-          <Skeleton className="h-2.5 w-6" />
+        {/* Category + rating row */}
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <Skeleton className="h-2.5 w-[30%]" />
+          <Skeleton className="h-2.5 w-7" />
         </div>
 
+        {/* Title — two lines like real card */}
+        <Skeleton className="h-3 w-[90%] mb-1.5" />
+        <Skeleton className="h-3 w-[60%]" />
+
         {/* Price */}
-        <Skeleton className="h-5 w-[30%] mb-3 mt-auto" />
+        <Skeleton className="h-4 w-[32%] mt-3 mb-3" />
 
         {/* Add to cart button */}
-        <Skeleton className="h-10 w-full !rounded-xl" />
+        <Skeleton className="h-9 w-full mt-auto rounded-lg!" />
       </div>
     </div>
   );
