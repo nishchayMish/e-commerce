@@ -7,7 +7,6 @@ import {
   Plus,
   Trash2,
   ArrowRight,
-  Tag,
   Truck,
   ShieldCheck,
   RefreshCw,
@@ -273,30 +272,8 @@ export default function CartContent() {
                       Shipping & taxes calculated at checkout.
                     </p>
 
-                    {/* Promo */}
-                    <div className="mt-5 sm:mt-6 flex gap-2">
-                      <div className="relative flex-1 min-w-0">
-                        <Tag
-                          size={14}
-                          className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-                        />
-                        <input
-                          type="text"
-                          placeholder="Promo code"
-                          readOnly
-                          className="w-full bg-slate-50 border border-gray-200 hover:border-gray-300 focus:border-indigo-500 focus:bg-white rounded-xl pl-9 pr-3 py-2.5 sm:py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400"
-                        />
-                      </div>
-                      <button
-                        type="button"
-                        className="shrink-0 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-sm font-semibold bg-gray-900 text-white hover:bg-indigo-600 active:scale-[0.98] transition-all"
-                      >
-                        Apply
-                      </button>
-                    </div>
-
                     {/* Breakdown */}
-                    <dl className="mt-6 space-y-3 text-sm border-t border-gray-100 pt-5">
+                    <dl className="mt-5 sm:mt-6 space-y-3 text-sm border-t border-gray-100 pt-5">
                       <div className="flex justify-between gap-4">
                         <dt className="text-gray-500">Subtotal</dt>
                         <dd className="font-medium text-gray-900 tabular-nums">
@@ -331,10 +308,10 @@ export default function CartContent() {
                     </div>
 
                     <Link
-                      href="/order-details"
+                      href="/shipping-details"
                       className="mt-6 w-full flex items-center justify-center gap-2 py-3.5 sm:py-4 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] shadow-[0_8px_24px_rgba(79,70,229,0.28)] transition-all duration-200"
                     >
-                      Continue to order details
+                      Continue to shipping details
                       <ArrowRight size={16} />
                     </Link>
 
@@ -375,7 +352,7 @@ export default function CartContent() {
             </p>
           </div>
           <Link
-            href="/order-details"
+            href="/shipping-details"
             className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] shadow-[0_6px_20px_rgba(79,70,229,0.3)] transition-all"
           >
             Continue

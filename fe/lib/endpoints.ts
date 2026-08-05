@@ -47,7 +47,7 @@ export const endpoints = {
   },
   orders:{
     cartItems: "/orders/summary",
-    
+    checkout: "/orders/checkout",
   }
 
 };
