@@ -271,36 +271,6 @@ export default function CheckoutContent() {
                 <h2 className="text-base font-semibold text-gray-900 tracking-tight">
                   Order summary
                 </h2>
-                <p className="mt-1 text-[13px] text-gray-500">
-                  {cartItems.length} {cartItems.length === 1 ? "item" : "items"} · delivered in 3–5
-                  days
-                </p>
-              </div>
-
-              <div className="px-5 pt-4 space-y-3 max-h-52 overflow-y-auto">
-                {cartItems.map((item) => (
-                  <div key={item.id} className="flex items-center gap-3">
-                    <div className="relative w-10 h-10 rounded-md overflow-hidden bg-gray-50 shrink-0 border border-gray-200">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        className="object-cover"
-                        sizes="40px"
-                      />
-                      <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gray-900 text-white text-[10px] font-semibold flex items-center justify-center">
-                        {item.quantity}
-                      </span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[13px] text-gray-900 truncate">{item.name}</p>
-                      <p className="text-[13px] text-gray-500">{formatPrice(item.price)}</p>
-                    </div>
-                    <p className="text-[13px] font-medium text-gray-900 tabular-nums shrink-0">
-                      {formatPrice(item.price * item.quantity)}
-                    </p>
-                  </div>
-                ))}
               </div>
 
               {/* Promo */}
