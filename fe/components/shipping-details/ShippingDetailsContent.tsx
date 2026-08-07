@@ -64,8 +64,8 @@ export default function ShippingDetailsContent() {
   }
 
   return (
-    <section className="min-h-dvh bg-[#fafafa] pt-10 sm:pt-12 lg:pt-14 pb-28 sm:pb-16">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+    <section className="min-h-screen bg-[#fafafa]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <AnimatedSection direction="up">
           <div className="flex items-center gap-3 py-5 sm:py-6">
             <Link
@@ -89,7 +89,7 @@ export default function ShippingDetailsContent() {
         <AnimatedSection direction="up" delay={0.06}>
           <form
             onSubmit={handleSubmit}
-            className="mt-6 bg-white rounded-xl border border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)] overflow-hidden"
+            className="mt-3 bg-white rounded-xl border border-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)] overflow-hidden"
           >
             <div className="px-5 sm:px-8 pt-6 sm:pt-7 flex items-center gap-3">
               <div className="w-9 h-9 rounded-lg border border-gray-200 bg-[#fafafa] flex items-center justify-center text-gray-500">

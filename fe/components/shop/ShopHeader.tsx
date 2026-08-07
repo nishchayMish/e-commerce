@@ -2,7 +2,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function ShopHeader() {
   return (
-    <section className="border-b border-gray-200 bg-white pt-24 pb-8 sm:pt-28 sm:pb-10">
+    <section className="border-gray-200 bg-white pt-24 pb-8 sm:pt-28 sm:pb-10">
       <div className="container-page">
         <AnimatedSection direction="up">
           <span className="eyebrow block">Premium Collection</span>

@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <ContactHeader />
-      <section className="pb-16 sm:pb-20">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             <div className="lg:col-span-5 space-y-6">

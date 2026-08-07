@@ -131,7 +131,7 @@ function ShopPageContent() {
       <ShopHeader />
       
       {/* input box for search */}
-      <div className="border-b border-gray-200 bg-white">
+      <div className=" border-gray-200 bg-white">
         <div className="container-page py-4">
           <ShopSearchBar 
           searchInput={searchInput} 
