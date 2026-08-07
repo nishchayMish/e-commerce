@@ -1,4 +1,8 @@
-import { insertUserAddress } from "./orders.repository.js";
+import { getUserAddress, insertUserAddress } from "./orders.repository.js";
+
+export const getUserAddressService = async(userId) => {
+    return await getUserAddress(userId);
+}
 
 export const orderCheckoutService = async(fullName, phone, addressLine, city, state, pincode, userId) => {
     return await insertUserAddress(fullName, phone, addressLine, city, state, pincode, userId);

@@ -1,17 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, ChevronDown, Lock, MapPin } from "lucide-react";
+import toast from "react-hot-toast";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { useCart } from "@/context/CartContext";
+import http from "@/lib/http";
+import { endpoints } from "@/lib/endpoints";
 import {
   emptyShippingDetails,
+  fetchUserAddress,
   indianStates,
   isShippingDetailsComplete,
-  readShippingDetails,
-  saveShippingDetails,
   type ShippingDetails,
 } from "@/lib/checkout";
 
@@ -22,20 +24,43 @@ const labelClass = "mb-1.5 block text-[13px] font-medium text-gray-600";
 
 export default function ShippingDetailsContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const isEditing = searchParams.get("edit") === "1";
   const { cartItems, loading } = useCart();
-  // Cart context is still loading on the first paint, so the form is never
-  // rendered before hydration and reading storage here stays mismatch-free.
-  const [form, setForm] = useState<ShippingDetails>(() =>
-    typeof window === "undefined"
-      ? emptyShippingDetails
-      : readShippingDetails() ?? emptyShippingDetails
-  );
+  const [form, setForm] = useState<ShippingDetails>(emptyShippingDetails);
+  const [checkingAddress, setCheckingAddress] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (!loading && cartItems.length <= 0) {
       router.replace("/shop");
     }
   }, [loading, cartItems.length, router]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const load = async () => {
+      try {
+        const address = await fetchUserAddress();
+        if (cancelled) return;
+        if (address && !isEditing) {
+          router.replace("/checkout");
+          return;
+        }
+        if (address) setForm(address);
+      } catch {
+        // No saved address — show the form
+      } finally {
+        if (!cancelled) setCheckingAddress(false);
+      }
+    };
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [router, isEditing]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -45,14 +70,23 @@ export default function ShippingDetailsContent() {
 
   const isValid = isShippingDetailsComplete(form);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isValid) return;
-    saveShippingDetails(form);
-    router.push("/checkout");
+    if (!isValid || saving) return;
+    setSaving(true);
+    try {
+      await http.post(endpoints.orders.checkout, form);
+      router.push("/checkout");
+    } catch (error) {
+      const message =
+        (error as { response?: { data?: { message?: string } } })?.response?.data?.message ??
+        "Could not save your address. Please try again.";
+      toast.error(message);
+      setSaving(false);
+    }
   };
 
-  if (loading || cartItems.length <= 0) {
+  if (loading || checkingAddress || cartItems.length <= 0) {
     return (
       <section className="min-h-dvh flex items-center justify-center bg-[#fafafa]">
         <div className="flex flex-col items-center gap-3">
@@ -69,9 +103,9 @@ export default function ShippingDetailsContent() {
         <AnimatedSection direction="up">
           <div className="flex items-center gap-3 py-5 sm:py-6">
             <Link
-              href="/cart"
+              href={isEditing ? "/checkout" : "/cart"}
               className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-900 hover:bg-white border border-transparent hover:border-gray-200 transition"
-              aria-label="Back to cart"
+              aria-label={isEditing ? "Back to checkout" : "Back to cart"}
             >
               <ArrowLeft size={17} />
             </Link>
@@ -222,10 +256,10 @@ export default function ShippingDetailsContent() {
               </p>
               <button
                 type="submit"
-                disabled={!isValid}
+                disabled={!isValid || saving}
                 className="inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-4 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:opacity-40 disabled:pointer-events-none"
               >
-                Proceed to checkout
+                {saving ? "Saving…" : "Proceed to checkout"}
                 <ArrowRight size={14} />
               </button>
             </div>
@@ -233,15 +267,14 @@ export default function ShippingDetailsContent() {
         </AnimatedSection>
       </div>
 
-      {/* Mobile sticky action bar */}
       <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 border-t border-gray-200 bg-white/90 backdrop-blur-xl px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <button
           type="button"
           onClick={handleSubmit}
-          disabled={!isValid}
+          disabled={!isValid || saving}
           className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-lg bg-gray-900 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:opacity-40 disabled:pointer-events-none"
         >
-          Proceed to checkout
+          {saving ? "Saving…" : "Proceed to checkout"}
           <ArrowRight size={14} />
         </button>
       </div>

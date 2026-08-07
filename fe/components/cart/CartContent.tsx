@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Minus,
   Plus,
@@ -15,10 +16,12 @@ import {
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import CartSkeleton from "@/components/cart/CartSkeleton";
 import EmptyCart from "@/components/cart/EmptyCart";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 import { useCart } from "@/context/CartContext";
+import { fetchUserAddress } from "@/lib/checkout";
 
 const formatPrice = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
@@ -32,7 +35,9 @@ const cardClass =
   "rounded-xl border border-gray-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]";
 
 export default function CartContent() {
+  const router = useRouter();
   const { cartItems, loading, fetchCart } = useCart();
+  const [continuing, setContinuing] = useState(false);
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = 500;
   const total = subtotal - discount;
@@ -45,6 +50,18 @@ export default function CartContent() {
       fetchCart();
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleContinue = async () => {
+    if (continuing) return;
+    setContinuing(true);
+    try {
+      const address = await fetchUserAddress();
+      router.push(address ? "/checkout" : "/shipping-details");
+    } catch {
+      toast.error("Could not continue. Please try again.");
+      setContinuing(false);
     }
   };
 
@@ -309,13 +326,15 @@ export default function CartContent() {
                   </div>
 
                   <div className="mt-5 border-t border-gray-200 bg-[#fafafa] px-5 py-4">
-                    <Link
-                      href="/shipping-details"
-                      className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-lg bg-gray-900 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99]"
+                    <button
+                      type="button"
+                      onClick={handleContinue}
+                      disabled={continuing}
+                      className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-lg bg-gray-900 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none"
                     >
-                      Continue to shipping details
+                      {continuing ? "Continuing…" : "Continue to checkout"}
                       <ArrowRight size={14} />
-                    </Link>
+                    </button>
 
                     <div className="mt-2.5 flex items-center justify-center gap-1.5 text-xs text-gray-400">
                       <Lock size={12} className="shrink-0" />
@@ -353,13 +372,15 @@ export default function CartContent() {
               {formatPrice(total)}
             </p>
           </div>
-          <Link
-            href="/shipping-details"
-            className="shrink-0 inline-flex h-10 items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-5 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99]"
+          <button
+            type="button"
+            onClick={handleContinue}
+            disabled={continuing}
+            className="shrink-0 inline-flex h-10 items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-5 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none"
           >
-            Continue
+            {continuing ? "…" : "Continue"}
             <ArrowRight size={14} />
-          </Link>
+          </button>
         </div>
       </div>
     </section>

@@ -33,11 +33,11 @@ export const sanitizedCheckoutDetilsInput = (req, res, next) => {
     }
 
 
-    if (!paymentMethod || !paymentMethod.trim()) {
-        return res.status(400).json({ message: "paymentMethod is required" });
-    }
-    if (!acceptedPaymentMethods.includes(paymentMethod.trim())) {
-        return res.status(400).json({ message: "Invalid payment method" });
+    // Optional on address save from shipping page; required when placing an order
+    if (paymentMethod != null && String(paymentMethod).trim()) {
+        if (!acceptedPaymentMethods.includes(String(paymentMethod).trim())) {
+            return res.status(400).json({ message: "Invalid payment method" });
+        }
     }
 
     next();

@@ -1,4 +1,5 @@
-export const SHIPPING_STORAGE_KEY = "aurum:shipping-details";
+import http from "@/lib/http";
+import { endpoints } from "@/lib/endpoints";
 
 export type PaymentMethod = "CARD" | "UPI" | "COD";
 
@@ -62,19 +63,26 @@ export const isShippingDetailsComplete = (details: ShippingDetails) =>
       details.pincode.trim().length === 6
   );
 
-export const saveShippingDetails = (details: ShippingDetails) => {
-  sessionStorage.setItem(SHIPPING_STORAGE_KEY, JSON.stringify(details));
+/** Map API / DB address (snake or camel) → ShippingDetails */
+export const normalizeShippingAddress = (raw: unknown): ShippingDetails | null => {
+  if (!raw || typeof raw !== "object") return null;
+
+  const row = raw as Record<string, unknown>;
+  const details: ShippingDetails = {
+    fullName: String(row.fullName ?? row.full_name ?? ""),
+    phone: String(row.phone ?? ""),
+    addressLine: String(row.addressLine ?? row.address_line ?? ""),
+    city: String(row.city ?? ""),
+    state: String(row.state ?? ""),
+    pincode: String(row.pincode ?? ""),
+  };
+
+  return isShippingDetailsComplete(details) ? details : null;
 };
 
-export const readShippingDetails = (): ShippingDetails | null => {
-  try {
-    const raw = sessionStorage.getItem(SHIPPING_STORAGE_KEY);
-    if (!raw) return null;
-    const parsed = { ...emptyShippingDetails, ...JSON.parse(raw) } as ShippingDetails;
-    return isShippingDetailsComplete(parsed) ? parsed : null;
-  } catch {
-    return null;
-  }
+export const fetchUserAddress = async (): Promise<ShippingDetails | null> => {
+  const res = await http.get(endpoints.orders.address);
+  return normalizeShippingAddress(res.data?.address);
 };
 
 export const formatPrice = (n: number) => `₹${n.toLocaleString("en-IN")}`;

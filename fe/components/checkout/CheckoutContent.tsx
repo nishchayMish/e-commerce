@@ -20,9 +20,8 @@ import { useCart } from "@/context/CartContext";
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 import {
+  fetchUserAddress,
   formatPrice,
-  readShippingDetails,
-  SHIPPING_STORAGE_KEY,
   type PaymentMethod,
   type ShippingDetails,
 } from "@/lib/checkout";
@@ -66,11 +65,8 @@ export default function CheckoutContent() {
   const router = useRouter();
   const { cartItems, loading } = useCart();
 
-  // Cart context is still loading on the first paint, so nothing derived from
-  // storage is rendered before hydration.
-  const [shipping] = useState<ShippingDetails | null>(() =>
-    typeof window === "undefined" ? null : readShippingDetails()
-  );
+  const [shipping, setShipping] = useState<ShippingDetails | null>(null);
+  const [addressLoading, setAddressLoading] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("UPI");
   const [placing, setPlacing] = useState(false);
 
@@ -79,23 +75,41 @@ export default function CheckoutContent() {
   const total = Math.max(0, subtotal - discount);
 
   useEffect(() => {
-    if (!shipping) {
-      router.replace("/shipping-details");
-    }
-  }, [shipping, router]);
-
-  useEffect(() => {
     if (!loading && cartItems.length <= 0) {
       router.replace("/shop");
     }
   }, [loading, cartItems.length, router]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const load = async () => {
+      try {
+        const address = await fetchUserAddress();
+        if (cancelled) return;
+        if (!address) {
+          router.replace("/shipping-details");
+          return;
+        }
+        setShipping(address);
+      } catch {
+        if (!cancelled) router.replace("/shipping-details");
+      } finally {
+        if (!cancelled) setAddressLoading(false);
+      }
+    };
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [router]);
 
   const handlePlaceOrder = async () => {
     if (!shipping || placing) return;
     setPlacing(true);
     try {
       await http.post(endpoints.orders.checkout, { ...shipping, paymentMethod });
-      sessionStorage.removeItem(SHIPPING_STORAGE_KEY);
       toast.success("Order placed successfully");
       router.push("/shop");
     } catch (error) {
@@ -108,7 +122,7 @@ export default function CheckoutContent() {
     }
   };
 
-  if (loading || !shipping || cartItems.length <= 0) {
+  if (loading || addressLoading || !shipping || cartItems.length <= 0) {
     return (
       <section className="min-h-dvh flex items-center justify-center bg-[#fafafa]">
         <div className="flex flex-col items-center gap-3">
@@ -125,7 +139,7 @@ export default function CheckoutContent() {
         {/* Header */}
         <div className="flex items-center gap-2.5 py-5 sm:py-6">
           <Link
-            href="/shipping-details"
+            href="/shipping-details?edit=1"
             className="w-8 h-8 shrink-0 rounded-lg flex items-center justify-center text-gray-400 border border-transparent transition hover:text-gray-900 hover:border-gray-200 hover:bg-white"
             aria-label="Back to shipping details"
           >
@@ -152,7 +166,7 @@ export default function CheckoutContent() {
                 </p>
               </div>
               <Link
-                href="/shipping-details"
+                href="/shipping-details?edit=1"
                 className="shrink-0 text-[13px] font-medium text-gray-900 underline underline-offset-4 decoration-gray-300 transition hover:decoration-gray-900"
               >
                 Change
