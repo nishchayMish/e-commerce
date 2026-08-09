@@ -75,7 +75,9 @@ export default function ShippingDetailsContent() {
     if (!isValid || saving) return;
     setSaving(true);
     try {
-      await http.post(endpoints.orders.checkout, form);
+      const res = await http.post(endpoints.orders.saveAddress, form);
+      const { orderId } = res.data.data;
+      localStorage.setItem("order_id", String(orderId));
       router.push("/checkout");
     } catch (error) {
       const message =

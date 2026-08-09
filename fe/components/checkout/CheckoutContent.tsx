@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,16 +14,16 @@ import {
   Tag,
   Truck,
 } from "lucide-react";
-import toast from "react-hot-toast";
 import { useCart } from "@/context/CartContext";
-import http from "@/lib/http";
-import { endpoints } from "@/lib/endpoints";
 import {
   fetchUserAddress,
   formatPrice,
   type PaymentMethod,
   type ShippingDetails,
 } from "@/lib/checkout";
+import toast from "react-hot-toast";
+import http from "@/lib/http";
+import { endpoints } from "@/lib/endpoints";
 
 const paymentMethods = [
   {
@@ -68,7 +67,6 @@ export default function CheckoutContent() {
   const [shipping, setShipping] = useState<ShippingDetails | null>(null);
   const [addressLoading, setAddressLoading] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("UPI");
-  const [placing, setPlacing] = useState(false);
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = 500;
@@ -79,6 +77,8 @@ export default function CheckoutContent() {
       router.replace("/shop");
     }
   }, [loading, cartItems.length, router]);
+
+  const orderId = localStorage.getItem("order_id")
 
   useEffect(() => {
     let cancelled = false;
@@ -105,22 +105,26 @@ export default function CheckoutContent() {
     };
   }, [router]);
 
-  const handlePlaceOrder = async () => {
-    if (!shipping || placing) return;
-    setPlacing(true);
-    try {
-      await http.post(endpoints.orders.checkout, { ...shipping, paymentMethod });
-      toast.success("Order placed successfully");
-      router.push("/shop");
-    } catch (error) {
-      const message =
-        (error as { response?: { data?: { message?: string } } })?.response?.data?.message ??
-        "Could not place your order. Please try again.";
-      toast.error(message);
-    } finally {
-      setPlacing(false);
+  const checkout = async() => {
+    if(!orderId){
+      toast.error("order_id is missing");
+      return;
     }
-  };
+    if(!paymentMethod){
+      toast.error("paymentMethod is missing");
+      return;
+    }
+    try {
+      const payload = {
+        paymentMethod,
+        orderId
+      }
+      const res = await http.post(endpoints.orders.checkout, payload);
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   if (loading || addressLoading || !shipping || cartItems.length <= 0) {
     return (
@@ -320,21 +324,10 @@ export default function CheckoutContent() {
               <div className="mt-5 border-t border-gray-200 bg-[#fafafa] px-5 py-4">
                 <button
                   type="button"
-                  onClick={handlePlaceOrder}
-                  disabled={placing}
                   className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-lg bg-gray-900 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  {placing ? (
-                    <>
-                      <span className="w-3.5 h-3.5 border-2 border-white/60 border-t-transparent rounded-full animate-spin" />
-                      Placing order…
-                    </>
-                  ) : (
-                    <>
-                      <Lock size={13} />
-                      Place order · {formatPrice(total)}
-                    </>
-                  )}
+                  <Lock size={13} />
+                    Place order · {formatPrice(total)}
                 </button>
                 <p className="mt-2.5 text-center text-xs text-gray-400">
                   By placing this order you agree to our Terms &amp; Conditions
@@ -368,13 +361,12 @@ export default function CheckoutContent() {
             </p>
           </div>
           <button
+            onClick={checkout}
             type="button"
-            onClick={handlePlaceOrder}
-            disabled={placing}
             className="inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-5 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none"
           >
             <Lock size={13} />
-            {placing ? "Placing…" : "Place order"}
+            Place order
           </button>
         </div>
       </div>

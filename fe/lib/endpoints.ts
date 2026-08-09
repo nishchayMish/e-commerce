@@ -46,9 +46,10 @@ export const endpoints = {
     deleteFromCart: (pId : string) => `/cart/${pId}`
   },
   orders:{
-    address: "/orders/address",
+    fetchAddress: "/orders/address",
     cartItems: "/orders/summary",
-    checkout: "/orders/checkout",
+    saveAddress: "/orders/address",
+    checkout: "/orders/checkout"
   }
 
 };

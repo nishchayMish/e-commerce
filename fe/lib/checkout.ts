@@ -81,7 +81,7 @@ export const normalizeShippingAddress = (raw: unknown): ShippingDetails | null =
 };
 
 export const fetchUserAddress = async (): Promise<ShippingDetails | null> => {
-  const res = await http.get(endpoints.orders.address);
+  const res = await http.get(endpoints.orders.fetchAddress);
   return normalizeShippingAddress(res.data?.address);
 };
 

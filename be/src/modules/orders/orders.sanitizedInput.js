@@ -1,6 +1,5 @@
 export const sanitizedCheckoutDetilsInput = (req, res, next) => {
     const { fullName, phone, addressLine, city, state, pincode, paymentMethod } = req.body;
-    const acceptedPaymentMethods = ['UPI', 'CARD', 'COD'];
 
     // 1. Full Name Validation
     if (!fullName || !fullName.trim()) {
@@ -32,12 +31,20 @@ export const sanitizedCheckoutDetilsInput = (req, res, next) => {
         return res.status(400).json({ message: "Invalid pincode" });
     }
 
+    next();
+}
 
-    // Optional on address save from shipping page; required when placing an order
+export const sanitizedCreateOrderInput = (req, res, next) => {
+    const acceptedPaymentMethods = ['UPI', 'CARD', 'COD'];
+    const { paymentMethod, orderId } = req.body; 
     if (paymentMethod != null && String(paymentMethod).trim()) {
         if (!acceptedPaymentMethods.includes(String(paymentMethod).trim())) {
             return res.status(400).json({ message: "Invalid payment method" });
         }
+    }
+
+    if(!orderId){
+        return res.status(400).json({ message: "orderId is required" });
     }
 
     next();

@@ -28,7 +28,6 @@ export const orderCheckoutController = async(req, res) => {
 
         const data = await orderCheckoutService(fullName, phone, addressLine, city, state, pincode, userId);
         return res.status(200).json({
-            success: true,
             data
         });
     } catch (err) {
@@ -39,12 +38,16 @@ export const orderCheckoutController = async(req, res) => {
 }
 
 export const createOrderController = async(req, res) => {
-    try {
+    try {   
         const userId = req.user.id;
+        const { paymentMethod, orderId } = req.body;
+        console.log("paymentMethod: ", paymentMethod)
+        console.log("orderId: ", orderId)
         const data = await getCartService(userId);
-        const finalPrice = await creatOrderService(data);
+        const order = await creatOrderService(data, paymentMethod, userId, orderId);
         return res.status(200).json({
-            finalPrice
+            sucess: true,
+            order
         });
     } catch (err) {
         return res.status(err.statusCode || 500).json({

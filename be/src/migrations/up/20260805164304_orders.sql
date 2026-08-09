@@ -5,9 +5,9 @@
     CREATE TABLE IF NOT EXISTS orders (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         user_id UUID REFERENCES users(id),
+        razorpay_order_id VARCHAR(100) UNIQUE,
 
         contact_name VARCHAR(255),
-        contact_email VARCHAR(255),
         contact_phone VARCHAR(20),
 
         shipping_address TEXT,
