@@ -53,10 +53,26 @@ export const indianStates = [
   "West Bengal",
 ];
 
+/** 10-digit Indian mobile (no country code). Accepts +91 / 91 / 0 prefixes. */
+export const extractIndianMobile = (phone: string): string => {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.length === 12 && digits.startsWith("91")) return digits.slice(2);
+  if (digits.length === 11 && digits.startsWith("0")) return digits.slice(1);
+  if (digits.length > 10 && digits.startsWith("91")) return digits.slice(-10);
+  return digits.slice(0, 10);
+};
+
+export const isValidIndianMobile = (phone: string): boolean =>
+  /^[6-9]\d{9}$/.test(extractIndianMobile(phone));
+
+/** Razorpay / E.164 style: +91XXXXXXXXXX */
+export const toE164Indian = (phone: string): string =>
+  `+91${extractIndianMobile(phone)}`;
+
 export const isShippingDetailsComplete = (details: ShippingDetails) =>
   Boolean(
     details.fullName.trim() &&
-      details.phone.trim().length >= 10 &&
+      isValidIndianMobile(details.phone) &&
       details.addressLine.trim() &&
       details.city.trim() &&
       details.state.trim() &&
@@ -70,7 +86,7 @@ export const normalizeShippingAddress = (raw: unknown): ShippingDetails | null =
   const row = raw as Record<string, unknown>;
   const details: ShippingDetails = {
     fullName: String(row.fullName ?? row.full_name ?? ""),
-    phone: String(row.phone ?? ""),
+    phone: extractIndianMobile(String(row.phone ?? "")),
     addressLine: String(row.addressLine ?? row.address_line ?? ""),
     city: String(row.city ?? ""),
     state: String(row.state ?? ""),

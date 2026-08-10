@@ -6,12 +6,20 @@ export const sanitizedCheckoutDetilsInput = (req, res, next) => {
         return res.status(400).json({ message: "name is required" });
     }
 
-    if (!phone || !phone.trim()) {
+    if (!phone || !String(phone).trim()) {
         return res.status(400).json({ message: "phone is required" });
     }
-    if (phone.trim().length < 10) {
-        return res.status(400).json({ message: "Invalid phone number" });
+
+    const digits = String(phone).replace(/\D/g, "");
+    let local = digits;
+    if (digits.length === 12 && digits.startsWith("91")) local = digits.slice(2);
+    else if (digits.length === 11 && digits.startsWith("0")) local = digits.slice(1);
+    else if (digits.length > 10 && digits.startsWith("91")) local = digits.slice(-10);
+
+    if (!/^[6-9]\d{9}$/.test(local)) {
+        return res.status(400).json({ message: "Enter a valid 10-digit Indian mobile number" });
     }
+    req.body.phone = `+91${local}`;
 
     if (!addressLine || !addressLine.trim()) {
         return res.status(400).json({ message: "addressLine is required" });

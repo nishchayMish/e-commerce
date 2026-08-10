@@ -18,6 +18,7 @@ import { useCart } from "@/context/CartContext";
 import {
   fetchUserAddress,
   formatPrice,
+  toE164Indian,
   type PaymentMethod,
   type ShippingDetails,
 } from "@/lib/checkout";
@@ -151,7 +152,7 @@ export default function CheckoutContent() {
 
         prefill: {
           name: order.contact_name,
-          contact: order.contact_phone
+          contact: toE164Indian(order.contact_phone),
         },
 
         theme: {
@@ -204,7 +205,7 @@ export default function CheckoutContent() {
               <MapPin size={16} className="mt-0.5 shrink-0 text-gray-400" />
               <div className="min-w-0 flex-1">
                 <p className="text-[13px] font-medium text-gray-900">
-                  {shipping.fullName} · {shipping.phone}
+                  {shipping.fullName} · {toE164Indian(shipping.phone)}
                 </p>
                 <p className="mt-0.5 text-[13px] text-gray-500 leading-relaxed">
                   {shipping.addressLine}, {shipping.city}, {shipping.state} — {shipping.pincode}

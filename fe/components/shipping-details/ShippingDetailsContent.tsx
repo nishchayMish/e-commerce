@@ -11,9 +11,11 @@ import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 import {
   emptyShippingDetails,
+  extractIndianMobile,
   fetchUserAddress,
   indianStates,
   isShippingDetailsComplete,
+  toE164Indian,
   type ShippingDetails,
 } from "@/lib/checkout";
 
@@ -64,7 +66,12 @@ export default function ShippingDetailsContent() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    const next = name === "phone" || name === "pincode" ? value.replace(/\D/g, "") : value;
+    let next = value;
+    if (name === "phone") {
+      next = extractIndianMobile(value);
+    } else if (name === "pincode") {
+      next = value.replace(/\D/g, "").slice(0, 6);
+    }
     setForm((prev) => ({ ...prev, [name]: next }));
   };
 
@@ -75,7 +82,8 @@ export default function ShippingDetailsContent() {
     if (!isValid || saving) return;
     setSaving(true);
     try {
-      const res = await http.post(endpoints.orders.saveAddress, form);
+      const payload = { ...form, phone: toE164Indian(form.phone) };
+      const res = await http.post(endpoints.orders.saveAddress, payload);
       const { orderId } = res.data.data;
       localStorage.setItem("order_id", String(orderId));
       router.push("/checkout");
@@ -158,18 +166,24 @@ export default function ShippingDetailsContent() {
                 <label htmlFor="phone" className={labelClass}>
                   Phone
                 </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  inputMode="numeric"
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="9876543210"
-                  maxLength={10}
-                  autoComplete="tel"
-                  className={inputClass}
-                />
+                <div className="flex h-10 overflow-hidden rounded-lg border border-gray-200 bg-white focus-within:border-gray-900 focus-within:ring-4 focus-within:ring-gray-900/5">
+                  <span className="inline-flex items-center border-r border-gray-200 bg-[#fafafa] px-3 text-sm font-medium text-gray-600 select-none">
+                    +91
+                  </span>
+                  <input
+                    id="phone"
+                    type="tel"
+                    inputMode="numeric"
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder="9876543210"
+                    maxLength={10}
+                    autoComplete="tel-national"
+                    aria-describedby="phone-hint"
+                    className="min-w-0 flex-1 border-0 bg-transparent px-3 text-sm text-gray-900 outline-none placeholder:text-gray-400"
+                  />
+                </div>
               </div>
 
               <div className="sm:col-span-2">
