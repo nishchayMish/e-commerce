@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import AuthContextProvider from "@/context/AuthContext";
 import CartContextProvider from "@/context/CartContext";
+import Script from "next/script";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +49,10 @@ export default function RootLayout({
         <AuthContextProvider>
           <CartContextProvider>
             {children}
+            <Script
+              src="https://checkout.razorpay.com/v1/checkout.js"
+              strategy="afterInteractive"
+            />
           </CartContextProvider>
         </AuthContextProvider>
       </body>

@@ -41,8 +41,6 @@ export const createOrderController = async(req, res) => {
     try {   
         const userId = req.user.id;
         const { paymentMethod, orderId } = req.body;
-        console.log("paymentMethod: ", paymentMethod)
-        console.log("orderId: ", orderId)
         const data = await getCartService(userId);
         const order = await creatOrderService(data, paymentMethod, userId, orderId);
         return res.status(200).json({

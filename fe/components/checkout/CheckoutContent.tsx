@@ -120,8 +120,49 @@ export default function CheckoutContent() {
         orderId
       }
       const res = await http.post(endpoints.orders.checkout, payload);
-      console.log(res)
+      const order = res.data.order;
+
+      if (paymentMethod === "COD") {
+        toast.success("Order placed successfully");
+        return;
+      }
+
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: Number(order.total_amount) * 100,
+        currency: "INR",
+        name: "Auram",
+        description: "Order Payment",
+        order_id: order.razorpay_order_id,
+
+        method: {
+          upi: true,
+          card: true,
+          netbanking: true,
+          wallet: false,
+          emi: false,
+          paylater: false,
+        },
+        
+        handler: async function(response: any){
+          console.log("Payment success: ", response)
+          toast.success("Payment Sucessful");
+        },
+
+        prefill: {
+          name: order.contact_name,
+          contact: order.contact_phone
+        },
+
+        theme: {
+          color: "#3399c"
+        },
+      };
+
+      const rzp = new (window as any).Razorpay(options);
+      rzp.open();
     } catch (error) {
+      toast.error("checkout failed")
       console.log(error)
     }
   }
@@ -323,6 +364,7 @@ export default function CheckoutContent() {
 
               <div className="mt-5 border-t border-gray-200 bg-[#fafafa] px-5 py-4">
                 <button
+                  onClick={checkout}
                   type="button"
                   className="inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-lg bg-gray-900 text-[13px] font-medium text-white transition hover:bg-gray-800 active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none"
                 >
