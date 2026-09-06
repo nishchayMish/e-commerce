@@ -36,22 +36,29 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = await http.post(endpoints.auth.login, formData);
-    setUser(res.data.user);
-    if (res.status === 200) {
-      const redirect = searchParams.get("redirect");
-      const safeRedirect =
-        redirect && redirect.startsWith("/") && !redirect.startsWith("//")
-          ? redirect
-          : "/";
-      router.push(safeRedirect);
-      toast.success("Login successful");
-    }
+    try {
+      const res = await http.post(endpoints.auth.login, formData);
+      console.log(res.data)
+      setUser(res.data.user);
+      if (res.status === 200) {
+        const redirect = searchParams.get("redirect");
+        const safeRedirect =
+          redirect && redirect.startsWith("/") && !redirect.startsWith("//")
+            ? redirect
+            : "/";
+        router.push(safeRedirect);
+        toast.success("Login successful");
+      }
 
-    setFormData({
-      email: "",
-      password: "",
-    });
+      setFormData({
+        email: "",
+        password: "",
+      });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error.response.data.message)
+    }
+    
   };
 
   return (

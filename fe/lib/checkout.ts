@@ -1,7 +1,7 @@
 import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 
-export type PaymentMethod = "CARD" | "UPI" | "COD";
+export type PaymentMethod = "UPI" | "COD";
 
 export interface ShippingDetails {
   fullName: string;

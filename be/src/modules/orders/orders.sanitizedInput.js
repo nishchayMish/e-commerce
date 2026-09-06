@@ -43,7 +43,7 @@ export const sanitizedCheckoutDetilsInput = (req, res, next) => {
 }
 
 export const sanitizedCreateOrderInput = (req, res, next) => {
-    const acceptedPaymentMethods = ['UPI', 'CARD', 'COD'];
+    const acceptedPaymentMethods = ['UPI', 'COD'];
     const { paymentMethod, orderId } = req.body; 
     if (paymentMethod != null && String(paymentMethod).trim()) {
         if (!acceptedPaymentMethods.includes(String(paymentMethod).trim())) {

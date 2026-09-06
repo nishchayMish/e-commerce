@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   Check,
-  CreditCard,
   Lock,
   MapPin,
   RefreshCw,
@@ -27,12 +26,6 @@ import http from "@/lib/http";
 import { endpoints } from "@/lib/endpoints";
 
 const paymentMethods = [
-  {
-    id: "CARD" as const,
-    label: "Credit / Debit Card",
-    desc: "Visa, Mastercard, RuPay",
-    icon: CreditCard,
-  },
   {
     id: "UPI" as const,
     label: "UPI",
@@ -138,8 +131,8 @@ export default function CheckoutContent() {
 
         method: {
           upi: true,
-          card: true,
-          netbanking: true,
+          card: false,
+          netbanking: false,
           wallet: false,
           emi: false,
           paylater: false,
@@ -261,41 +254,6 @@ export default function CheckoutContent() {
                           {selected && <Check size={11} strokeWidth={3} className="text-white" />}
                         </span>
                       </button>
-
-                      {selected && method.id === "CARD" && (
-                        <div className="mt-2 grid grid-cols-2 gap-3 rounded-lg border border-gray-200 bg-[#fafafa] p-4">
-                          <div className="col-span-2">
-                            <label className={labelClass}>Card number</label>
-                            <input
-                              type="text"
-                              inputMode="numeric"
-                              placeholder="1234 5678 9012 3456"
-                              className={inputClass}
-                            />
-                          </div>
-                          <div>
-                            <label className={labelClass}>Expiry</label>
-                            <input type="text" placeholder="MM / YY" className={inputClass} />
-                          </div>
-                          <div>
-                            <label className={labelClass}>CVV</label>
-                            <input
-                              type="password"
-                              inputMode="numeric"
-                              maxLength={4}
-                              placeholder="•••"
-                              className={inputClass}
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                      {selected && method.id === "UPI" && (
-                        <div className="mt-2 rounded-lg border border-gray-200 bg-[#fafafa] p-4">
-                          <label className={labelClass}>UPI ID</label>
-                          <input type="text" placeholder="yourname@upi" className={inputClass} />
-                        </div>
-                      )}
 
                       {selected && method.id === "COD" && (
                         <p className="mt-2 rounded-lg border border-gray-200 bg-[#fafafa] px-4 py-3 text-[13px] text-gray-500 leading-relaxed">

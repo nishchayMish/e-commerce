@@ -34,17 +34,23 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = await http.post(endpoints.auth.register, formData);
-    if (res.status === 200) {
-      router.push(`/verify-otp?user_id=${res.data.userId}`);
-      toast.success("user registered successfully");
-    }
+    try {
+      const res = await http.post(endpoints.auth.register, formData);
+      if (res.status === 200) {
+        router.push(`/verify-otp?user_id=${res.data.userId}`);
+        toast.success("user registered successfully");
+      }
 
-    setFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+      });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error.response.data.message)
+    }
+    
   };
 
   return (
