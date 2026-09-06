@@ -7,7 +7,7 @@ export interface Product {
   category: string;
   description?: string;
   rating: number;
-  quantity?: number;
+  stock?: number;
   in_stock?: boolean;
   old_price?: number | string | null;
   trending?: boolean;

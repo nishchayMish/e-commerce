@@ -7,10 +7,10 @@ const seed = async() => {
        const promises = products.map((product) => {
             return pool.query(`
                 INSERT INTO products
-                (name, price, image, category, description, rating, quantity, old_price, trending, bestSeller)
+                (name, price, image, category, description, rating, stock, old_price, trending, bestSeller)
                 VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
                 RETURNING *
-            `,[product.name, product.price, product.image, product.category, product.description, product.rating, product.quantity, product.old_price, product.trending, product.bestSeller])
+            `,[product.name, product.price, product.image, product.category, product.description, product.rating, product.stock, product.old_price, product.trending, product.bestSeller])
         })
         await Promise.all(promises)
         console.log("seeding successfull")

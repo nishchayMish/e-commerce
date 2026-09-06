@@ -1,0 +1,12 @@
+-- migrate:up
+CREATE TABLE IF NOT EXISTS otp(
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    otp VARCHAR(6) NOT NULL,
+    purpose text NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    expires_at TIMESTAMP DEFAULT (NOW() + INTERVAL '10 minutes')
+);
+
+-- migrate:down
+DROP TABLE IF EXISTS otp;

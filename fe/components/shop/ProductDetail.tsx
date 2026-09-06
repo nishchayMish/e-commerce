@@ -34,7 +34,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   const showOldPrice = oldPrice != null && oldPrice > price;
 
   const isBestSeller = Boolean(product.bestSeller ?? product.bestseller);
-  const inStock = product.in_stock ?? (product.quantity ?? 0) > 0;
+  const inStock = product.in_stock ?? (product.stock ?? 0) > 0;
   const rating = Number(product.rating) || 0;
 
   const handleAddToCart = async(pId: string) => {
