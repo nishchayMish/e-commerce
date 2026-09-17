@@ -28,3 +28,9 @@ export const optionalAuthMiddleware = async(req, res, next) => {
     req.guestId = guestId;
     next();
 }
+
+/** Attach existing guest cookie only — do not create one (used by login). */
+export const attachGuestIdMiddleware = (req, res, next) => {
+    req.guestId = req.cookies.guest_id || null;
+    next();
+}

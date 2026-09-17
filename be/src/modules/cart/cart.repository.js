@@ -175,3 +175,58 @@ export const deleteGuestCart = async(guestId) => {
     const res = await pool.query("DELETE FROM cart WHERE guest_id = $1 RETURNING *", [guestId]);
     return res.rows[0];
 }
+
+/** Merge guest cart into user cart in one transaction. Returns true if a guest cart existed. */
+export const mergeGuestCartIntoUser = async (userId, guestId) => {
+    const client = await pool.connect();
+    try {
+        await client.query("BEGIN");
+
+        const guestCartRes = await client.query(
+            "SELECT id FROM cart WHERE guest_id = $1",
+            [guestId]
+        );
+        const guestCart = guestCartRes.rows[0];
+
+        if (!guestCart) {
+            await client.query("COMMIT");
+            return false;
+        }
+
+        const userCartRes = await client.query(
+            "SELECT id FROM cart WHERE user_id = $1",
+            [userId]
+        );
+        const userCart = userCartRes.rows[0];
+
+        if (!userCart) {
+            await client.query(
+                `UPDATE cart
+                 SET user_id = $1, guest_id = NULL
+                 WHERE guest_id = $2`,
+                [userId, guestId]
+            );
+            await client.query("COMMIT");
+            return true;
+        }
+
+        await client.query(
+            `INSERT INTO cart_items (cart_id, product_id, quantity)
+             SELECT $1, product_id, quantity
+             FROM cart_items
+             WHERE cart_id = $2
+             ON CONFLICT (cart_id, product_id)
+             DO UPDATE SET quantity = cart_items.quantity + EXCLUDED.quantity`,
+            [userCart.id, guestCart.id]
+        );
+
+        await client.query("DELETE FROM cart WHERE id = $1", [guestCart.id]);
+        await client.query("COMMIT");
+        return true;
+    } catch (err) {
+        await client.query("ROLLBACK");
+        throw err;
+    } finally {
+        client.release();
+    }
+}
