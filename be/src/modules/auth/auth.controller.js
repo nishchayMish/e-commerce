@@ -56,10 +56,10 @@ export const RegisterController = async(req, res) => {
 export const fetchMeController = async(req, res) => {
     try {
         const userId = req.user.id;
-        const result = await fetchMeService(userId);
+        const user = await fetchMeService(userId);
         res.status(200).json({
             message: "user fetched successfully",
-            result
+            user
         })
     } catch (err) {
         res.status(err.statusCode || 500).json({

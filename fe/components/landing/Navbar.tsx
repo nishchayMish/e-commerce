@@ -31,9 +31,9 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const { cartCount } = useCart();
-  const firstName = user?.username?.[0] ?? "";
+  const initial = user?.username?.[0]?.toUpperCase() ?? "";
 
   return (
     <>
@@ -72,23 +72,23 @@ export default function Navbar() {
 
             {/* Action icons */}
             <div className="flex items-center gap-0.5">
-              {/* Search */}
+              {/* Search — desktop */}
               <button
-                className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
+                className="hidden lg:flex w-9 h-9 rounded-lg items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
                 aria-label="Search"
               >
                 <Search size={16} />
               </button>
 
-              {/* Wishlist */}
+              {/* Wishlist — desktop */}
               <button
-                className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
+                className="hidden lg:flex w-9 h-9 rounded-lg items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
                 aria-label="Wishlist"
               >
                 <Heart size={16} />
               </button>
 
-              {/* Cart */}
+              {/* Cart — always visible */}
               <Link href="/cart">
                 <button
                   className="relative cursor-pointer w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
@@ -103,26 +103,31 @@ export default function Navbar() {
                 </button>
               </Link>
 
-              {/* Profile (desktop only) */}
-              {user ? 
-              <button
-                className="hidden uppercase lg:flex ml-1.5 w-8 h-8 rounded-full items-center justify-center text-[11px] font-semibold text-white bg-gray-900"
-                aria-label="Account"
-              >
-                {firstName}
-              </button>
-              : <button
-                className="hidden lg:flex w-9 h-9 rounded-lg items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
-                aria-label="Account"
-              >
-                <User size={16} />
-              </button>
-              }
+              {/* Profile — desktop only; mobile sees account inside menu */}
+              {!authLoading && (
+                user ? (
+                  <button
+                    type="button"
+                    className="hidden lg:flex ml-1.5 w-8 h-8 rounded-full items-center justify-center text-[11px] font-semibold text-white bg-gray-900"
+                    aria-label={`Signed in as ${user.username}`}
+                  >
+                    {initial}
+                  </button>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="hidden lg:flex ml-0.5 w-9 h-9 rounded-lg items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
+                    aria-label="Sign in"
+                  >
+                    <User size={16} />
+                  </Link>
+                )
+              )}
 
               {/* Mobile hamburger */}
               <button
                 onClick={() => setMobileOpen((o) => !o)}
-                className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gray-100 transition ml-0.5"
+                className="lg:hidden w-9 h-9 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gray-100 transition"
                 aria-label="Menu"
               >
                 <AnimatePresence mode="wait" initial={false}>
@@ -150,10 +155,10 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-16"
+            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-16 lg:hidden"
           >
             <motion.nav
-              className="flex flex-col px-6 pt-6"
+              className="flex flex-col px-6 pt-6 h-[calc(100dvh-4rem)]"
               initial="hidden"
               animate="show"
               variants={{
@@ -161,6 +166,45 @@ export default function Navbar() {
                 show: { transition: { staggerChildren: 0.06 } },
               }}
             >
+              {/* Account status */}
+              {!authLoading && (
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: -8 },
+                    show: { opacity: 1, y: 0 },
+                  }}
+                  className="mb-2 pb-5 border-b border-gray-100"
+                >
+                  {user ? (
+                    <div className="flex items-center gap-3">
+                      <span className="flex w-11 h-11 shrink-0 rounded-full items-center justify-center text-sm font-semibold text-white bg-gray-900">
+                        {initial}
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400">
+                          Signed in
+                        </p>
+                        <p className="truncate text-base font-semibold text-gray-900">
+                          {user.username}
+                        </p>
+                        <p className="truncate text-[13px] text-gray-500">
+                          {user.email}
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="text-base font-semibold text-gray-900">
+                        Welcome to AURUM
+                      </p>
+                      <p className="mt-0.5 text-[13px] text-gray-500">
+                        Sign in to sync your cart and wishlist.
+                      </p>
+                    </div>
+                  )}
+                </motion.div>
+              )}
+
               {navLinks.map((link) => (
                 <motion.div
                   key={link.label}
@@ -179,13 +223,45 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+
+              {/* Secondary actions moved out of header */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, x: -24 },
+                  show: { opacity: 1, x: 0 },
+                }}
+                transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.45 }}
+                className="flex gap-2 pt-5"
+              >
+                <button
+                  type="button"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-200 py-3 text-[13px] font-medium text-gray-700"
+                  aria-label="Search"
+                >
+                  <Search size={15} /> Search
+                </button>
+                <button
+                  type="button"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-200 py-3 text-[13px] font-medium text-gray-700"
+                  aria-label="Wishlist"
+                >
+                  <Heart size={15} /> Wishlist
+                </button>
+              </motion.div>
+
               <motion.div
                 variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-                className="mt-8 flex items-center gap-4"
+                className="mt-auto pt-8 pb-8"
               >
-                <button className="btn-primary w-full">
-                  <User size={14} /> Sign In
-                </button>
+                {!user && (
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileOpen(false)}
+                    className="btn-primary flex w-full items-center justify-center gap-2"
+                  >
+                    <User size={14} /> Sign In
+                  </Link>
+                )}
               </motion.div>
             </motion.nav>
           </motion.div>

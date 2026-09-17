@@ -30,18 +30,30 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserI | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
+
     const getCurrentUser = async () => {
       try {
         const res = await http.get(endpoints.auth.me);
-        setUser(res.data.user);
-      } catch (error) {
-        setUser(null);
+        if (cancelled) return;
+
+        const nextUser = res.data?.user ?? null;
+        setUser(nextUser);
+      } catch {
+        // Don't clear a user that login set while this /me request was in flight
+        if (!cancelled) {
+          setUser((prev) => prev ?? null);
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
     getCurrentUser();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (

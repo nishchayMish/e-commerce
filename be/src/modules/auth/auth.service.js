@@ -100,7 +100,7 @@ export const fetchMeService = async(userId) => {
     const userPayload = {
         id: res.id,
         username: res.username,
-        email: res.username
+        email: res.email
     }
     return userPayload;
 }
