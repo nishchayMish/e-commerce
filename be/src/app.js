@@ -5,6 +5,7 @@ import cartRoutes from "./modules/cart/cart.routes.js";
 import orderRoutes from "./modules/orders/orders.routes.js"
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { logger } from "./middlewares/logger.js";
 
 export const app = express();
 
@@ -16,12 +17,17 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(logger);
+
 app.use("/auth", authRoutes);
 app.use("/", productRoutes);
 app.use("/", cartRoutes);
 app.use("/orders", orderRoutes);
 
 app.get("/health", (req, res) => {
-    res.send({message: "pong"})
+    res.status(200).json({
+        status: "UP",
+        message: "Healthy"
+    })
 })
 
