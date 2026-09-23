@@ -21,7 +21,7 @@ app.use("/", productRoutes);
 app.use("/", cartRoutes);
 app.use("/orders", orderRoutes);
 
-app.get("/ping", (req, res) => {
+app.get("/health", (req, res) => {
     res.send({message: "pong"})
 })
 
